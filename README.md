@@ -34,7 +34,7 @@ For the FAVORannotator **standard version** , a test involving 3000 samples of W
 
 For the FAVORannotator **performance version** , 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 10 hours using 24 computing cores (intel cascade lake with 2.9 GHz frequency) and a total of 2.5 Tb memory. The memory consumed by each instance varies, as there are different amounts of variants associated with each chromosome. The following table lists the speed and resource consumption of each instance in the aforementioned test.
 
-_Figure 3. FAVORannotator Performance Version Resource Requirements._
+_Table 1. FAVORannotator Performance Version Resource Requirements._
 
 
 **Basics of PostgreSQL**
