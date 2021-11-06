@@ -26,7 +26,7 @@ _Figure 3. FAVORannotator Performance Version._
 
 FAVORannotator is also an integral part of the STAARpipeline, as it feeds the annotated genotype file into the STAARpipeline for common and rare variant association analysis of WGS studies.
 
-**Resource**** requirements**
+**Resource requirements**
 
 The resources utilized by the FAVORannotator R program and PostgreSQL instance are largely dependant upon the size of the inputted variants.
 
@@ -34,31 +34,8 @@ For the FAVORannotator **standard version** , a test involving 3000 samples of W
 
 For the FAVORannotator **performance version** , 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 10 hours using 24 computing cores (intel cascade lake with 2.9 GHz frequency) and a total of 2.5 Tb memory. The memory consumed by each instance varies, as there are different amounts of variants associated with each chromosome. The following table lists the speed and resource consumption of each instance in the aforementioned test.
 
-|
- | **Variants No.** | **Standard (h)** | **Performance (h)** | **DB Ram (GB)** | **FAVORannotator Ram (GB)** | **No. CPU for PostgreSQL** | **No. CPU for FAVORannotator** |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| **Chr1** | 47,217,357 | 282.3 | 10.0 | 90 | 96 | 1 | 1 |
-| **Chr2** | 49,818,096 | 298.8 | 8.6 | 90 | 96 | 1 | 1 |
-| **Chr3** | 40,744,521 | 225.8 | 7.3 | 90 | 80 | 1 | 1 |
-| **Chr4** | 39,777,274 | 208.1 | 8.7 | 70 | 80 | 1 | 1 |
-| **Chr5** | 36,898,464 | 196.3 | 8.9 | 70 | 80 | 1 | 1 |
-| **Chr6** | 34,690,553 | 187.6 | 8.4 | 60 | 70 | 1 | 1 |
-| **Chr7** | 33,669,084 | 180.8 | 8.1 | 60 | 70 | 1 | 1 |
-| **Chr8** | 31,750,692 | 175.5 | 7.4 | 60 | 70 | 1 | 1 |
-| **Chr9** | 27,144,795 | 169.7 | 5.2 | 50 | 60 | 1 | 1 |
-| **Chr10** | 28,085,788 | 175.2 | 5.4 | 50 | 60 | 1 | 1 |
-| **Chr11** | 27,912,534 | 153.4 | 7.2 | 50 | 60 | 1 | 1 |
-| **Chr12** | 27,177,352 | 148.2 | 6.8 | 46 | 50 | 1 | 1 |
-| **Chr13** | 19,813,673 | 133.7 | 4.2 | 46 | 50 | 1 | 1 |
-| **Chr14** | 18,827,963 | 128.6 | 4.0 | 46 | 50 | 1 | 1 |
-| **Chr15** | 17,712,823 | 122.8 | 3.5 | 40 | 50 | 1 | 1 |
-| **Chr16** | 19,613,382 | 131.7 | 4.6 | 40 | 40 | 1 | 1 |
-| **Chr17** | 17,452,826 | 129.8 | 4.3 | 40 | 40 | 1 | 1 |
-| **Chr18** | 15,431,223 | 102.5 | 3.4 | 40 | 40 | 1 | 1 |
-| **Chr19** | 13,727,825 | 92.4 | 3.7 | 36 | 30 | 1 | 1 |
-| **Chr20** | 12,871,049 | 88.4 | 1.9 | 36 | 30 | 1 | 1 |
-| **Chr21** | 8,732,283 | 70.3 | 0.7 | 36 | 30 | 1 | 1 |
-| **Chr22** | 9,355,428 | 72.4 | 1.2 | 36 | 30 | 1 | 1 |
+_Figure 3. FAVORannotator Performance Version Resource Requirements._
+
 
 **Basics of PostgreSQL**
 
