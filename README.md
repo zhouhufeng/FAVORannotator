@@ -75,7 +75,7 @@ The following steps have been written for several primary scenarios in order to 
 
   1. On fasrc, the command is: _module load postgresql/12.2-fasrc01_
 
-2) Log into the database: psql -h \&lt;host name\&gt; -p \&lt;port\&gt; -d \&lt;database name\&gt;
+2) Log into the database: psql -h hostname -p port -d databasename;
 
   1. eg_: psql -h holy2c14409 -p 8462 -d favor_
 
@@ -96,15 +96,15 @@ The following steps have been written for several primary scenarios in order to 
 1. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program.
 2. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
-- _DBNAME\_G \&lt;- favor;_
-- _HOST\_G \&lt;- holy2c14409;_
-- _PORT\_G \&lt;- 8462;_
-- _USER\_G \&lt;- &#39;userID&#39;;_
-- _PASSWORD\_G \&lt;- &#39;secretPassWord&#39;_
+- _DBNAME\_G <- ‘favor’;_
+- _HOST\_G  <- holy2c14409;_
+- _PORT\_G  <- 8462;_
+- _USER\_G  <- userID;_
+- _PASSWORD\_G  <- secretPassWord;_
 
 1. Now FAVORannotator is ready to run using following command:
 
-- _Rscript FAVORannotator.R \&lt;Path to Input.VCF\&gt; \&lt;Path to Output.aGDS\&gt;_
+- _Rscript FAVORannotator.R Input.VCF  Output.aGDS;_
 
 -------------------**(IV)**Other helpful commands -------------------------------------------------------------
 
