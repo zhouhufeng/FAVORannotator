@@ -36,9 +36,9 @@ For the FAVORannotator **performance version** , 60,000 samples of WGS variant s
 
 _Table 1. FAVORannotator Performance Version Resource Requirements._
 
-Variants No.| Standard(h)|Performance(h)|DB Ram(GB)|FAVORannotator Ram(GB)|No. CPU for PostgreSQL|No. CPU for FAVORannotator|
- --- | --- | --- | --- | --- | --- | --- | --- 
- **Chr1** | 47,217,357 | 282.3 | 10.0 | 90 | 96 | 1 | 1 
+Variants No.|Standard(h)|Performance(h)|DB Ram(GB)|FAVORannotator Ram(GB)|No. CPU for PostgreSQL|No. CPU for FAVORannotator
+------------|------------|------------|------------|------------|------------|------------|------------
+**Chr1** | 47,217,357 | 282.3 | 10.0 | 90 | 96 | 1 | 1 
  **Chr2** | 49,818,096 | 298.8 | 8.6 | 90 | 96 | 1 | 1 
  **Chr3** | 40,744,521 | 225.8 | 7.3 | 90 | 80 | 1 | 1 
  **Chr4** | 39,777,274 | 208.1 | 8.7 | 70 | 80 | 1 | 1 
