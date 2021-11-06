@@ -4,7 +4,7 @@
 
 FAVORannotator is an open-source pipeline for functionally annotating and efficiently storing the genotype and variant functional annotation data of any genetic study (GWAS/WES/WGS). This data is stored in the all-in-one aGDS file format using the FAVOR PostgreSQL database to facilitate downstream association analysis (Figure 1). It converts a genotype VCF input file to a GDS file, searches the variants in the GDS file using the FAVOR database for their functional annotations (stored using PostgreSQL), and then integrates these annotations into the GDS file to create an aGDS file. This aGDS file allows both genotype and functional annotation data to be stored in a single file (Figure 1). Furthermore, FAVORannotator can be conveniently integrated into the STAARpipeline, a rare variant association analysis tool for WGS/WES studies, to perform association analysis of large-scale genetic data.
 
-![](RackMultipart20211106-4-1cy1fm2_html_588f999984535b88.png)
+![FAVORannotator workflow](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure1.png)
 
 _Figure 1. FAVORannotator workflow. Represented in cartoon._
 
@@ -14,13 +14,13 @@ FAVORannotator accomplishes both high performance speed and storage efficiency d
 
 There are two versions of FAVORannotator: **standard,** and **performance**. The standard version (Figure 2) requires limited computational resources and works using modest computing hardware. This is especially useful when users need to have a stable local access of FAVORannotator for frequent functional annotation of large-scale variant sets while lacking powerful computing hardware.
 
-[![](RackMultipart20211106-4-1cy1fm2_html_247adf2e4183ae9b.png)](https://github.com/zhouhufeng/FAVORannotator/blob/main/figure1.png)
+![FAVORannotator Standard Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure2.png)
 
 _Figure 2. FAVORannotator Standard Version._
 
 However, not all computing environments are the same. While some individual machines may have limited resources, computing clusters may grant access to abundant resources. Thus, it is important to have a version of FAVORannotator which can take advantage of the latter option. The speed of FAVORannotator can be significantly improved if its database is divided into 24 smaller databases – one for each chromosome. This is the manner in which the FAVORannotator performance version operates. By utilizing (Figure 3) more computational resources, it can run much faster than the standard version. This is especially useful when users need to have huge datasets to annotate on a local cluster, and speed its a top priority. A test on 60,000 whole genome sequencing data shows a 100X speed increase. Further differences between FAVORannotator Standard version and Performance Version are illustrated in Figures 2 and 3.
 
-[![](RackMultipart20211106-4-1cy1fm2_html_e69b64d175198a5f.png)](https://github.com/zhouhufeng/FAVORannotator/blob/main/figure2.png)
+![FAVORannotator Performance Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure3.png)
 
 _Figure 3. FAVORannotator Performance Version._
 
@@ -36,30 +36,8 @@ For the FAVORannotator **performance version** , 60,000 samples of WGS variant s
 
 _Table 1. FAVORannotator Performance Version Resource Requirements._
 
-Variants No.|Standard(h)|Performance(h)|DB Ram(GB)|FAVORannotator Ram(GB)|No. CPU for PostgreSQL|No. CPU for FAVORannotator
-------------|------------|------------|------------|------------|------------|------------|------------
-**Chr1** | 47,217,357 | 282.3 | 10.0 | 90 | 96 | 1 | 1 
- **Chr2** | 49,818,096 | 298.8 | 8.6 | 90 | 96 | 1 | 1 
- **Chr3** | 40,744,521 | 225.8 | 7.3 | 90 | 80 | 1 | 1 
- **Chr4** | 39,777,274 | 208.1 | 8.7 | 70 | 80 | 1 | 1 
- **Chr5** | 36,898,464 | 196.3 | 8.9 | 70 | 80 | 1 | 1 
- **Chr6** | 34,690,553 | 187.6 | 8.4 | 60 | 70 | 1 | 1 
- **Chr7** | 33,669,084 | 180.8 | 8.1 | 60 | 70 | 1 | 1 
- **Chr8** | 31,750,692 | 175.5 | 7.4 | 60 | 70 | 1 | 1 
- **Chr9** | 27,144,795 | 169.7 | 5.2 | 50 | 60 | 1 | 1 
- **Chr10** | 28,085,788 | 175.2 | 5.4 | 50 | 60 | 1 | 1
- **Chr11** | 27,912,534 | 153.4 | 7.2 | 50 | 60 | 1 | 1 
- **Chr12** | 27,177,352 | 148.2 | 6.8 | 46 | 50 | 1 | 1 
- **Chr13** | 19,813,673 | 133.7 | 4.2 | 46 | 50 | 1 | 1 
- **Chr14** | 18,827,963 | 128.6 | 4.0 | 46 | 50 | 1 | 1 
- **Chr15** | 17,712,823 | 122.8 | 3.5 | 40 | 50 | 1 | 1 
- **Chr16** | 19,613,382 | 131.7 | 4.6 | 40 | 40 | 1 | 1 
- **Chr17** | 17,452,826 | 129.8 | 4.3 | 40 | 40 | 1 | 1 
- **Chr18** | 15,431,223 | 102.5 | 3.4 | 40 | 40 | 1 | 1 
- **Chr19** | 13,727,825 | 92.4 | 3.7 | 36 | 30 | 1 | 1 
- **Chr20** | 12,871,049 | 88.4 | 1.9 | 36 | 30 | 1 | 1 
- **Chr21** | 8,732,283 | 70.3 | 0.7 | 36 | 30 | 1 | 1 
- **Chr22** | 9,355,428 | 72.4 | 1.2 | 36 | 30 | 1 | 1 
+![Resource Requirements](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Tables/table%201.png)
+
 
 **Basics of PostgreSQL**
 
