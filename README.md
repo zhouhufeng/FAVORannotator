@@ -32,7 +32,7 @@ The resources utilized by the FAVORannotator R program and PostgreSQL instance a
 
 For the FAVORannotator **standard version** , a test involving 3000 samples of WGS variants sets required approximately 30 GB of memory total for the database instance, and an additional 30 GB of memory for the FAVORannotator R program. The whole functional annotation completed within 24 hours.
 
-For the FAVORannotator **performance version** , 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 10 hours using 24 computing cores (intel cascade lake with 2.9 GHz frequency) and a total of 2.5 Tb memory. The memory consumed by each instance varies, as there are different amounts of variants associated with each chromosome. The following table lists the speed and resource consumption of each instance in the aforementioned test.
+For the FAVORannotator **performance version** , 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 10 hours using 24 computing cores (intel cascade lake with 2.9 GHz frequency). The memory consumed by each instance varies, as there are different amounts of variants associated with each chromosome. The following table lists the speed and resource consumption of each instance in the aforementioned test.
 
 _Table 1. FAVORannotator Performance Version Resource Requirements._
 
