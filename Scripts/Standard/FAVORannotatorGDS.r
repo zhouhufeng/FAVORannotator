@@ -17,17 +17,13 @@ library(stringi)
 #import function to query database
 source('batchAnnotator.R')
 
-vcf.fn=as.character(commandArgs(TRUE)[1])
-out.fn=as.character(commandArgs(TRUE)[2])
+input.GDS =as.character(commandArgs(TRUE)[1])
+output.gds=as.character(commandArgs(TRUE)[2])
 #N=as.character(commandArgs(TRUE)[1])
-#vcf.fn <- paste0("/n/location/",N,".vcf.bgz")
-#out.fn <- paste0("/n/location/",N,".gds")
-seqVCF2GDS(vcf.fn, out.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
-genofile<-seqOpen(out.fn, readonly = FALSE)
+genofile<-seqOpen(input.GDS, readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")
-#CHR<-paste0("chr",seqGetData(genofile,"chromosome"))
 POS<-seqGetData(genofile,"position")
 REF<-seqGetData(genofile,"$ref")
 ALT<-seqGetData(genofile,"$alt")
@@ -37,18 +33,20 @@ ALT<-seqGetData(genofile,"$alt")
 #############################################################################
 VariantsAnno <- data.frame(CHR, POS, REF, ALT)
 VariantsAnno$CHR <- as.character(VariantsAnno$CHR)
-#VariantsAnno$CHR <- as.integer(as.character(VariantsAnno$CHR))
-#VariantsAnno$CHR <- as.integer(VariantsAnno$CHR)
 VariantsAnno$POS <- as.integer(VariantsAnno$POS)
 VariantsAnno$REF <- as.character(VariantsAnno$REF)
 VariantsAnno$ALT <- as.character(VariantsAnno$ALT)
 dim(VariantsAnno)
 head(VariantsAnno)
+
 rm(CHR,POS,REF,ALT)
 
 size = nrow(VariantsAnno);
-for(n in 1:(ceiling(size/2000000))){dx<-VariantsAnno[(n-1)*2000000:n*2000000,]; 
-VariantsBatchAnno<-rbind(VariantsBatchAnno,batchAnnotate(dx))}; 
+for(n in 1:(ceiling(size/2000000))){
+	dx<-VariantsAnno[(n-1)*2000000:n*2000000,]; 
+	VariantsBatchAnno<-rbind(VariantsBatchAnno,batchAnnotate(dx))
+} 
+
 rm(VariantsAnno, dx)
 
 #VariantsBatchAnno<-batchAnnotate(VariantsAnno)
@@ -60,6 +58,7 @@ Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "Function
 #Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
 
 #VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno),]
+
 VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno[,c("chromosome","position","ref_vcf","alt_vcf")]),]
 VariantsAnno <- dplyr::left_join(VariantsAnno,VariantsBatchAnno, by = c("CHR" = "chromosome","POS" = "position","REF" = "ref_vcf","ALT" = "alt_vcf"))
 add.gdsn(Anno.folder, "OfflineV2", val=VariantsAnno.dbNSFP, compress="LZMA_ra", closezip=TRUE)
