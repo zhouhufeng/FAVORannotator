@@ -44,7 +44,6 @@ rm(CHR,POS,REF,ALT)
 size = nrow(VariantsAnno);
 for(n in 1:(ceiling(size/2000000))){
 	dx<-VariantsAnno[(n-1)*2000000:n*2000000,]; 
-	VariantsBatchAnno<-batchAnnotate(VariantsAnno);
 	VariantsBatchAnno<-rbind(VariantsBatchAnno,batchAnnotate(dx))
 } 
 
