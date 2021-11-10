@@ -51,7 +51,7 @@ size = nrow(VariantsAnno);
 	for(n in 1:(ceiling(size/2000000))){
 	dx<-VariantsAnno[((n-1)*2000000):(n*2000000),]
 	VariantsBatchAnno<-rbind(VariantsBatchAnno,batchAnnotate(dx))
-	print("finish rounds/blocks: "+n+"\t\n");
+	print(paste0(("finish rounds/blocks: "),n))
 }
 
 rm(VariantsAnno, dx)
