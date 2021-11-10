@@ -46,11 +46,14 @@ dim(VariantsAnno)
 head(VariantsAnno)
 rm(CHR,POS,REF,ALT)
 
+VariantsBatchAnno <- data.frame(); 
 size = nrow(VariantsAnno);
-for(n in 1:(ceiling(size/2000000))){
-	dx<-VariantsAnno[(n-1)*2000000:n*2000000,]; 
+	for(n in 1:(ceiling(size/2000000))){
+	dx<-VariantsAnno[((n-1)*2000000):(n*2000000),]
 	VariantsBatchAnno<-rbind(VariantsBatchAnno,batchAnnotate(dx))
-	} 
+	print("finish rounds/blocks: "+n+"\t\n");
+}
+
 rm(VariantsAnno, dx)
 
 #VariantsBatchAnno<-batchAnnotate(VariantsAnno)
