@@ -26,6 +26,16 @@ _Figure 3. FAVORannotator Performance Version._
 
 FAVORannotator is also an integral part of the STAARpipeline, as it feeds the annotated genotype file into the STAARpipeline for common and rare variant association analysis of WGS studies.
 
+It is important to know that different from other storage, the FAVORannotator backend database host on PostgreSQL is always on, always listen, and respond to queries all the time. Although FAVORannotator R program might be up and running and stops from time to time depends on the query data type and size, the FAVORannotator backend database is always on unless we specifically turn it off. We have to ensure the FAVORannotator backend database host on PostgreSQL is booted on and always running during the time of working. 
+
+Another important question is, once the FAVORannotator backend database host on PostgreSQL is booted on and running, how can our FAVORannotator R program find the backend database to talk to and execute the query? We need to tell FAVORannotator R program where the database instance it is by feeding in the following identification information, e.g. DBName, Host, Port, User, and Password. 
+
+This above specialized database setting, ensure the high performance of query, and fast query speed. 
+Here shows the detail features described above. 
+![FAVORannotator Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure4.png)
+
+_Figure 4. FAVORannotator Technical Feature explained._
+
 **Resource requirements**
 
 The resources utilized by the FAVORannotator R program and PostgreSQL instance are largely dependant upon the size of the inputted variants.
@@ -36,7 +46,7 @@ For the FAVORannotator **performance version** , 60,000 samples of WGS variant s
 
 _Table 1. FAVORannotator Performance Version Resource Requirements._
 
-![Resource Requirements](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Tables/table%201.png)
+![Resource Requirements](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Tables/table1.png)
 
 
 **Basics of PostgreSQL**
