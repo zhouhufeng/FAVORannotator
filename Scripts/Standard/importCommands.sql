@@ -31,17 +31,17 @@ apc_transcription_factor numeric,
 cadd_phred numeric,
 cage text,
 fathmm_xf numeric,
-genecode_category text,
-genecode_info text,
-genecode_exonic_category text,
-genecode_exonic_info text,
+genecode_comprehensive_category text,
+genecode_comprehensive_info text,
+genecode_comprehensive_exonic_info text,
+genecode_comprehensive_exonic_category text,
 genehancer text,
 linsight numeric,
 metasvm_pred text,
 rdhs text,
 rsid text);
 
-COPY main FROM '/n/holystore01/LABS/xlin/Lab/tarapoglou/v2/offline/offlineData.csv' CSV HEADER;
+COPY main FROM '/n/holystore01/LABS/xlin/Lab/zhouhufeng/DB/FAVORannotator/NewDB/FAVORAnnotatorDB.22.txt' CSV HEADER;
 
 CREATE VIEW offline_view AS SELECT * FROM main;
 
