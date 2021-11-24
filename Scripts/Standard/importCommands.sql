@@ -8,7 +8,7 @@ psql -h localhost -p portnumber -d FAVORV2
 CREATE TABLE MAIN(
 variant_vcf text,
 chromosome text,
-position text,
+position integer,
 ref_vcf text,
 alt_vcf text,
 apc_conservation numeric,
