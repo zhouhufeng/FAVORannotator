@@ -91,7 +91,41 @@ The following steps have been written for several primary scenarios in order to 
 
 3) Create the table
 
-  iii. _CREATE TABLE main (variant\_vcf text, chromosome text, position integer, ref\_vcf text, alt\_vcf text, cage text, genecode\_category text, genecode\_info text, genecode\_exonic\_category text, genecode\_exonic\_info text, genehancer text, cadd\_phred numeric, fathmm\_xf\_coding numeric, fathmm\_xf\_noncoding numeric, hs text, apc\_epigenetics numeric, apc\_conservation numeric, apc\_protein\_function numeric, apc\_local\_nucleotide\_diversity numeric, apc\_proximity\_to\_coding numeric, apc\_mutation\_density numeric, apc\_transcription\_factor numeric, apc\_proximity\_to\_tsstes numeric, apc\_micro\_rna numeric, apc\_epigenetics\_active numeric, apc\_epigenetics\_repressed numeric, apc\_epigenetics\_transcription numeric, apc\_conservation\_v2 numeric, apc\_local\_nucleotide\_diversity\_v2 numeric, apc\_proximity\_to\_coding\_v2 numeric);_
+  iii. _CREATE TABLE MAIN(
+variant_vcf text,
+chromosome text,
+position integer,
+ref_vcf text,
+alt_vcf text,
+apc_conservation numeric,
+apc_conservation_v2 numeric,
+apc_epigenetics numeric,
+apc_epigenetics_active numeric,
+apc_epigenetics_repressed numeric,
+apc_epigenetics_transcription numeric,
+apc_local_nucleotide_diversity numeric,
+apc_local_nucleotide_diversity_v2 numeric,
+apc_local_nucleotide_diversity_v3 numeric,
+apc_mappability numeric,
+apc_micro_rna numeric,
+apc_mutation_density numeric,
+apc_protein_function numeric,
+apc_proximity_to_coding numeric,
+apc_proximity_to_coding_v2 numeric,
+apc_proximity_to_tsstes numeric,
+apc_transcription_factor numeric,
+cadd_phred numeric,
+cage text,
+fathmm_xf numeric,
+genecode_comprehensive_category text,
+genecode_comprehensive_info text,
+genecode_comprehensive_exonic_info text,
+genecode_comprehensive_exonic_category text,
+genehancer text,
+linsight numeric,
+metasvm_pred text,
+rdhs text,
+rsid text);_
   iv. Load the data: _COPY main FROM path to file/offlineData.csv; CSV HEADER;_ This command can take several hours to complete, up to a day.
   v. Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This command can take several hours to complete, up to a day.
   vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
@@ -145,7 +179,41 @@ Functional annotation through FAVORannotator is a streamlined process.
 
 2) Create the table
 
-  ii. _CREATE TABLE main (variant\_vcf text, chromosome text, position integer, ref\_vcf text, alt\_vcf text, cage text, genecode\_category text, genecode\_info text, genecode\_exonic\_category text, genecode\_exonic\_info text, genehancer text, cadd\_phred numeric, fathmm\_xf\_coding numeric, fathmm\_xf\_noncoding numeric, hs text, apc\_epigenetics numeric, apc\_conservation numeric, apc\_protein\_function numeric, apc\_local\_nucleotide\_diversity numeric, apc\_proximity\_to\_coding numeric, apc\_mutation\_density numeric, apc\_transcription\_factor numeric, apc\_proximity\_to\_tsstes numeric, apc\_micro\_rna numeric, apc\_epigenetics\_active numeric, apc\_epigenetics\_repressed numeric, apc\_epigenetics\_transcription numeric, apc\_conservation\_v2 numeric, apc\_local\_nucleotide\_diversity\_v2 numeric, apc\_proximity\_to\_coding\_v2 numeric);_
+  ii. _CREATE TABLE MAIN(
+variant_vcf text,
+chromosome text,
+position integer,
+ref_vcf text,
+alt_vcf text,
+apc_conservation numeric,
+apc_conservation_v2 numeric,
+apc_epigenetics numeric,
+apc_epigenetics_active numeric,
+apc_epigenetics_repressed numeric,
+apc_epigenetics_transcription numeric,
+apc_local_nucleotide_diversity numeric,
+apc_local_nucleotide_diversity_v2 numeric,
+apc_local_nucleotide_diversity_v3 numeric,
+apc_mappability numeric,
+apc_micro_rna numeric,
+apc_mutation_density numeric,
+apc_protein_function numeric,
+apc_proximity_to_coding numeric,
+apc_proximity_to_coding_v2 numeric,
+apc_proximity_to_tsstes numeric,
+apc_transcription_factor numeric,
+cadd_phred numeric,
+cage text,
+fathmm_xf numeric,
+genecode_comprehensive_category text,
+genecode_comprehensive_info text,
+genecode_comprehensive_exonic_info text,
+genecode_comprehensive_exonic_category text,
+genehancer text,
+linsight numeric,
+metasvm_pred text,
+rdhs text,
+rsid text);_
 
 3) Load the data:
 
@@ -205,7 +273,41 @@ Functional annotation through FAVORannotator is a streamlined process.
 
 2) Create the table
 
-  ii. _CREATE TABLE main (variant\_vcf text, chromosome text, position integer, ref\_vcf text, alt\_vcf text, cage text, genecode\_category text, genecode\_info text, genecode\_exonic\_category text, genecode\_exonic\_info text, genehancer text, cadd\_phred numeric, fathmm\_xf\_coding numeric, fathmm\_xf\_noncoding numeric, hs text, apc\_epigenetics numeric, apc\_conservation numeric, apc\_protein\_function numeric, apc\_local\_nucleotide\_diversity numeric, apc\_proximity\_to\_coding numeric, apc\_mutation\_density numeric, apc\_transcription\_factor numeric, apc\_proximity\_to\_tsstes numeric, apc\_micro\_rna numeric, apc\_epigenetics\_active numeric, apc\_epigenetics\_repressed numeric, apc\_epigenetics\_transcription numeric, apc\_conservation\_v2 numeric, apc\_local\_nucleotide\_diversity\_v2 numeric, apc\_proximity\_to\_coding\_v2 numeric);_
+  ii. _CREATE TABLE MAIN(
+variant_vcf text,
+chromosome text,
+position integer,
+ref_vcf text,
+alt_vcf text,
+apc_conservation numeric,
+apc_conservation_v2 numeric,
+apc_epigenetics numeric,
+apc_epigenetics_active numeric,
+apc_epigenetics_repressed numeric,
+apc_epigenetics_transcription numeric,
+apc_local_nucleotide_diversity numeric,
+apc_local_nucleotide_diversity_v2 numeric,
+apc_local_nucleotide_diversity_v3 numeric,
+apc_mappability numeric,
+apc_micro_rna numeric,
+apc_mutation_density numeric,
+apc_protein_function numeric,
+apc_proximity_to_coding numeric,
+apc_proximity_to_coding_v2 numeric,
+apc_proximity_to_tsstes numeric,
+apc_transcription_factor numeric,
+cadd_phred numeric,
+cage text,
+fathmm_xf numeric,
+genecode_comprehensive_category text,
+genecode_comprehensive_info text,
+genecode_comprehensive_exonic_info text,
+genecode_comprehensive_exonic_category text,
+genehancer text,
+linsight numeric,
+metasvm_pred text,
+rdhs text,
+rsid text);_
   iii. Load the data: _COPY main FROM &#39;\&lt;path to file\&gt;/offlineData.csv&#39; CSV HEADER;_ This command can take several hours to complete, up to a day.
   iv. Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This command can take several hours to complete, up to a day.
   v. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
