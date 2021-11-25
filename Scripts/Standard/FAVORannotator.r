@@ -27,7 +27,6 @@ genofile<-seqOpen(out.fn, readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")
-#CHR<-paste0("chr",seqGetData(genofile,"chromosome"))
 POS<-seqGetData(genofile,"position")
 REF<-seqGetData(genofile,"$ref")
 ALT<-seqGetData(genofile,"$alt")
@@ -37,8 +36,6 @@ ALT<-seqGetData(genofile,"$alt")
 #############################################################################
 VariantsAnno <- data.frame(CHR, POS, REF, ALT)
 VariantsAnno$CHR <- as.character(VariantsAnno$CHR)
-#VariantsAnno$CHR <- as.integer(as.character(VariantsAnno$CHR))
-#VariantsAnno$CHR <- as.integer(VariantsAnno$CHR)
 VariantsAnno$POS <- as.integer(VariantsAnno$POS)
 VariantsAnno$REF <- as.character(VariantsAnno$REF)
 VariantsAnno$ALT <- as.character(VariantsAnno$ALT)
@@ -46,19 +43,7 @@ dim(VariantsAnno)
 head(VariantsAnno)
 rm(CHR,POS,REF,ALT)
 
-VariantsBatchAnno <- data.frame(); 
-size = nrow(VariantsAnno);
-for(n in 1:(ceiling(size/2000000))){
-	start <- (n-1)*2000000 + 1
-	end <- min(n*2000000,size)
-	dx<-VariantsAnno[start:end,]
-	VariantsBatchAnno<-rbind(VariantsBatchAnno,batchAnnotate(dx))
-	print(paste0(("finish rounds/blocks: "),n))
-}
-
-rm(VariantsAnno, dx)
-
-#VariantsBatchAnno<-batchAnnotate(VariantsAnno)
+VariantsBatchAnno<-batchAnnotate(VariantsAnno)
 
 ############################################
 ####This Variant is a searching key#########
