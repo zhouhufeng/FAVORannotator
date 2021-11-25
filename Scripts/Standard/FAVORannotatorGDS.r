@@ -71,7 +71,7 @@ Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "Function
 
 VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno[,c("chromosome","position","ref_vcf","alt_vcf")]),]
 VariantsAnno <- dplyr::left_join(VariantsAnno,VariantsBatchAnno, by = c("CHR" = "chromosome","POS" = "position","REF" = "ref_vcf","ALT" = "alt_vcf"))
-add.gdsn(Anno.folder, "OfflineV2", val=VariantsAnno.dbNSFP, compress="LZMA_ra", closezip=TRUE)
+add.gdsn(Anno.folder, "OfflineV2", val=VariantsAnno, compress="LZMA_ra", closezip=TRUE)
 mem_used()
 gc()
 
