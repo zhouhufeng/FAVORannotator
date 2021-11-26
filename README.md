@@ -49,37 +49,21 @@ _Table 1. FAVORannotator Performance Version Resource Requirements._
 ![Resource Requirements](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Tables/table1.png)
 
 
-**Basics of PostgreSQL**
+**Overall Introduction of FAVORannotator and backend database**
 
 FAVORannotator relies upon the PostgreSQL Database Management System (DBMS) to achieve its performance. PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. Installing FAVORannotator requires only 3 steps:
 
-1. Install and run PostgreSQL.
-2. Import FAVORv2 data into PostgreSQL.
-3. Tell FAVORannotator where to find the running database.
+I.	Install and run PostgreSQL (depends on different systems).
+II.	Import FAVOR database into PostgreSQL and run FAVORannotator (universal).
 
-How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** and **(III)** remain consistent. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
 
-**Run FAVORannotator locally (on different platforms)**
+How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** remain consistent. We will first discuss the universal steps of import backend database and run FAVORannotator **(II)**. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
 
-The following steps have been written for several primary scenarios in order to best account for all possibilities.
+**Import Database into PostgreSQL and Run FAVORannotator**
 
-**Installing and running FAVORannotator on Harvard&#39;s slurm cluster**
+Once PostgreSQL database is booted up and running, backend datbase can be imported and then FAVORannotator can be executed as follows. 
 
--------------------**(N)** Obtain FAVORannotator database------------------------------------------------
-
-1. Download the FAVORannotator data file from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
-
--------------------**(I)** PostgreSQL installation and running-----------------------------------------------
-
-2. Set up the database on slurm cluster
-3. Install the fasrc VPN ([https://docs.rc.fas.harvard.edu/kb/vpn-setup/](https://docs.rc.fas.harvard.edu/kb/vpn-setup/))
-4. Access the fasrc VDI ([https://docs.rc.fas.harvard.edu/kb/virtual-desktop/](https://docs.rc.fas.harvard.edu/kb/virtual-desktop/))
-5. Create a folder on fasrc where you would like to store the database (mkdir \&lt;FAVORannotator Folder\&gt;)
-6. Create a database server 1. Click &quot;My Interactive Sessions&quot; at the top. 2. Click &quot;Postgresql db&quot; on the left. 3. Configure the server
-
--------------------**(II)** Import FAVORv2 backend database into PostgreSQL --------------------------
-
-7. Once the server is running, set up the database:
+1. Once the server is running, set up the database:
 
 1) Load the postgres module
 
@@ -137,8 +121,8 @@ rsid text);_
 
 -------------------**(III)** Tell FAVORannotator where to find the running database ---------------------
 
-8. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program.
-9. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
+2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program.
+3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
 - _DBNAME\_G <- ‘favor’;_
 - _HOST\_G  <- 'localhost';_
@@ -146,9 +130,28 @@ rsid text);_
 - _USER\_G  <- 'userID';_
 - _PASSWORD\_G  <- 'secretPassWord';_
 
-10. Now FAVORannotator is ready to run using following command:
+4. Now FAVORannotator is ready to run using following command:
 
 - _Rscript FAVORannotator.R Input.VCF  Output.aGDS;_
+
+**Install PostgreSQL on different platforms**
+
+The following steps have been written for several primary scenarios in order to best account for all possibilities.
+
+**Installing and running FAVORannotator on Harvard&#39;s slurm cluster**
+
+-------------------**(N)** Obtain FAVORannotator database------------------------------------------------
+
+1. Download the FAVORannotator data file from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
+
+-------------------**(I)** PostgreSQL installation and running-----------------------------------------------
+
+2. Set up the database on slurm cluster
+3. Install the fasrc VPN ([https://docs.rc.fas.harvard.edu/kb/vpn-setup/](https://docs.rc.fas.harvard.edu/kb/vpn-setup/))
+4. Access the fasrc VDI ([https://docs.rc.fas.harvard.edu/kb/virtual-desktop/](https://docs.rc.fas.harvard.edu/kb/virtual-desktop/))
+5. Create a folder on fasrc where you would like to store the database (mkdir \&lt;FAVORannotator Folder\&gt;)
+6. Create a database server 1. Click &quot;My Interactive Sessions&quot; at the top. 2. Click &quot;Postgresql db&quot; on the left. 3. Configure the server
+
 
 -------------------**(IV)** Other helpful commands -------------------------------------------------------------
 
@@ -177,71 +180,6 @@ Functional annotation through FAVORannotator is a streamlined process.
 
   i. _/Applications/Postgres.app/Contents/Versions/13/bin/psql -p 5432 "postgres";_
 
-2) Create the table
-
-  ii. _CREATE TABLE MAIN(
-variant_vcf text,
-chromosome text,
-position integer,
-ref_vcf text,
-alt_vcf text,
-apc_conservation numeric,
-apc_conservation_v2 numeric,
-apc_epigenetics numeric,
-apc_epigenetics_active numeric,
-apc_epigenetics_repressed numeric,
-apc_epigenetics_transcription numeric,
-apc_local_nucleotide_diversity numeric,
-apc_local_nucleotide_diversity_v2 numeric,
-apc_local_nucleotide_diversity_v3 numeric,
-apc_mappability numeric,
-apc_micro_rna numeric,
-apc_mutation_density numeric,
-apc_protein_function numeric,
-apc_proximity_to_coding numeric,
-apc_proximity_to_coding_v2 numeric,
-apc_proximity_to_tsstes numeric,
-apc_transcription_factor numeric,
-cadd_phred numeric,
-cage text,
-fathmm_xf numeric,
-genecode_comprehensive_category text,
-genecode_comprehensive_info text,
-genecode_comprehensive_exonic_info text,
-genecode_comprehensive_exonic_category text,
-genehancer text,
-linsight numeric,
-metasvm_pred text,
-rdhs text,
-rsid text);_
-
-3) Load the data:
-
-  iii. _COPY main FROM offlineData.csv; CSV HEADER_; This command can take several hours to complete, up to a day
-
-4) Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This command can take several hours to complete, up to a day
-
-5) Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM_ main;
-
-6) Set up credentials for FAVORannotator
-
-  1. Create a new user: _CREATE ROLE annotator LOGIN PASSWORD 'DoMeAFAVOR';_
-  2. Allow this user to view the necessary data: _GRANT SELECT ON offline\_view TO annotator;_
-
--------------------**(III)** Tell FAVORannotator where to find the running database ---------------------
-
-6. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program.
-7. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
-
-- _DBNAME\_G <- ‘favor’;_
-- _HOST\_G  <- 'localhost';_
-- _PORT\_G  <- 8462;_
-- _USER\_G  <- 'userID';_
-- _PASSWORD\_G  <- 'secretPassWord';_
-
-8. Now FAVORannotator is ready to run as follows:
-
-- _Rscript FAVORannotator.R Input.VCF Output.aGDS_
 
 -------------------**(IV)** Other helpful commands -------------------------------------------------------------
 
@@ -263,59 +201,6 @@ rsid text);_
   2. uncomment and change the following variables: 1. shared\_buffers = 2GB 2. work\_mem = 1GB 3. maintenance\_work\_mem = 1GB 4. autovacuum\_work\_mem = 64MB 5. wal\_compression = on 6. log\_statement = &#39;all&#39;
   3. Start the database server: sudo pg\_ctlcluster, main start
 
--------------------**(II)** Import FAVORv2 backend database into PostgreSQL --------------------------
-
-5. Once the server is running, set up the database:
-
-1) Log into the database: psql -h \&lt;host name\&gt; -p \&lt;port\&gt; -d \&lt;database name\&gt;
-
-  i. eg_: psql -h holy2c14409 -p 8462 -d favor_
-
-2) Create the table
-
-  ii. _CREATE TABLE MAIN(
-variant_vcf text,
-chromosome text,
-position integer,
-ref_vcf text,
-alt_vcf text,
-apc_conservation numeric,
-apc_conservation_v2 numeric,
-apc_epigenetics numeric,
-apc_epigenetics_active numeric,
-apc_epigenetics_repressed numeric,
-apc_epigenetics_transcription numeric,
-apc_local_nucleotide_diversity numeric,
-apc_local_nucleotide_diversity_v2 numeric,
-apc_local_nucleotide_diversity_v3 numeric,
-apc_mappability numeric,
-apc_micro_rna numeric,
-apc_mutation_density numeric,
-apc_protein_function numeric,
-apc_proximity_to_coding numeric,
-apc_proximity_to_coding_v2 numeric,
-apc_proximity_to_tsstes numeric,
-apc_transcription_factor numeric,
-cadd_phred numeric,
-cage text,
-fathmm_xf numeric,
-genecode_comprehensive_category text,
-genecode_comprehensive_info text,
-genecode_comprehensive_exonic_info text,
-genecode_comprehensive_exonic_category text,
-genehancer text,
-linsight numeric,
-metasvm_pred text,
-rdhs text,
-rsid text);_
-  iii. Load the data: _COPY main FROM &#39;\&lt;path to file\&gt;/offlineData.csv&#39; CSV HEADER;_ This command can take several hours to complete, up to a day.
-  iv. Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This command can take several hours to complete, up to a day.
-  v. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
-
-3) Set up credentials for FAVORannotator
-
-  vi. Create a new user: _CREATE ROLE annotator LOGIN PASSWORD 'DoMeAFAVOR';;_
-  vii. Allow this user to view the necessary data: _GRANT SELECT ON offline\_view TO annotator;_
 
 -------------------**(III)** Tell FAVORannotator where to find the running database ---------------------
 
