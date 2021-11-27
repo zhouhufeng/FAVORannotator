@@ -20,12 +20,11 @@ mem_used()
 gcinfo(verbose = FALSE)
 
 #import function to query database
-source('batchAnnotator.R')
+source('config.R')
 
-input.GDS =as.character(commandArgs(TRUE)[1])
-output.gds=as.character(commandArgs(TRUE)[2])
-#N=as.character(commandArgs(TRUE)[1])
-genofile<-seqOpen(input.GDS, readonly = FALSE)
+#vcf.fn =as.character(commandArgs(TRUE)[1])
+#gds.fn =as.character(commandArgs(TRUE)[2])
+genofile<-seqOpen(gds.fn, readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")

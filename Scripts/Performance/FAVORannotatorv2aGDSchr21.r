@@ -16,17 +16,15 @@ library(stringi)
 library(stringr)
 library(RPostgreSQL)
 library(pryr)
-mem_used()
-#vcf.fn=as.character(commandArgs(TRUE)[1])
-#out.fn=as.character(commandArgs(TRUE)[2])
+#import function to query database
+source('config.R')
 
-#N=as.character(commandArgs(TRUE)[1])
+mem_used()
+#vcf.chr21.fn=as.character(commandArgs(TRUE)[1])
+#gds.chr21.fn=as.character(commandArgs(TRUE)[2])
 #seqVCF2GDS(vcf.fn, out.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
 
-out.fn <- "/n/holystore01/LABS/xlin/Lab/zhouhufeng/Data/CCDGF2/GDS/temp/AGDSv8/ccdgf2_qced_chr21.gds"
-
-#out.fn=as.character(commandArgs(TRUE)[1])
-genofile<-seqOpen(out.fn, readonly = FALSE)
+genofile<-seqOpen(gds.fn, readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")
@@ -39,8 +37,7 @@ ALT<-seqGetData(genofile,"$alt")
 #############################################################################
 VariantsAnno <- data.frame(CHR, POS, REF, ALT)
 VariantsAnno$CHR <- as.character(VariantsAnno$CHR)
-#VariantsAnno$POS <- as.integer(VariantsAnno$POS)
-VariantsAnno$POS <- as.character(VariantsAnno$POS)
+VariantsAnno$POS <- as.integer(VariantsAnno$POS)
 VariantsAnno$REF <- as.character(VariantsAnno$REF)
 VariantsAnno$ALT <- as.character(VariantsAnno$ALT)
 
@@ -63,8 +60,7 @@ batchAnnotate <- function(inputData)	{
 					
 		#connect to database
 		driver <- dbDriver("PostgreSQL")
-		connection <- dbConnect(driver, dbname='performChr21', host='holy7c04208', port=10084, user='zhouhufeng', password='secretepwd')
-
+    connection <- dbConnect(driver, dbname=DBNAME_chr21, host=HOST_chr21, port=PORT_chr21, user=USER_G, password=PASSWORD_G)
 		#drop the variant table if it already exists
 		variantTable <- "batch_variants"
 		if(dbExistsTable(connection, variantTable))	{
@@ -103,21 +99,38 @@ batchAnnotate <- function(inputData)	{
 
 		return(results)
 }
-
-
-
-#Variantstest<-VariantsAnno[1:100000,]
-#VariantsBatchAnno<-batchAnnotate(Variantstest)
 mem_used()
-VariantsBatchAnno<-batchAnnotate(VariantsAnno)
+
+#############################################################################
+#Query SQL database
+#############################################################################
+
+size = nrow(VariantsAnno);
+VariantsAnnoTMP<-VariantsAnno[!duplicated(VariantsAnno),];
+if(size > 50000000){
+	VariantsBatchAnno <- data.frame();
+	for(n in 1:(ceiling(size/2000000))){
+		start <- (n-1)*2000000 + 1
+		end <- min(n*2000000,size)
+		dx<-VariantsAnnoTMP[start:end,]
+		outdx<-batchAnnotate(dx)
+		VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
+		print(paste0(("finish rounds/blocks: "),n))
+	} 
+	rm(dx,outdx)
+	gc()
+}else{
+	VariantsBatchAnno<-batchAnnotate(VariantsAnnoTMP)
+}
+rm(VariantsAnnoTMP)
+mem_used()
 head(VariantsBatchAnno)
+
 ############################################
 ####This Variant is a searching key#########
 ############################################
-Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "Sept9th21")
-#Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
+Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
 #Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
-VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno),]
 VariantsAnno <- dplyr::left_join(VariantsAnno,VariantsBatchAnno, by = c("CHR" = "chromosome","POS" = "position","REF" = "ref_vcf","ALT" = "alt_vcf"))
 add.gdsn(Anno.folder, "FAVORannotator", val=VariantsAnno, compress="LZMA_ra", closezip=TRUE)
 ###Closing Up###
