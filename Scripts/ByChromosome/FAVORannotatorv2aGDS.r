@@ -20,11 +20,11 @@ library(pryr)
 source('config.R')
 
 mem_used()
-#vcf.chr17.fn=as.character(commandArgs(TRUE)[1])
-#gds.chr17.fn=as.character(commandArgs(TRUE)[2])
+#vcf.chr10.fn=as.character(commandArgs(TRUE)[1])
+#gds.chr10.fn=as.character(commandArgs(TRUE)[2])
 #seqVCF2GDS(vcf.fn, out.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
 
-genofile<-seqOpen(gds.fn, readonly = FALSE)
+genofile<-seqOpen(paste0("gds.chr",CHRN,".fn"), readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")
@@ -60,7 +60,7 @@ batchAnnotate <- function(inputData)	{
 					
 		#connect to database
 		driver <- dbDriver("PostgreSQL")
-    connection <- dbConnect(driver, dbname=DBNAME_chr17, host=HOST_chr17, port=PORT_chr17, user=USER_G, password=PASSWORD_G)
+    connection <- dbConnect(driver, dbname=paste0("DBNAME_chr",CHRN), host=paste0("HOST_chr",CHRN), port=paste0("PORT_chr",CHRN), user=USER_G, password=PASSWORD_G)
 		#drop the variant table if it already exists
 		variantTable <- "batch_variants"
 		if(dbExistsTable(connection, variantTable))	{

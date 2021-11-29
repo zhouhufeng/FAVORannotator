@@ -11,11 +11,11 @@ library(SeqArray)
 #import configuration file
 source('config.R')
 
-#vcf.chr21.fn=as.character(commandArgs(TRUE)[1])
-#gds.chr21.fn=as.character(commandArgs(TRUE)[2])
-	
-seqVCF2GDS(vcf.chr21.fn, gds.chr21.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
-genofile<-seqOpen(out.fn, readonly = FALSE)
+#vcf.chr10.fn=as.character(commandArgs(TRUE)[1])
+#gds.chr10.fn=as.character(commandArgs(TRUE)[2])
+CHRN=as.character(commandArgs(TRUE)[1])
+seqVCF2GDS(paste0("vcf.chr",CHRN,".fn"), paste0("gds.chr",CHRN,".fn"), header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
+genofile<-seqOpen(paste0("gds.chr",CHRN,".fn"), readonly = FALSE)
 print("GDS built")
 
 ###Closing Up###
