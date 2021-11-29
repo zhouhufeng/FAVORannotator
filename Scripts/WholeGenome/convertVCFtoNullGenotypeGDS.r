@@ -16,7 +16,7 @@ source('config.R')
 nogenotype.fn=as.character(commandArgs(TRUE)[2])
 	
 seqVCF2GDS(vcf.fn, gds.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
-genofile<-seqOpen(out.fn, readonly = FALSE)
+genofile<-seqOpen(gds.fn, readonly = FALSE)
 print("GDS built")
 
 #############################################################################
