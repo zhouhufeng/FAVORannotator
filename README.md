@@ -21,7 +21,7 @@ This above specialized database setting, ensure the high by chromosome of query,
 _Figure 2. FAVORannotator Technical Feature explained._
 
 
-**FAVORannotator two versions (whole genome and by chromosome)**
+## FAVORannotator two versions (whole genome and by chromosome)
 
 There are two versions of FAVORannotator: **whole genome** and **by chromosome**. The whole genome version (Figure 2) requires limited computational resources and works using modest computing hardware. This is especially useful when users need to have a stable local access of FAVORannotator for frequent functional annotation of large-scale variant sets while lacking powerful computing hardware. 
 
@@ -31,7 +31,7 @@ _Figure 3. FAVORannotator Different Versions._
 
 However, not all computing environments are the same. While some individual machines may have limited resources, computing clusters may grant access to abundant resources. Thus, it is important to have a version of FAVORannotator which can take advantage of the latter option. The speed of FAVORannotator can be significantly improved if its database is divided into 24 smaller databases – one for each chromosome. This is the way the FAVORannotator by chromosome version operates. By utilizing (Figure 3) more computational resources, it can run much faster than the whole genome version. This is especially useful when users need to have huge datasets to annotate on a local cluster and speed it’s a top priority.  A test on 60,000 whole genome sequencing data shows a 100X speed increase. Further differences between FAVORannotator Whole Genome version and By Chromosome version are illustrated in Figures 3. FAVORannotator is also an integral part of the STAARpipeline, as it feeds the annotated genotype file into the STAARpipeline for common and rare variant association analysis of WGS studies. 
 
-**Resource requirements**
+## Resource requirements
 
 The resources utilized by the FAVORannotator R program and PostgreSQL instance are largely dependent upon the size of the inputted variants. 
 
@@ -39,7 +39,7 @@ For the FAVORannotator **whole genome** version, a test involving 3000 samples o
 
 For the FAVORannotator **by chromosome** version, 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 10 hours using 24 computing cores (intel cascade lake with 2.9 GHz frequency). The memory consumed by each instance varies, as there are different amounts of variants associated with each chromosome. 
 
-**Overall Introduction of FAVORannotator and backend database**
+## How to Use FAVORannotator
 
 FAVORannotator relies upon the PostgreSQL Database Management System (DBMS) to achieve its by chromosome.  PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. Installing FAVORannotator requires only 2 major steps:
 
@@ -48,7 +48,7 @@ II.	Import FAVOR database into PostgreSQL and run FAVORannotator (universal).
 
 How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** remain consistent. We will first discuss the universal steps of import backend database and run FAVORannotator **(II)**. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
 
-**Import Database into PostgreSQL and Run FAVORannotator**
+## Import Database into PostgreSQL and Run FAVORannotator
 
 Once PostgreSQL database is booted up and running, backend datbase can be imported and then FAVORannotator can be executed as follows. 
 
@@ -107,20 +107,29 @@ v. Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This comma
 vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
 
 2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
+
 3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
 •	USER_G <- 'userID';
+
 •	PASSWORD_G <- 'secretPassWord'
+
 •	vcf.fn<-"/n/location/input.vcf"
+
 •	gds.fn<-"/n/location/output.gds"
+
 •	DBNAME_G <- favor; 
+
 •	HOST_G <- holy2c14409; 
+
 •	PORT_G <- 8462; 
 
 4.	We can first create GDS file from the input VCF file. 
+
 •	$ Rscript   convertVCFtoGDS.r  
 
 5.	Now FAVORannotator is ready to run using following command:
+
 •	$ Rscript   FAVORannotatorGDS.r     
 
 If using the FAVORannotator by chromosome version, import the database in the same way and run FAVORannotator exactly as above. The only difference is config.R contains all the 22 chromosomes instances information (vcf file, gds file, database name, port, host, user, password).  For many clusters, we also provide the submitting scripts (submitJobs.sh) for submitting all 22 jobs to the cluster at the same time. For by chromosome versions, the R scripts needs to feed in the chromosome number and the above command turns into following.  
@@ -128,13 +137,14 @@ If using the FAVORannotator by chromosome version, import the database in the sa
 •	$ Rscript   FAVORannotatorGDS.r     22
 To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
-**Install PostgreSQL**
+## Install PostgreSQL
 
 The following steps have been written for several primary scenarios in order to best account for all possibilities. Taking the widely used operating system (ubuntu) on cluster/cloud VM as an example. 
-
-**How to install FAVORannotator on Linux**
+### Obtain the database
 1. Download the FAVORannotator data file from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
 2. Download the FAVORannotator data file from here **whole genome** version (download [URL](https://drive.google.com/file/d/1izzKJliuouG2pCJ6MkcXd_oxoEwzx5RQ/view?usp=sharing)) and **by chromosome** version (download [URL](https://drive.google.com/file/d/1Ccep9hmeWpIT_OH9IqS6p1MZbEonjG2z/view?usp=sharing)) or from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
+
+### How to install FAVORannotator (On Linux)
 3. Install the required software
 4. Ubuntu: 1.	$ sudo apt install postgresql postgresql-contrib
 5. Start and run PostgreSQL: 1.	$sudo -i -u postgres 2.	$psql
@@ -143,13 +153,7 @@ The following steps have been written for several primary scenarios in order to 
 	•	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
 	•	Reboot the data directory, $ sudo systemctl start postgresql
 
-
-
-**Installing and running FAVORannotator on FASRC slurm cluster**
-
-1. Download the FAVORannotator data file from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
-2. Download the FAVORannotator data file from here **whole genome** version (download [URL](https://drive.google.com/file/d/1izzKJliuouG2pCJ6MkcXd_oxoEwzx5RQ/view?usp=sharing)) and **by chromosome** version (download [URL](https://drive.google.com/file/d/1Ccep9hmeWpIT_OH9IqS6p1MZbEonjG2z/view?usp=sharing)) or from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
-
+## Installing and running FAVORannotator on FASRC slurm cluster
 3. Set up the database on slurm cluster
 4. Install the fasrc VPN ([https://docs.rc.fas.harvard.edu/kb/vpn-setup/](https://docs.rc.fas.harvard.edu/kb/vpn-setup/))
 5. Access the fasrc VDI ([https://docs.rc.fas.harvard.edu/kb/virtual-desktop/](https://docs.rc.fas.harvard.edu/kb/virtual-desktop/))
