@@ -1,6 +1,9 @@
-# **FAVORannotator Tutorial**
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-**Introduction of FAVORannotator**
+# **FAVORannotator**
+This is an R program for performing functional annotation of whole-genome/whole-exome sequencing (WGS/WES) studies using [FAVOR](http://favor.genohub.org) backend database.
+
+## Introduction
 
 FAVORannotator is an open-source pipeline for functionally annotating and efficiently storing the genotype and variant functional annotation data of any genetic study (GWAS/WES/WGS). This data is stored in the all-in-one aGDS file format using the FAVOR PostgreSQL database to facilitate downstream association analysis (Figure 1). It converts a genotype VCF input file to a GDS file, searches the variants in the GDS file using the FAVOR database for their functional annotations (stored using PostgreSQL), and then integrates these annotations into the GDS file to create an aGDS file. This aGDS file allows both genotype and functional annotation data to be stored in a single file (Figure 1). Furthermore, FAVORannotator can be conveniently integrated into the STAARpipeline, a rare variant association analysis tool for WGS/WES studies, to perform association analysis of large-scale genetic data.
 
@@ -154,3 +157,25 @@ The following steps have been written for several primary scenarios in order to 
 7. Create a database server 1. Click “My Interactive Sessions”; at the top. 2. Click “Postgresql db”; on the left. 3. Configure the server
 
 For more detail instructions of how to use Harvard FASRC Slurm Cluster, Please refer to the detail tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
+
+
+
+
+## Dependencies
+FAVORannotator imports R packages <a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SeqArray.html">SeqArray</a>, 
+<a href="https://bioconductor.org/packages/release/bioc/html/gdsfmt.html">gdsfmt</a>, 
+<a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a>, 
+<a href="https://stringr.tidyverse.org">stringr</a>, 
+<a href="https://readr.tidyverse.org">readr</a>, 
+<a href="https://cran.r-project.org/web/packages/stringi/index.html">stringi</a>.
+These dependencies should be installed before installing FAVORannotator.
+
+## Data Availability
+The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](http://favor.genohub.org) site.
+## Version
+The current version is 0.0.2 (November 30, 2021).
+## License
+This software is licensed under GPLv3.
+
+![GPLv3](http://www.gnu.org/graphics/gplv3-127x51.png)
+[GNU General Public License, GPLv3](http://www.gnu.org/copyleft/gpl.html)
