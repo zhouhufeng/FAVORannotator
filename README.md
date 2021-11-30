@@ -18,7 +18,7 @@ This above specialized database setting, ensure the high by chromosome of query,
 _Figure 2. FAVORannotator Technical Feature explained._
 
 
-**FAVORannotator two versions (whole genome and by chromosome) **
+**FAVORannotator two versions (whole genome and by chromosome)**
 
 There are two versions of FAVORannotator: **whole genome** and **by chromosome**. The whole genome version (Figure 2) requires limited computational resources and works using modest computing hardware. This is especially useful when users need to have a stable local access of FAVORannotator for frequent functional annotation of large-scale variant sets while lacking powerful computing hardware. 
 
