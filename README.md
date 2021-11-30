@@ -43,8 +43,9 @@ For the FAVORannotator **by chromosome** version, 60,000 samples of WGS variant 
 
 FAVORannotator relies upon the PostgreSQL Database Management System (DBMS) to achieve its by chromosome.  PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. Installing FAVORannotator requires only 2 major steps:
 
-I.	Install and run PostgreSQL (depends on different systems).
-II.	Import FAVOR database into PostgreSQL and run FAVORannotator (universal).
+**I.	Install and run PostgreSQL (depends on different systems).**
+
+**II.	Import FAVOR database into PostgreSQL and run FAVORannotator (universal).**
 
 How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** remain consistent. We will first discuss the universal steps of import backend database and run FAVORannotator **(II)**. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
 
