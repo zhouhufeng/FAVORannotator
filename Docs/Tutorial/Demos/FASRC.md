@@ -43,11 +43,11 @@ _Figure 4. Active running postgreSQL database._
 
 
 
-##**Import Database into PostgreSQL and Run FAVORannotator**
+## **Import Database into PostgreSQL and Run FAVORannotator**
 
 Once PostgreSQL database is booted up and running, backend datbase can be imported and then FAVORannotator can be executed as follows. 
 
-1. Once the server is running, set up the database:
+### 1. Once the server is running, set up the database:
 
 1) Load the postgres module
 
@@ -101,8 +101,8 @@ v. Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This comma
 
 vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
 
-2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
-3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
+### 2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
+### 3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
 •	USER_G <- 'userID';
 •	PASSWORD_G <- 'secretPassWord'
@@ -112,14 +112,14 @@ vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
 •	HOST_G <- holy2c14409; 
 •	PORT_G <- 8462; 
 
-4.	We can first create GDS file from the input VCF file. 
+### 4.	We can first create GDS file from the input VCF file. 
 •	$ Rscript   convertVCFtoGDS.r  
 
-5.	Now FAVORannotator is ready to run using following command:
+### 5.	Now FAVORannotator is ready to run using following command:
 •	$ Rscript   FAVORannotatorGDS.r     
 
-If using the FAVORannotator by chromosome version, import the database in the same way and run FAVORannotator exactly as above. The only difference is config.R contains all the 22 chromosomes instances information (vcf file, gds file, database name, port, host, user, password).  For many clusters, we also provide the submitting scripts (submitJobs.sh) for submitting all 22 jobs to the cluster at the same time. For by chromosome versions, the R scripts needs to feed in the chromosome number and the above command turns into following.  
+### If using the FAVORannotator by chromosome version, import the database in the same way and run FAVORannotator exactly as above. The only difference is config.R contains all the 22 chromosomes instances information (vcf file, gds file, database name, port, host, user, password).  For many clusters, we also provide the submitting scripts (submitJobs.sh) for submitting all 22 jobs to the cluster at the same time. For by chromosome versions, the R scripts needs to feed in the chromosome number and the above command turns into following.  
 •	$ Rscript   convertVCFtoGDS.r  22
 •	$ Rscript   FAVORannotatorGDS.r     22
-To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
+### To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
