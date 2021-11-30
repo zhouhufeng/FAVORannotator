@@ -1,8 +1,10 @@
-# **FAVORannotator Tutorial**
+# **Step-by-step tutorial of running FAVORannotator on FASRC Slurm Cluster**
 
-**Introduction of FAVORannotator**
+**Introduction of FAVORannotator on FASRC Slurm Cluster**
 
-FAVORannotator is an open-source pipeline for functionally annotating and efficiently storing the genotype and variant functional annotation data of any genetic study (GWAS/WES/WGS). This data is stored in the all-in-one aGDS file format using the FAVOR PostgreSQL database to facilitate downstream association analysis (Figure 1). It converts a genotype VCF input file to a GDS file, searches the variants in the GDS file using the FAVOR database for their functional annotations (stored using PostgreSQL), and then integrates these annotations into the GDS file to create an aGDS file. This aGDS file allows both genotype and functional annotation data to be stored in a single file (Figure 1). Furthermore, FAVORannotator can be conveniently integrated into the STAARpipeline, a rare variant association analysis tool for WGS/WES studies, to perform association analysis of large-scale genetic data.
+FAVORannotator runs smoothly on FASRC slurm cluster. Like many other slurm cluster, FASRC has PostgreSQL installed.  And we can quickly boot up the PostgreSQL, on different nodes that vastely boost the performance and enables the parallel computing. 
+
+
 
 ![FAVORannotator workflow](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure1.png)
 
@@ -10,9 +12,6 @@ _Figure 1. FAVORannotator workflow. Represented in cartoon._
 
 FAVORannotator accomplishes both high performance speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the waiting time and file size restrictions necessary for online operation.
 
-**Standard version and performance version of FAVORannotator**
-
-There are two versions of FAVORannotator: **standard** and **performance**. The standard version (Figure 2) requires limited computational resources and works using modest computing hardware. This is especially useful when users need to have a stable local access of FAVORannotator for frequent functional annotation of large-scale variant sets while lacking powerful computing hardware.
 
 ![FAVORannotator Standard Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure2.png)
 
