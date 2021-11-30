@@ -4,18 +4,54 @@
 
 FAVORannotator runs smoothly on FASRC slurm cluster. Like many other slurm cluster, FASRC has PostgreSQL installed.  And we can quickly boot up the PostgreSQL, on different nodes that vastely boost the performance and enables the parallel computing. 
 
+1. Download the FAVORannotator data file from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/).
+
+2. Download the FAVORannotator data file from here **whole genome** version (download [URL](https://drive.google.com/file/d/1izzKJliuouG2pCJ6MkcXd_oxoEwzx5RQ/view?usp=sharing)) and **by chromosome** version (download [URL](https://drive.google.com/file/d/1Ccep9hmeWpIT_OH9IqS6p1MZbEonjG2z/view?usp=sharing)) or from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/)
+4. Set up the database on slurm cluster
+
+4. Install the fasrc VPN ([https://docs.rc.fas.harvard.edu/kb/vpn-setup/](https://docs.rc.fas.harvard.edu/kb/vpn-setup/)). To connect to VPN, the Cisco AnyConnect client can be installed fromVPN portal ([https://downloads.rc.fas.harvard.edu](https://downloads.rc.fas.harvard.edu)) Note that you need to add @fasrc after your username in order to login.
 
 
-![FAVORannotator workflow](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure1.png)
+5. Once the VPN has been connected, access the fasrc VDI ([https://docs.rc.fas.harvard.edu/kb/virtual-desktop/](https://docs.rc.fas.harvard.edu/kb/virtual-desktop/)). Following figure shows how the VDI interaface look like. 
 
-_Figure 1. FAVORannotator workflow. Represented in cartoon._
+![VDI Interface](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/FASRC1.jpg)
 
-FAVORannotator accomplishes both high performance speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the waiting time and file size restrictions necessary for online operation.
+_Figure 1. VDI Interface._
+
+7. Create a folder on fasrc where you would like to store the database ($ _mkdir /Directory/FAVORannotatorDataBase/_)
+
+8. Then we can create a database server by 1. Click “My Interactive Sessions”; at the top. 2. Click “Postgresql db”; on the left. 3. Configure the server.
+![My Interactive Sessions of postgreSQL](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/postgreSQLdb.png)
+
+_Figure 2. My Interactive Sessions of postgreSQL._
+
+9. The configuration of postgreSQL database server is shown through the following figure.  In the following example show in the figure 3, we input the folder directory for which we want the postgreSQL to store the database to, and also we input the database name. 
+![postgreSQL configuration on VDI](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/createDBinstance.png)
+
+_Figure 3. postgreSQL configuration on VDI._
+
+10. The postgreSQL database server is up and running after a few minutes of the creating as shown through the following figure.  And on the page you will be able to find the assigned **host name** and the **port number**.These information is important for FAVORannotator R program to find the database instance.  In the following example show in the figure 4, the host name is holy7c04301, and the port number is 9011. 
+
+![Active running postgreSQL database](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/runningInstance.png)
+
+_Figure 4. Active running postgreSQL database._
 
 
-![FAVORannotator Standard Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure2.png)
 
-_Figure 2. FAVORannotator Standard Version._
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 However, not all computing environments are the same. While some individual machines may have limited resources, computing clusters may grant access to abundant resources. Thus, it is important to have a version of FAVORannotator which can take advantage of the latter option. The speed of FAVORannotator can be significantly improved if its database is divided into 24 smaller databases – one for each chromosome. This is the manner in which the FAVORannotator performance version operates. By utilizing (Figure 3) more computational resources, it can run much faster than the standard version. This is especially useful when users need to have huge datasets to annotate on a local cluster, and speed its a top priority. A test on 60,000 whole genome sequencing data shows a 100X speed increase. Further differences between FAVORannotator Standard version and Performance Version are illustrated in Figures 2 and 3.
 
