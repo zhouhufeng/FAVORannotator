@@ -109,7 +109,7 @@ iv. Load the data: ```COPY main FROM path to file/offlineData.csv; CSV HEADER;``
 v. Create the index: ```CREATE INDEX ON main USING HASH(variant\_vcf);``` This command can take several hours to complete, up to a day.
 
 
-vi. Create the view: ``` CREATE VIEW offline\_view AS SELECT \* FROM main```;
+vi. Create the view: ``` CREATE VIEW offline\_view AS SELECT \* FROM main;```
 
 
 2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
