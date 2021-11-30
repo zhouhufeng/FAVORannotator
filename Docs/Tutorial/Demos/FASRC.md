@@ -2,7 +2,7 @@
 
 ##
 
-## FAVORannotator runs smoothly on FASRC slurm cluster. Like many other slurm cluster, FASRC has PostgreSQL installed.  And we can quickly boot up the PostgreSQL, on different nodes that vastely boost the performance and enables the parallel computing. 
+## FAVORannotator runs smoothly on FASRC slurm cluster. Like many other slurm cluster, FASRC has PostgreSQL installed.  And we can quickly boot up the PostgreSQL, on different nodes that vastly boost the performance and enables the parallel computing. 
 
 ## 1. Download the FAVORannotator data file from the FAVOR website: [http://favor.genohub.org](http://favor.genohub.org/).
 
@@ -36,7 +36,7 @@ _Figure 3. postgreSQL configuration on VDI._
 
 _Figure 4. Active running postgreSQL database._
 
-## 11. Thorugh the above configuration and booting up postgreSQL through VDI, we now know the following information of the running backend database host on the postgreSQL. DBName from step 9, Host and Port from step 10, and User and Password is your FASRC user name and password. These information can be input in the config.R file. 
+## 11. Through the above configuration and booting up postgreSQL through VDI, we now know the following information of the running backend database host on the postgreSQL. DBName from step 9, Host and Port from step 10, and User and Password is your FASRC user name and password. These information can be input in the config.R file. 
 
 
 ## 12.  Once config.R file is updated, if the database has already been imported then FAVORannotator is ready to run. If it is the first to boot up the database instance, we can import the database in the following commands. 
@@ -123,3 +123,5 @@ vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
 •	$ Rscript   FAVORannotatorGDS.r     22
 ### To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
+If interested in learning more about how to run FAVORannotator on FASRC slurm cluster, we have also prepared the recorded live demonstration here. 
+[![Recorded Live Demo](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/LiveDemo.png)](https://youtu.be/_FRQLsFY4qI)
