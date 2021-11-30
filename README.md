@@ -151,6 +151,6 @@ The following steps have been written for several primary scenarios in order to 
 4. Install the fasrc VPN ([https://docs.rc.fas.harvard.edu/kb/vpn-setup/](https://docs.rc.fas.harvard.edu/kb/vpn-setup/))
 5. Access the fasrc VDI ([https://docs.rc.fas.harvard.edu/kb/virtual-desktop/](https://docs.rc.fas.harvard.edu/kb/virtual-desktop/))
 6. Create a folder on fasrc where you would like to store the database (mkdir \&lt;FAVORannotator Folder\&gt;)
-7. Create a database server 1. Click &quot;My Interactive Sessions&quot; at the top. 2. Click &quot;Postgresql db&quot; on the left. 3. Configure the server
+7. Create a database server 1. Click “My Interactive Sessions”; at the top. 2. Click “Postgresql db”; on the left. 3. Configure the server
 
 For more detail instructions of how to use Harvard FASRC Slurm Cluster, Please refer to the detail tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
