@@ -56,15 +56,17 @@ Once PostgreSQL database is booted up and running, backend datbase can be import
 
 1) Load the postgres module
 
-  i. On fasrc, the command is: _module load postgresql/12.2-fasrc01_
+  i. On fasrc, the command is: ```$ module load postgresql/12.2-fasrc01```
 
-2) Log into the database: psql -h hostname -p port -d databasename;
+2) Log into the database: ```$ psql -h hostname -p port -d databasename;```
 
-  ii. eg_: psql -h holy2c14409 -p 8462 -d favor_
+  ii. e.g. ```$ psql -h holy2c14409 -p 8462 -d favor```
 
 3) Create the table
 
-  iii. _CREATE TABLE MAIN(
+  iii. 
+```
+CREATE TABLE MAIN(
 variant_vcf text,
 chromosome text,
 position integer,
@@ -98,18 +100,23 @@ genehancer text,
 linsight numeric,
 metasvm_pred text,
 rdhs text,
-rsid text);_
+rsid text);
+```
 
-iv. Load the data: _COPY main FROM path to file/offlineData.csv; CSV HEADER;_ This command can take several hours to complete, up to a day.
+iv. Load the data: ```COPY main FROM path to file/offlineData.csv; CSV HEADER;``` This command can take several hours to complete, up to a day.
 
-v. Create the index: _CREATE INDEX ON main USING HASH(variant\_vcf);_ This command can take several hours to complete, up to a day.
 
-vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
+v. Create the index: ```CREATE INDEX ON main USING HASH(variant\_vcf);``` This command can take several hours to complete, up to a day.
+
+
+vi. Create the view: ``` CREATE VIEW offline\_view AS SELECT \* FROM main```;
+
 
 2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
 
 3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
+```
 •	USER_G <- 'userID';
 
 •	PASSWORD_G <- 'secretPassWord'
@@ -123,21 +130,22 @@ vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
 •	HOST_G <- holy2c14409; 
 
 •	PORT_G <- 8462; 
+```
 
 4.	We can first create GDS file from the input VCF file. 
 
-•	$ Rscript   convertVCFtoGDS.r  
+•	``` $ Rscript   convertVCFtoGDS.r ```  
 
 5.	Now FAVORannotator is ready to run using following command:
 
-•	$ Rscript   FAVORannotatorGDS.r     
+•	``` $ Rscript   FAVORannotatorGDS.r ```    
 
 
 If using the FAVORannotator by chromosome version, import the database in the same way and run FAVORannotator exactly as above. The only difference is config.R contains all the 22 chromosomes instances information (vcf file, gds file, database name, port, host, user, password).  For many clusters, we also provide the submitting scripts (submitJobs.sh) for submitting all 22 jobs to the cluster at the same time. For by chromosome versions, the R scripts needs to feed in the chromosome number and the above command turns into following.  
 
-•	$ Rscript   convertVCFtoGDS.r  22
+•	``` $ Rscript   convertVCFtoGDS.r  22 ```
 
-•	$ Rscript   FAVORannotatorGDS.r     22
+•	``` $ Rscript   FAVORannotatorGDS.r  22 ```
 
 To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
@@ -151,8 +159,11 @@ The following steps have been written for several primary scenarios in order to 
 
 ### How to install FAVORannotator (On Linux)
 3. Install the required software
-4. Ubuntu: 1.	$ sudo apt install postgresql postgresql-contrib
-5. Start and run PostgreSQL: 1.	$sudo -i -u postgres 2.	$psql
+4. Ubuntu: 1.	```$ sudo apt install postgresql postgresql-contrib```
+5. Start and run PostgreSQL: 
+ - ```1.	$sudo -i -u postgres ``` 
+ - ```2.	$psql```
+
 6. [Optional] If you want to install the huge database to external storage (Edit the configuration file).
 	•	The file is located at /etc/postgresql/12/main/postgresql.conf
 	•	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
