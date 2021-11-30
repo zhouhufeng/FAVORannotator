@@ -125,8 +125,7 @@ If using the FAVORannotator by chromosome version, import the database in the sa
 •	$ Rscript   FAVORannotatorGDS.r     22
 To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
-
-**Install PostgreSQL **
+**Install PostgreSQL**
 
 The following steps have been written for several primary scenarios in order to best account for all possibilities. Taking the widely used operating system (ubuntu) on cluster/cloud VM as an example. 
 
