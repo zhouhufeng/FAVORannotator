@@ -123,5 +123,5 @@ vi. Create the view: _CREATE VIEW offline\_view AS SELECT \* FROM main_;
 •	$ Rscript   FAVORannotatorGDS.r     22
 ### To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
-If interested in learning more about how to run FAVORannotator on FASRC slurm cluster, we have also prepared the recorded live demonstration here. 
+## If interested in learning more about how to run FAVORannotator on FASRC slurm cluster, we have also prepared the recorded live demonstration here. 
 [![Recorded Live Demo](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/LiveDemo.png)](https://youtu.be/_FRQLsFY4qI)
