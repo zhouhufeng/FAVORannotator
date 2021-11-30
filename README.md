@@ -153,7 +153,7 @@ The following steps have been written for several primary scenarios in order to 
 	•	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
 	•	Reboot the data directory, $ sudo systemctl start postgresql
 
-## Installing and running FAVORannotator on FASRC slurm cluster
+### Installing and running FAVORannotator on FASRC slurm cluster
 3. Set up the database on slurm cluster
 4. Install the fasrc VPN ([https://docs.rc.fas.harvard.edu/kb/vpn-setup/](https://docs.rc.fas.harvard.edu/kb/vpn-setup/))
 5. Access the fasrc VDI ([https://docs.rc.fas.harvard.edu/kb/virtual-desktop/](https://docs.rc.fas.harvard.edu/kb/virtual-desktop/))
