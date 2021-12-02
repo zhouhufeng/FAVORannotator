@@ -25,7 +25,7 @@ _Figure 2. FAVORannotator Technical Feature explained._
 
 There are two versions of FAVORannotator: **whole genome** and **by chromosome**. The whole genome version (Figure 2) requires limited computational resources and works using modest computing hardware. This is especially useful when users need to have a stable local access of FAVORannotator for frequent functional annotation of large-scale variant sets while lacking powerful computing hardware. 
 
-![FAVORannotator Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/versions.png)
+![FAVORannotator Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/versions1.png)
 
 _Figure 3. FAVORannotator Different Versions._
 
