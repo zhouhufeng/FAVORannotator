@@ -90,8 +90,10 @@ apc_proximity_to_coding numeric,
 apc_proximity_to_coding_v2 numeric,
 apc_proximity_to_tsstes numeric,
 apc_transcription_factor numeric,
-cadd_phred numeric,
-cage text,
+cage_promoter text,
+cage_tc text,
+metasvm_pred text,
+rsid text,
 fathmm_xf numeric,
 genecode_comprehensive_category text,
 genecode_comprehensive_info text,
@@ -99,9 +101,9 @@ genecode_comprehensive_exonic_info text,
 genecode_comprehensive_exonic_category text,
 genehancer text,
 linsight numeric,
-metasvm_pred text,
-rdhs text,
-rsid text);
+cadd_phred numeric,
+rdhs text);
+
 ```
 
 iv. Load the data: ```COPY main FROM 'offlineData.csv' CSV HEADER;``` This command can take several hours to complete, up to a day.
