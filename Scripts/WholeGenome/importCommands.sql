@@ -28,8 +28,10 @@ apc_proximity_to_coding numeric,
 apc_proximity_to_coding_v2 numeric,
 apc_proximity_to_tsstes numeric,
 apc_transcription_factor numeric,
-cadd_phred numeric,
-cage text,
+cage_promoter text,
+cage_tc text,
+metasvm_pred text,
+rsid text,
 fathmm_xf numeric,
 genecode_comprehensive_category text,
 genecode_comprehensive_info text,
@@ -37,9 +39,8 @@ genecode_comprehensive_exonic_info text,
 genecode_comprehensive_exonic_category text,
 genehancer text,
 linsight numeric,
-metasvm_pred text,
-rdhs text,
-rsid text);
+cadd_phred numeric,
+rdhs text);
 
 COPY main FROM '/n/holystore01/LABS/xlin/Lab/zhouhufeng/DB/FAVORannotator/NewDB/FAVORAnnotatorDB.22.txt' CSV HEADER;
 
