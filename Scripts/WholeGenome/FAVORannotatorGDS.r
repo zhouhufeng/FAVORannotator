@@ -21,7 +21,7 @@ gcinfo(verbose = FALSE)
 
 #import function to query database
 source('config.R')
-
+CHRN=as.character(commandArgs(TRUE)[1])
 #vcf.fn =as.character(commandArgs(TRUE)[1])
 #gds.fn =as.character(commandArgs(TRUE)[2])
 genofile<-seqOpen(gds.fn, readonly = FALSE)

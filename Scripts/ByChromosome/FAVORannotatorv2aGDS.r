@@ -23,8 +23,8 @@ mem_used()
 #vcf.chr10.fn=as.character(commandArgs(TRUE)[1])
 #gds.chr10.fn=as.character(commandArgs(TRUE)[2])
 #seqVCF2GDS(vcf.fn, out.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
-
-genofile<-seqOpen(paste0("gds.chr",CHRN,".fn"), readonly = FALSE)
+CHRN=as.character(commandArgs(TRUE)[1])
+genofile<-seqOpen(eval(parse(text = paste0("vcf.chr",CHRN,".fn"))), readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")
