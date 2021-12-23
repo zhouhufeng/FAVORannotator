@@ -6,7 +6,7 @@
 # * Read the offline FAVOR V2 sql database and provide functional annotation.
 # * Built in the functional annotation into GDS to build aGDS.
 #Author:   Hufeng Zhou
-#Time:     July 16th 2021 Initiall Develop May 3rd Major Revision
+#Time:     Dec 16th 2021 
 #############################################################################
 library(gdsfmt)
 library(SeqArray)
@@ -16,13 +16,14 @@ library(stringi)
 library(stringr)
 library(RPostgreSQL)
 library(pryr)
-#import function to query database
 source('config.R')
-
 mem_used()
-#vcf.chr10.fn=as.character(commandArgs(TRUE)[1])
-#gds.chr10.fn=as.character(commandArgs(TRUE)[2])
+#vcf.fn=as.character(commandArgs(TRUE)[1])
+#out.fn=as.character(commandArgs(TRUE)[2])
+
+#N=as.character(commandArgs(TRUE)[1])
 #seqVCF2GDS(vcf.fn, out.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
+start.time <- Sys.time()
 CHRN=as.character(commandArgs(TRUE)[1])
 genofile<-seqOpen(eval(parse(text = paste0("vcf.chr",CHRN,".fn"))), readonly = FALSE)
 print("GDS built")
@@ -40,6 +41,8 @@ VariantsAnno$CHR <- as.character(VariantsAnno$CHR)
 VariantsAnno$POS <- as.integer(VariantsAnno$POS)
 VariantsAnno$REF <- as.character(VariantsAnno$REF)
 VariantsAnno$ALT <- as.character(VariantsAnno$ALT)
+rm(CHR, POS, REF, ALT)
+
 
 genDelimitedVariantString <- function(inputs)  {
 	quotedVariants <- dbQuoteString(ANSI(), inputs)
@@ -48,11 +51,9 @@ genDelimitedVariantString <- function(inputs)  {
 	return(collapsedVariants)
 }
 
-
-
 #performs batch annotation using the offline database for the
 #specified variants
-batchAnnotate <- function(inputData)	{
+batchAnnotate <- function(inputData,blknum)	{
 
 		#parse input, silently ignoring variants which do not follow format
 		variants <- paste(paste0(inputData[, 1]), inputData[, 2], inputData[, 3], inputData[, 4], sep='-')
@@ -60,7 +61,8 @@ batchAnnotate <- function(inputData)	{
 					
 		#connect to database
 		driver <- dbDriver("PostgreSQL")
-    connection <- dbConnect(driver, dbname=paste0("DBNAME_chr",CHRN), host=paste0("HOST_chr",CHRN), port=paste0("PORT_chr",CHRN), user=USER_G, password=PASSWORD_G)
+    connection <- dbConnect(driver, dbname= eval(parse(text = paste0("DBNAME_chr",CHRN))), host=eval(parse(text = paste0("HOST_chr",CHRN))), port=eval(parse(text = paste0("PORT_chr",CHRN))), user=USER_G, password=PASSWORD_G)
+
 		#drop the variant table if it already exists
 		variantTable <- "batch_variants"
 		if(dbExistsTable(connection, variantTable))	{
@@ -83,7 +85,7 @@ batchAnnotate <- function(inputData)	{
 
 		#retrieve data
 		results <- data.frame()
-		query <- paste0("SELECT offline_view.* FROM ", variantTable, " LEFT JOIN offline_view ON ", variantTable, ".column1=offline_view.variant_vcf")
+		query <- paste0("SELECT offline_view",blknum,".* FROM ", variantTable, " LEFT JOIN offline_view",blknum," ON ", variantTable, ".column1=offline_view",blknum,".variant_vcf")
 		tryCatch({
 			results <- dbGetQuery(connection, query)
 		},
@@ -99,40 +101,36 @@ batchAnnotate <- function(inputData)	{
 
 		return(results)
 }
-mem_used()
 
-#############################################################################
-#Query SQL database
-#############################################################################
-
-size = nrow(VariantsAnno);
+DB_info <- read.csv("FAVORdatabase_chrsplit.csv",header=TRUE)
+DB_info <- DB_info[DB_info$Chr==CHRN,]
 VariantsAnnoTMP<-VariantsAnno[!duplicated(VariantsAnno),];
-if(size > 50000000){
-	VariantsBatchAnno <- data.frame();
-	for(n in 1:(ceiling(size/2000000))){
-		start <- (n-1)*2000000 + 1
-		end <- min(n*2000000,size)
-		dx<-VariantsAnnoTMP[start:end,]
-		outdx<-batchAnnotate(dx)
-		VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
-		print(paste0(("finish rounds/blocks: "),n))
-	} 
-	rm(dx,outdx)
-	gc()
-}else{
-	VariantsBatchAnno<-batchAnnotate(VariantsAnnoTMP)
+VariantsBatchAnno <- data.frame();
+for(kk in 1:dim(DB_info)[1]){
+	print(kk) 
+	dx<-VariantsAnnoTMP[(POS>=DB_info$Start_Pos[kk])&(POS<=DB_info$End_Pos[kk]),]
+	outdx<-batchAnnotate(dx,kk)
+	VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
+	print(paste0(("finish annotate rounds/blocks: "),n))	
 }
+rm(dx,outdx)
 rm(VariantsAnnoTMP)
-mem_used()
 head(VariantsBatchAnno)
-
+mem_used()
+gc()
 ############################################
 ####This Variant is a searching key#########
 ############################################
 Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
 #Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
+#VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno),]
 VariantsAnno <- dplyr::left_join(VariantsAnno,VariantsBatchAnno, by = c("CHR" = "chromosome","POS" = "position","REF" = "ref_vcf","ALT" = "alt_vcf"))
 add.gdsn(Anno.folder, "FAVORannotator", val=VariantsAnno, compress="LZMA_ra", closezip=TRUE)
 ###Closing Up###
 genofile
 seqClose(genofile)
+
+###Time Count###
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
