@@ -53,66 +53,10 @@ How to use FAVORannotator will be explained from the above 3 main steps. Postgre
 
 Once PostgreSQL database is booted up and running, backend datbase can be imported and then FAVORannotator can be executed as follows. 
 
-1. Once the server is running, set up the database:
+1. Once the server is running, Load the database: ```$ psql -h hostname -p port_number -U username -f your_file.sql databasename ```
 
-1) Load the postgres module
-
-  i. On fasrc, the command is: ```$ module load postgresql/12.2-fasrc01```
-
-2) Log into the database: ```$ psql -h hostname -p port -d databasename;```
-
-  ii. e.g. ```$ psql -h holy2c14409 -p 8462 -d favor```
-
-3) Create the table
-
-  iii. 
-```
-CREATE TABLE MAIN(
-variant_vcf text,
-chromosome text,
-position integer,
-ref_vcf text,
-alt_vcf text,
-apc_conservation numeric,
-apc_conservation_v2 numeric,
-apc_epigenetics numeric,
-apc_epigenetics_active numeric,
-apc_epigenetics_repressed numeric,
-apc_epigenetics_transcription numeric,
-apc_local_nucleotide_diversity numeric,
-apc_local_nucleotide_diversity_v2 numeric,
-apc_local_nucleotide_diversity_v3 numeric,
-apc_mappability numeric,
-apc_micro_rna numeric,
-apc_mutation_density numeric,
-apc_protein_function numeric,
-apc_proximity_to_coding numeric,
-apc_proximity_to_coding_v2 numeric,
-apc_proximity_to_tsstes numeric,
-apc_transcription_factor numeric,
-cage_promoter text,
-cage_tc text,
-metasvm_pred text,
-rsid text,
-fathmm_xf numeric,
-genecode_comprehensive_category text,
-genecode_comprehensive_info text,
-genecode_comprehensive_exonic_info text,
-genecode_comprehensive_exonic_category text,
-genehancer text,
-linsight numeric,
-cadd_phred numeric,
-rdhs text);
-
-```
-
-iv. Load the data: ```COPY main FROM 'offlineData.csv' CSV HEADER;``` This command can take several hours to complete, up to a day.
-
-
-v. Create the index: ```CREATE INDEX ON main USING HASH(variant\_vcf);``` This command can take several hours to complete, up to a day.
-	
-
-vi. Create the view: ```CREATE VIEW offline_view AS SELECT * FROM main;```
+   
+   e.g. ```$ psql -h c02510 -p 582  -f /n/SQL/ByChr7FAVORDBxO.sql Chr7```
 
 
 2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
@@ -180,7 +124,6 @@ The following steps have been written for several primary scenarios in order to 
 7. Create a database server 1. Click “My Interactive Sessions”; at the top. 2. Click “Postgresql db”; on the left. 3. Configure the server
 
 ### For more detailed instructions of how to use FAVORannotator in Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
-
 
 
 
