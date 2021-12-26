@@ -25,7 +25,7 @@ mem_used()
 #seqVCF2GDS(vcf.fn, out.fn, header = NULL, genotype.var.name = "GT", info.import=NULL, fmt.import=NULL, ignore.chr.prefix="chr", raise.error=TRUE, verbose=TRUE)
 start.time <- Sys.time()
 CHRN=as.character(commandArgs(TRUE)[1])
-genofile<-seqOpen(eval(parse(text = paste0("vcf.chr",CHRN,".fn"))), readonly = FALSE)
+genofile<-seqOpen(eval(parse(text = paste0("gds.chr",CHRN,".fn"))), readonly = FALSE)
 print("GDS built")
 genofile
 CHR<-seqGetData(genofile,"chromosome")
@@ -41,7 +41,6 @@ VariantsAnno$CHR <- as.character(VariantsAnno$CHR)
 VariantsAnno$POS <- as.integer(VariantsAnno$POS)
 VariantsAnno$REF <- as.character(VariantsAnno$REF)
 VariantsAnno$ALT <- as.character(VariantsAnno$ALT)
-rm(CHR, POS, REF, ALT)
 
 
 genDelimitedVariantString <- function(inputs)  {
@@ -115,6 +114,7 @@ for(kk in 1:dim(DB_info)[1]){
 }
 rm(dx,outdx)
 rm(VariantsAnnoTMP)
+rm(CHR, POS, REF, ALT)
 head(VariantsBatchAnno)
 mem_used()
 gc()
