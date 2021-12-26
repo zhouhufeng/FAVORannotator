@@ -110,7 +110,7 @@ for(kk in 1:dim(DB_info)[1]){
 	dx<-VariantsAnnoTMP[(POS>=DB_info$Start_Pos[kk])&(POS<=DB_info$End_Pos[kk]),]
 	outdx<-batchAnnotate(dx,kk)
 	VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
-	print(paste0(("finish annotate rounds/blocks: "),n))	
+	print(paste0(("finish annotate rounds/blocks: "),kk))	
 }
 rm(dx,outdx)
 rm(VariantsAnnoTMP)
