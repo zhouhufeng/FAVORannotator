@@ -21,15 +21,9 @@ This above specialized database setting, ensure the high by chromosome of query,
 _Figure 2. FAVORannotator Technical Feature explained._
 
 
-## FAVORannotator two versions (whole genome and by chromosome)
+## FAVORannotator two versions (postgreSQL and xsv)
 
-There are two versions of FAVORannotator: **whole genome** and **by chromosome**. The whole genome version (Figure 2) requires limited computational resources and works using modest computing hardware. This is especially useful when users need to have a stable local access of FAVORannotator for frequent functional annotation of large-scale variant sets while lacking powerful computing hardware. 
-
-![FAVORannotator Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/versions1.png)
-
-_Figure 3. FAVORannotator Different Versions._
-
-However, not all computing environments are the same. While some individual machines may have limited resources, computing clusters may grant access to abundant resources. Thus, it is important to have a version of FAVORannotator which can take advantage of the latter option. The speed of FAVORannotator can be significantly improved if its database is divided into 24 smaller databases – one for each chromosome. This is the way the FAVORannotator by chromosome version operates. By utilizing (Figure 3) more computational resources, it can run much faster than the whole genome version. This is especially useful when users need to have huge datasets to annotate on a local cluster and speed it’s a top priority.  A test on 60,000 whole genome sequencing data shows a 100X speed increase. Further differences between FAVORannotator Whole Genome version and By Chromosome version are illustrated in Figures 3. FAVORannotator is also an integral part of the STAARpipeline, as it feeds the annotated genotype file into the STAARpipeline for common and rare variant association analysis of WGS studies. 
+There are two versions of FAVORannotator: **postgreSQL** and **xsv**. The postgreSQL version requires postgreSQL installation, and xsv version requires the xsv software dependenceies. 
 
 ## Resource requirements
 
