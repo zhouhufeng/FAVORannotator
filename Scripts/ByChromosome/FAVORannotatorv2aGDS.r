@@ -105,13 +105,15 @@ DB_info <- read.csv("FAVORdatabase_chrsplit.csv",header=TRUE)
 DB_info <- DB_info[DB_info$Chr==CHRN,]
 VariantsAnnoTMP<-VariantsAnno[!duplicated(VariantsAnno),];
 VariantsBatchAnno <- data.frame();
+outlist<- list();
 for(kk in 1:dim(DB_info)[1]){
 	print(kk) 
 	dx<-VariantsAnnoTMP[(POS>=DB_info$Start_Pos[kk])&(POS<=DB_info$End_Pos[kk]),]
 	outdx<-batchAnnotate(dx,kk)
-	VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
+	#VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
 	print(paste0(("finish annotate rounds/blocks: "),kk))	
 }
+VariantsBatchAnno<-bind_rows(outlist);
 rm(dx,outdx)
 rm(VariantsAnnoTMP)
 rm(CHR, POS, REF, ALT)
