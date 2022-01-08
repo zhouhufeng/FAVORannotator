@@ -11,9 +11,12 @@ FAVORannotator is an open-source pipeline for functionally annotating and effici
 
 _Figure 1. FAVORannotator workflow. Represented in cartoon._
 
-FAVORannotator accomplishes both high by chromosome speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the waiting time and file size restrictions necessary for online operation.  
+FAVORannotator accomplishes both high query speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the waiting time and file size restrictions necessary for online operation.  
+
 It is important to know that different from other storage, the FAVORannotator backend database host on PostgreSQL is always on, always listen, and respond to queries all the time. Although FAVORannotator R program might be up and running and stops from time to time depends on the query data type and size, the FAVORannotator backend database is always on unless we specifically turn it off. We have to ensure the FAVORannotator backend database host on PostgreSQL is booted on and always running during the time of working.
+
 Another important question is, once the FAVORannotator backend database host on PostgreSQL is booted on and running, how can our FAVORannotator R program find the backend database to talk to and execute the query? We need to tell FAVORannotator R program where the database instance it is by feeding in the following identification information, e.g. DBName, Host, Port, User, and Password.
+
 This above specialized database setting, ensure the high by chromosome of query, and fast query speed. Here shows the detail features described above.
 
 ![FAVORannotator Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure4.png)
