@@ -100,18 +100,18 @@ The following steps have been written for several primary scenarios in order to 
 
 ### How to install FAVORannotator (On Linux)
 3. Install the required software
-4. Ubuntu: 1.	```$ sudo apt install postgresql postgresql-contrib```
+4. Ubuntu: ```$ sudo apt install postgresql postgresql-contrib```
 5. Start and run PostgreSQL: 
- - ```1.	$sudo -i -u postgres ``` 
- - ```2.	$psql```
+ - ```$ sudo -i -u postgres ``` 
+ - ```$ psql```
 
 6. [Optional] If you want to install the huge database to external storage (Edit the configuration file).
 
-•	The file is located at /etc/postgresql/12/main/postgresql.conf
+•	The file is located at ```/etc/postgresql/12/main/postgresql.conf```
 
 •	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
 
-•	Reboot the data directory, $ sudo systemctl start postgresql
+•	Reboot the data directory, ```$ sudo systemctl start postgresql```
 
 
 ### For more detailed instructions of how to use FAVORannotator in Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
