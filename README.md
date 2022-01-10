@@ -24,7 +24,7 @@ This above specialized database setting, ensure the high query speed. Here shows
 _Figure 2. FAVORannotator Technical Feature explained._
 
 
-## FAVORannotator two versions (postgreSQL and xsv)
+## FAVORannotator two versions (postgreSQL and XSV)
 
 There are two versions of FAVORannotator: **postgreSQL** and **xsv**. The postgreSQL version requires postgreSQL installation, and xsv version requires the xsv software dependenceies. 
 
@@ -34,7 +34,7 @@ The resources utilized by the FAVORannotator R program and PostgreSQL instance a
 
 For the FAVORannotator **postgreSQL** version,60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 1 hours using 24 computing cores (intel cascade lake with 2.9 GHz frequency). The memory consumed by each instance varies (usually within 18 GB), as there are different amounts of variants associated with each chromosome. 
 
-For the FAVORannotator **xsv** version. 
+For the FAVORannotator **XSV** version. 
 
 ## How to Use FAVORannotator
 
