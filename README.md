@@ -107,11 +107,9 @@ The following steps have been written for several primary scenarios in order to 
 
 6. [Optional] If you want to install the huge database to external storage (Edit the configuration file).
 
-•	The file is located at ```/etc/postgresql/12/main/postgresql.conf```
-
-•	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
-
-•	Reboot the data directory, ```$ sudo systemctl start postgresql```
+-	The file is located at ```/etc/postgresql/12/main/postgresql.conf```
+-	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
+-	Reboot the data directory, ```$ sudo systemctl start postgresql```
 
 
 ### For more detailed instructions of how to use FAVORannotator in Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
