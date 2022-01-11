@@ -26,7 +26,7 @@ _Figure 2. FAVORannotator Technical Feature explained._
 
 ## FAVORannotator two versions (postgreSQL and XSV)
 
-There are two versions of FAVORannotator: **postgreSQL** and **xsv**. The postgreSQL version requires postgreSQL installation, and xsv version requires the xsv software dependencies. 
+There are two versions of FAVORannotator: **postgreSQL** and **XSV**. The postgreSQL version requires postgreSQL installation, and xsv version requires the XSV software dependencies. 
 
 ## Resource requirements
 
@@ -48,7 +48,7 @@ How to use FAVORannotator will be explained from the above 3 main steps. Postgre
 
 ## Import Database into PostgreSQL and Run FAVORannotator
 
-Once PostgreSQL database is booted up and running, backend datbase can be imported and then FAVORannotator can be executed as follows. 
+Once PostgreSQL database is booted up and running, backend database can be imported and then FAVORannotator can be executed as follows. 
 
 1. Once the server is running, Load the database: ```$ psql -h hostname -p port_number -U username -f your_file.sql databasename ```
 
