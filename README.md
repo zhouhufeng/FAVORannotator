@@ -26,7 +26,7 @@ _Figure 2. FAVORannotator Technical Feature explained._
 
 ## FAVORannotator two versions (postgreSQL and XSV)
 
-There are two versions of FAVORannotator: **postgreSQL** and **xsv**. The postgreSQL version requires postgreSQL installation, and xsv version requires the xsv software dependenceies. 
+There are two versions of FAVORannotator: **postgreSQL** and **xsv**. The postgreSQL version requires postgreSQL installation, and xsv version requires the xsv software dependencies. 
 
 ## Resource requirements
 
