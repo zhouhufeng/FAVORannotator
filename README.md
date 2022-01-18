@@ -38,15 +38,36 @@ For the FAVORannotator **CSV** version, 60,000 samples of WGS variant sets were 
 
 ## How to Use FAVORannotator
 
-FAVORannotator relies upon the PostgreSQL Database Management System (DBMS) to achieve this.  PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. Installing FAVORannotator requires only 2 major steps:
+   Installing and run FAVORannotator to perform functional annotation requires only 2 major steps:
 
 **I.	Install and prepare the back-end database (depends on different versions and systems).**
 
 **II.	Run FAVORannotator (universal).**
 
-How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** remain consistent. We will first discuss the universal steps of import backend database and run FAVORannotator **(II)**. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
 
-## Import Database into PostgreSQL and Run FAVORannotator
+
+## Run FAVORannotator
+
+Once PostgreSQL database is booted up and running, backend database can be imported and then FAVORannotator can be executed as follows. 
+
+1.	We can first create GDS file from the input VCF file. 
+
+-	``` $ Rscript   convertVCFtoGDS.r  22 ```
+
+2.	Now FAVORannotator is ready to run using following command:
+
+-	``` $ Rscript   FAVORannotatorGDS.r  22 ```  
+
+
+FAVORannotator divides by chromosome, import the database in the same way and run FAVORannotator as above. The only difference is config.R contains all the 22 chromosomes instances information (vcf file, gds file, database name, port, host, user, password).  For many clusters, we also provide the submitting scripts (submitJobs.sh) for submitting all 22 jobs to the cluster at the same time. This parallel computing enabled (by submitting 24 jobs according to the chromosomes) can further boost the performance.  
+
+To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
+
+
+## Install and prepare the back-end database（FAVORannotator SQL version）
+
+FAVORannotator relies upon the PostgreSQL Database Management System (DBMS) to achieve this.  PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** remain consistent. We will first discuss the universal steps of import backend database and run FAVORannotator **(II)**. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
+
 
 Once PostgreSQL database is booted up and running, backend database can be imported and then FAVORannotator can be executed as follows. 
 
@@ -75,19 +96,6 @@ HOST_G <- holy2c14409;
 
 PORT_G <- 8462; 
 ```
-
-4.	We can first create GDS file from the input VCF file. 
-
--	``` $ Rscript   convertVCFtoGDS.r  22 ```
-
-5.	Now FAVORannotator is ready to run using following command:
-
--	``` $ Rscript   FAVORannotatorGDS.r  22 ```  
-
-
-FAVORannotator divides by chromosome, import the database in the same way and run FAVORannotator as above. The only difference is config.R contains all the 22 chromosomes instances information (vcf file, gds file, database name, port, host, user, password).  For many clusters, we also provide the submitting scripts (submitJobs.sh) for submitting all 22 jobs to the cluster at the same time. This parallel computing enabled (by submitting 24 jobs according to the chromosomes) can further boost the performance.  
-
-To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
 
 ## Install PostgreSQL
