@@ -24,6 +24,10 @@ This above specialized database setting, ensure the high query speed. Here shows
 _Figure 2. FAVORannotator Technical Feature explained._
 
 
+## Obtain the database
+1. Download the FAVORannotator data file from here (download [URL](http://favor.genohub.org)).
+2. Decompress the downloaded data. 
+
 ## FAVORannotator two versions (SQL and CSV)
 
 There are two versions of FAVORannotator: **SQL** and **CSV**. The postgreSQL version requires postgreSQL installation, and xsv version requires the XSV software dependencies. 
@@ -44,7 +48,7 @@ For the FAVORannotator **CSV** version, 60,000 samples of WGS variant sets were 
 
 **II.	Run FAVORannotator (universal).**
 
-
+This **(I) Installing and prepare the back-end database** step depends on whether the FAVORannotator is SQL version or CSV version and depends on different computing platforms. We will elaborate that more specifically in the following sections. We will first introduce how to **(II) Run the FAVORannotator** step, which is universal, no matter which versions or platforms you choose.   
 
 ## Run FAVORannotator
 
@@ -63,19 +67,17 @@ FAVORannotator divides by chromosome, import the database in the same way and ru
 
 To simplify the parallel computing process, we also provide the submission scripts example here ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/ByChromosome/submitJobs.sh)).
 
-
 ## Install and prepare the back-end database（FAVORannotator SQL version）
 
-FAVORannotator relies upon the PostgreSQL Database Management System (DBMS) to achieve this.  PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. How to use FAVORannotator will be explained from the above 3 main steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each only varies with regard to the **(I)** step, while steps **(II)** remain consistent. We will first discuss the universal steps of import backend database and run FAVORannotator **(II)**. Depends on the differences of the **(I)** step, all the following discussions will be elaborated.
+FAVORannotator SQL version relies upon the PostgreSQL Database Management System (DBMS) to achieve this.  PostgreSQL is a free and open-source software emphasizing extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation. 
 
+How to use FAVORannotator will be explained from the following steps. PostgreSQL is available in most platforms. Thus, running FAVORannotator on each platform varies with the step (I) Installing and prepare the back-end database. We will first discuss the how to prepare and import backend database and all the following discussions will be elaborated.
 
 Once PostgreSQL database is booted up and running, backend database can be imported and then FAVORannotator can be executed as follows. 
 
 1. Once the server is running, Load the database: ```$ psql -h hostname -p port_number -U username -f your_file.sql databasename ```
-
    
    e.g. ```$ psql -h c02510 -p 582  -f /n/SQL/ByChr7FAVORDBxO.sql Chr7```
-
 
 2. Now the PostgreSQL hosting FAVORannotator backend database is up and running it is listening for the query from FAVORannotator R program. 
 
@@ -98,13 +100,10 @@ PORT_G <- 8462;
 ```
 
 
-## Install PostgreSQL
+## Install PostgreSQL （FAVORannotator SQL version）
 
 The following steps have been written for several primary scenarios in order to best account for all possibilities. Taking the widely used operating system (ubuntu) on cluster/cloud VM as an example. 
 
-### Obtain the database
-1. Download the FAVORannotator data file from here (download [URL](http://favor.genohub.org)).
-2. Decompress the downloaded data. 
 
 ### How to install FAVORannotator (On Linux)
 3. Install the required software
