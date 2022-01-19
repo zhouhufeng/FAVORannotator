@@ -105,14 +105,12 @@ PORT_G <- 8462;
 The following steps have been written for several primary scenarios in order to best account for all possibilities. Taking the widely used operating system (ubuntu) on cluster/cloud VM as an example. 
 
 
-### How to install FAVORannotator (On Linux)
-3. Install the required software
-4. Ubuntu: ```$ sudo apt install postgresql postgresql-contrib```
-5. Start and run PostgreSQL: 
+1. Install the required software on Ubuntu: ```$ sudo apt install postgresql postgresql-contrib```
+2. Start and run PostgreSQL: 
  - ```$ sudo -i -u postgres ``` 
  - ```$ psql```
 
-6. [Optional] If you want to install the huge database to external storage (Edit the configuration file).
+3. [Optional] If you want to install the huge database to external storage (Edit the configuration file).
 
 -	The file is located at ```/etc/postgresql/12/main/postgresql.conf```
 -	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
@@ -120,6 +118,20 @@ The following steps have been written for several primary scenarios in order to 
 
 
 ### For more detailed instructions of how to use FAVORannotator in Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
+
+
+## Install and prepare the back-end database（FAVORannotator CSV version）
+
+FAVORannotator (CSV version) depends on the xsv software and the **FAVOR** database in CSV format. Please install the <a href="https://github.com/BurntSushi/xsv">**xsv** software</a> and 
+download the <a href="http://favor.genohub.org">**FAVOR** database CSV files</a> (under the "FAVORannotator" tab) before using the FAVORannotator (CSV version). 
+
+
+
+## Install XSV （FAVORannotator CSV version）
+
+The following steps have been written for several primary scenarios in order to best account for all possibilities. Taking the widely used operating system (ubuntu) on cluster/cloud VM as an example. 
+
+Please install the <a href="https://github.com/BurntSushi/xsv">**xsv** software</a> accordingly.
 
 
 ## Dependencies
@@ -130,6 +142,10 @@ FAVORannotator imports R packages <a href="https://cran.r-project.org/web/packag
 <a href="https://readr.tidyverse.org">readr</a>, 
 <a href="https://cran.r-project.org/web/packages/stringi/index.html">stringi</a>.
 These dependencies should be installed before installing FAVORannotator.
+
+FAVORannotator (SQL version) depends on the <a href="https://www.postgresql.org"> PostgreSQL software</a>.
+
+FAVORannotator (CSV version) depends on the <a href="https://github.com/BurntSushi/xsv"> XSV software</a>.
 
 ## Data Availability
 The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](http://favor.genohub.org) site.
