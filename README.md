@@ -150,7 +150,7 @@ FAVORannotator (CSV version) depends on the <a href="https://github.com/BurntSus
 ## Data Availability
 The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](http://favor.genohub.org) site.
 ## Version
-The current version is 0.0.2 (November 30, 2021).
+The current version is 0.0.3 (Jan 3rd, 2022).
 ## License
 This software is licensed under GPLv3.
 
