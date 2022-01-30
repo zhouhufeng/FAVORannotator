@@ -9,7 +9,7 @@ FAVORannotator is an open-source pipeline for functionally annotating and effici
 
 ![FAVORannotator workflow](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure1.png)
 
-_Figure 1. FAVORannotator workflow. Represented in cartoon._
+_Figure 1. FAVORannotator workflow._
 
 FAVORannotator accomplishes both high query speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the excessive waiting time and file size restrictions of FAVOR online operation.
 
