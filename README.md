@@ -63,7 +63,7 @@ Once PostgreSQL is running, the database can be imported and FAVORannotator can 
 -	``` $ Rscript   FAVORannotatorGDS.r  22 ```  
 
 
-Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-perfomance clusters, and utilize parallel jobs to boost performance.
+Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
 
 A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
 
