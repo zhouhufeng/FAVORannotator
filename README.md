@@ -11,18 +11,6 @@ FAVORannotator is an open-source pipeline for functionally annotating and effici
 
 _Figure 1. FAVORannotator workflow._
 
-FAVORannotator accomplishes both high query speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the excessive waiting time and file size restrictions of FAVOR online operation.
-
-It is important to note that the FAVORannotator PostgreSQL database differs from other storage because it needs to be running in order to be accessed. Thus, users must ensure the database is running before running annotations.
-
-Once the FAVORannotator database is booted on and running, the following connection information must be specified for the FAVORannotator R program to access the database : DBName, Host, Port, User, and Password.
-
-This above specialized database setting, ensure the high query speed. Here shows the detail features described above.
-
-![FAVORannotator Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure4.png)
-
-_Figure 2. FAVORannotator workflow._
-
 
 ## Obtain the database
 1. Download the FAVORannotator data file from here (download [URL](http://favor.genohub.org)).
@@ -32,6 +20,30 @@ _Figure 2. FAVORannotator workflow._
 
 There are two versions of FAVORannotator: **SQL** and **CSV**. 
 The postgreSQL version requires postgreSQL installation, and xsv version requires the XSV software dependencies. 
+
+FAVORannotator accomplishes both high query speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the excessive waiting time and file size restrictions of FAVOR online operation.
+
+### FAVORannotator SQL Version
+
+It is important to note that the FAVORannotator SQL version PostgreSQL database differs from other storage because it needs to be running in order to be accessed. Thus, users must ensure the database is running before running annotations.
+
+Once the FAVORannotator database is booted on and running, the following connection information must be specified for the FAVORannotator R program to access the database : DBName, Host, Port, User, and Password.
+
+This above specialized database setting, ensure the high query speed. Here shows the detail features described above.
+
+![FAVORannotator SQL version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/Figure2A.png)
+
+_Figure 2. FAVORannotator SQL version workflow and differences highlights._
+
+### FAVORannotator CSV Version
+
+FAVORannotator CSV version database adopts the similar strategies of slicing both database and query inputs into smaller pieces and create index with each of the smaller chucks of database so as to achieve high performance and fast query speed as the SQL version.  
+
+Differs from SQL version, CSV version database is static, and the query depends upon the XSV software, and therefore does not need to ensure the database is running before running annotations. The CSV version database is static and have much easier way to access through XSV software rather than acquiring the details of the running postgreSQL database, therefore widen the application of FAVORannotator in case computing platform does not support postgreSQL installation. 
+
+![FAVORannotator CSV version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/Figure2B.png)
+
+_Figure 3. FAVORannotator CSV version workflow and differences highlights._
 
 
 ## Resource requirements
