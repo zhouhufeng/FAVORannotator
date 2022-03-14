@@ -111,7 +111,8 @@ for(kk in 1:dim(DB_info)[1]){
 	dx<-VariantsAnnoTMP[(POS>=DB_info$Start_Pos[kk])&(POS<=DB_info$End_Pos[kk]),]
 	outdx<-batchAnnotate(dx,kk)
 	#VariantsBatchAnno<-bind_rows(VariantsBatchAnno,outdx)
-	print(paste0(("finish annotate rounds/blocks: "),kk))	
+	print(paste0(("finish annotate rounds/blocks: "),kk))
+	outlist[[kk]]<-outdx
 }
 VariantsBatchAnno<-bind_rows(outlist);
 rm(dx,outdx)
@@ -123,8 +124,8 @@ gc()
 ############################################
 ####This Variant is a searching key#########
 ############################################
-Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
-#Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
+#Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
+Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
 #VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno),]
 VariantsAnno <- dplyr::left_join(VariantsAnno,VariantsBatchAnno, by = c("CHR" = "chromosome","POS" = "position","REF" = "ref_vcf","ALT" = "alt_vcf"))
 add.gdsn(Anno.folder, "FAVORannotator", val=VariantsAnno, compress="LZMA_ra", closezip=TRUE)
