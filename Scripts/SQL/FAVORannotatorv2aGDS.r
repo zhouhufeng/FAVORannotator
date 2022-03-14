@@ -124,8 +124,8 @@ gc()
 ############################################
 ####This Variant is a searching key#########
 ############################################
-#Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
-Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
+Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotation")
+#Anno.folder <- index.gdsn(genofile, "annotation/info/FunctionalAnnotation")
 #VariantsBatchAnno<-VariantsBatchAnno[!duplicated(VariantsBatchAnno),]
 VariantsAnno <- dplyr::left_join(VariantsAnno,VariantsBatchAnno, by = c("CHR" = "chromosome","POS" = "position","REF" = "ref_vcf","ALT" = "alt_vcf"))
 add.gdsn(Anno.folder, "FAVORannotator", val=VariantsAnno, compress="LZMA_ra", closezip=TRUE)
