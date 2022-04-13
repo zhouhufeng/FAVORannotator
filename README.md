@@ -96,7 +96,7 @@ Once PostgreSQL is running, the database can be imported and FAVORannotator can 
 
 ## Install PostgreSQL (FAVORannotator SQL version)
 
-The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (ubuntu) on a virtual machine.
+The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
 
 1. Install the required software:
  - ```$ sudo apt install postgresql postgresql-contrib```
@@ -118,7 +118,7 @@ download the <a href="http://favor.genohub.org">**FAVOR database** CSV files</a>
 
 ## Install xsv (FAVORannotator CSV version)
 
-The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (ubuntu) on a virtual machine.
+The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
 
 1. Install Rust and Cargo:
  - ```$ curl https://sh.rustup.rs -sSf | sh```
