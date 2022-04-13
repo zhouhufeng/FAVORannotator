@@ -40,7 +40,7 @@ _Figure 2. FAVORannotator SQL version workflow and differences highlights._
 
 FAVORannotator CSV version database adopts the similar strategies of slicing both database and query inputs into smaller pieces and create index with each of the smaller chucks of database so as to achieve high performance and fast query speed as the SQL version.  
 
-Differs from SQL version, CSV version database is static, and the query depends upon the XSV software, and therefore does not need to ensure the database is running before running annotations. The CSV version database is static and have much easier way to access through XSV software rather than acquiring the details of the running postgreSQL database, therefore widen the application of FAVORannotator in case computing platform does not support postgreSQL installation. 
+Differs from SQL version, CSV version database is static, and the query depends upon the xsv software, and therefore does not need to ensure the database is running before running annotations. The CSV version database is static and have much easier way to access through xsv software rather than acquiring the details of the running postgreSQL database, therefore widen the application of FAVORannotator in case computing platform does not support postgreSQL installation. 
 
 ![FAVORannotator CSV version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/Figure2B.png)
 
@@ -116,7 +116,7 @@ The following steps have been written for major computing environments in order 
 **FAVORannotator** (CSV version) depends on the **xsv software** and the **FAVOR database** in CSV format. Please install the <a href="https://github.com/BurntSushi/xsv">**xsv software**</a> and 
 download the <a href="http://favor.genohub.org">**FAVOR database** CSV files</a> (under the "FAVORannotator" tab) before using **FAVORannotator** (CSV version). 
 
-## Install XSV (FAVORannotator CSV version)
+## Install xsv (FAVORannotator CSV version)
 
 The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (ubuntu) on a virtual machine.
 
@@ -134,7 +134,7 @@ FAVORannotator imports R packages: <a href="https://cran.r-project.org/web/packa
 
 FAVORannotator (SQL version) depends upon <a href="https://www.postgresql.org"> PostgreSQL software</a>.
 
-FAVORannotator (CSV version) depends upon <a href="https://github.com/BurntSushi/xsv"> XSV software</a>.
+FAVORannotator (CSV version) depends upon <a href="https://github.com/BurntSushi/xsv"> xsv software</a>.
 
 ## Data Availability
 The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](https://favor.genohub.org) site.
