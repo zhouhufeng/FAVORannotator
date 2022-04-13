@@ -1,19 +1,20 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # **FAVORannotator**
-FAVORannotator is an R program for performing functional annotation of any genetic study (e.g. whole-genome/whole-exome sequencing/Genome Wide Association Studies) studies using FAVOR backend database and build in the functional annotation data alongside with the input genotype data (VCF) to create all-in-one aGDS file.
+FAVORannotator is an R program for performing functional annotation of any genetic study (e.g. Whole-Genome/Whole-Exome Sequencing/Genome-Wide Association Studies) using the [FAVOR backend database](https://favor.genohub.org) to create an annotated Genomic Data Structure (aGDS) file by storing the genotype data (in VCF or GDS format) and their functional annotation data in an all-in-one file.
 
 ## Introduction
 
-FAVORannotator is an open-source pipeline for functionally annotating and efficiently storing the genotype and variant functional annotation data of any genetic study (GWAS/WES/WGS). Functional annotation data is stored alongside with genotype data in the all-in-one aGDS file format, through using the FAVORannotator. It facilitates downstream association analysis (Figure 1). It converts a genotype VCF input file to a GDS file, searches the variants in the GDS file using the FAVOR database for their functional annotations, and then integrates these annotations into the GDS file to create an aGDS file. This aGDS file allows both genotype and functional annotation data to be stored in a single file (Figure 1). Furthermore, FAVORannotator can be conveniently integrated into the STAARpipeline, a rare variant association analysis tool for WGS/WES studies, to perform association analysis of large-scale genetic data.
+FAVORannotator is an open-source pipeline for functionally annotating and efficiently storing the genotype and variant functional annotation data of any genetic study (e.g. GWAS/WES/WGS). Functional annotation data is stored alongside with genotype data in an all-in-one aGDS file, through using the FAVORannotator. It then facilitates a wide range of functionally-informed downstream analyses (Figure 1).
+
+FAVORannotator first converts a genotype VCF input file to a GDS file, searches the variants in the GDS file using the FAVOR database for their functional annotations, and then integrates these annotations into the GDS file to create an aGDS file. This aGDS file allows both genotype and functional annotation data to be stored in a single unified file (Figure 1). Furthermore, FAVORannotator can be conveniently integrated into [STAARpipeline](https://github.com/xihaoli/STAARpipeline), a rare variant association analysis tool, to perform association analysis of large-scale WGS/WES studies.
 
 ![FAVORannotator workflow](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/figure1.png)
 
 _Figure 1. FAVORannotator workflow._
 
-
 ## Obtain the database
-1. Download the FAVORannotator data file from here (download [URL](http://favor.genohub.org)).
+1. Download the FAVORannotator data file from here ([download URL](http://favor.genohub.org), under the "FAVORannotator" tab).
 2. Decompress the downloaded data. 
 
 ## FAVORannotator two versions (SQL and CSV)
@@ -23,7 +24,7 @@ The postgreSQL version requires postgreSQL installation, and xsv version require
 
 FAVORannotator accomplishes both high query speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the excessive waiting time and file size restrictions of FAVOR online operation.
 
-### FAVORannotator SQL Version
+### FAVORannotator SQL version
 
 It is important to note that the FAVORannotator SQL version PostgreSQL database differs from other storage because it needs to be running in order to be accessed. Thus, users must ensure the database is running before running annotations.
 
@@ -35,7 +36,7 @@ This above specialized database setting, ensure the high query speed. Here shows
 
 _Figure 2. FAVORannotator SQL version workflow and differences highlights._
 
-### FAVORannotator CSV Version
+### FAVORannotator CSV version
 
 FAVORannotator CSV version database adopts the similar strategies of slicing both database and query inputs into smaller pieces and create index with each of the smaller chucks of database so as to achieve high performance and fast query speed as the SQL version.  
 
@@ -44,7 +45,6 @@ Differs from SQL version, CSV version database is static, and the query depends 
 ![FAVORannotator CSV version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/Figure2B.png)
 
 _Figure 3. FAVORannotator CSV version workflow and differences highlights._
-
 
 ## Resource requirements
 
@@ -74,12 +74,11 @@ Once PostgreSQL is running, the database can be imported and FAVORannotator can 
 
 -	``` $ Rscript   FAVORannotatorGDS.r  22 ```  
 
-
 Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
 
 A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
 
-## Install and prepare the database（FAVORannotator SQL version）
+## Install and prepare the database (FAVORannotator SQL version)
 
 The FAVORannotator SQL version relies upon the PostgreSQL Database Management System (DBMS). PostgreSQL is a free and open-source application which emphasizes extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation.
 
@@ -95,14 +94,14 @@ Once PostgreSQL is running, the database can be imported and FAVORannotator can 
 
 3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
-
-## Install PostgreSQL （FAVORannotator SQL version）
+## Install PostgreSQL (FAVORannotator SQL version)
 
 The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (ubuntu) on a virtual machine.
 
-1. Install the required software: ```$ sudo apt install postgresql postgresql-contrib```
+1. Install the required software:
+ - ```$ sudo apt install postgresql postgresql-contrib```
 2. Start and run PostgreSQL: 
- - ```$ sudo -i -u postgres ``` 
+ - ```$ sudo -i -u postgres``` 
  - ```$ psql```
 
 3. [Optional] For installing the database on external storage (Edit the configuration file):
@@ -110,19 +109,25 @@ The following steps have been written for major computing environments in order 
 -	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
 -	Reboot the data directory, ```$ sudo systemctl start postgresql```
 
+### For more detailed instructions on how to use FAVORannotator (SQL version) on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md).
 
-### For more detailed instructions on how to use FAVORannotator on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md). 
+## Install and prepare the database (FAVORannotator CSV version)
 
+**FAVORannotator** (CSV version) depends on the **xsv software** and the **FAVOR database** in CSV format. Please install the <a href="https://github.com/BurntSushi/xsv">**xsv software**</a> and 
+download the <a href="http://favor.genohub.org">**FAVOR database** CSV files</a> (under the "FAVORannotator" tab) before using **FAVORannotator** (CSV version). 
 
-## Install and prepare the database（FAVORannotator CSV version）
-
-FAVORannotator (CSV version) depends on the xsv software and the **FAVOR** database in CSV format. Please install the <a href="https://github.com/BurntSushi/xsv">**xsv** software</a> and download
-download the <a href="http://favor.genohub.org"> the **FAVOR** database CSV files</a> (under the "FAVORannotator" tab) before using the FAVORannotator (CSV version). 
-
-## Install XSV （FAVORannotator CSV version）
+## Install XSV (FAVORannotator CSV version)
 
 The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (ubuntu) on a virtual machine.
-Please install the <a href="https://github.com/BurntSushi/xsv">**xsv** software</a> accordingly.
+
+1. Install Rust and Cargo:
+ - ```$ curl https://sh.rustup.rs -sSf | sh```
+2. Source the environment: 
+ - ```$ source $HOME/.cargo/env``` 
+3. Install xsv using Cargo:
+ - ```$ cargo install xsv```
+
+### For more detailed instructions on how to use FAVORannotator (CSV version), please refer to the detailed tutorial [here](https://github.com/xihaoli/STAARpipeline-Tutorial/blob/main/README.md).
 
 ## Dependencies
 FAVORannotator imports R packages: <a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SeqArray.html">SeqArray</a>, <a href="https://bioconductor.org/packages/release/bioc/html/gdsfmt.html">gdsfmt</a>, <a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a>, <a href="https://stringr.tidyverse.org">stringr</a>, <a href="https://readr.tidyverse.org">readr</a>, <a href="https://cran.r-project.org/web/packages/stringi/index.html">stringi</a>. These dependencies should be installed before running FAVORannotator.
@@ -132,7 +137,7 @@ FAVORannotator (SQL version) depends upon <a href="https://www.postgresql.org"> 
 FAVORannotator (CSV version) depends upon <a href="https://github.com/BurntSushi/xsv"> XSV software</a>.
 
 ## Data Availability
-The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](http://favor.genohub.org) site.
+The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](https://favor.genohub.org) site.
 
 ## Version
 The current version is 0.0.6 (Jan 30th, 2022).
