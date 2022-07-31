@@ -19,28 +19,28 @@ print(paste0("use_compression: ",use_compression))
 ### Step 0 (Download FAVOR Database)
 ##########################################################################
 URLs <- data.frame(chr = c(1:22),
-                   URL = c("https://dataverse.harvard.edu/api/access/datafile/6380374",  #1
-                           "https://dataverse.harvard.edu/api/access/datafile/6380471",  #2
-                           "https://dataverse.harvard.edu/api/access/datafile/6380732",  #3
-                           "https://dataverse.harvard.edu/api/access/datafile/6381512",  #4
-                           "https://dataverse.harvard.edu/api/access/datafile/6381457",  #5
-                           "https://dataverse.harvard.edu/api/access/datafile/6381327",  #6
-                           "https://dataverse.harvard.edu/api/access/datafile/6384125",  #7
-                           "https://dataverse.harvard.edu/api/access/datafile/6382573",  #8
-                           "https://dataverse.harvard.edu/api/access/datafile/6384268",  #9
-                           "https://dataverse.harvard.edu/api/access/datafile/6380273",  #10
-                           "https://dataverse.harvard.edu/api/access/datafile/6384154",  #11
-                           "https://dataverse.harvard.edu/api/access/datafile/6384198",  #12
-                           "https://dataverse.harvard.edu/api/access/datafile/6388366",  #13
-                           "https://dataverse.harvard.edu/api/access/datafile/6388406",  #14
-                           "https://dataverse.harvard.edu/api/access/datafile/6388427",  #15
-                           "https://dataverse.harvard.edu/api/access/datafile/6388551",  #16
-                           "https://dataverse.harvard.edu/api/access/datafile/6388894",  #17
-                           "https://dataverse.harvard.edu/api/access/datafile/6376523",  #18
-                           "https://dataverse.harvard.edu/api/access/datafile/6376522",  #19
-                           "https://dataverse.harvard.edu/api/access/datafile/6376521",  #20
-                           "https://dataverse.harvard.edu/api/access/datafile/6358305",  #21
-                           "https://dataverse.harvard.edu/api/access/datafile/6358299")) #22
+                   URL = c("https://dataverse.harvard.edu/api/access/datafile/6170506",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170501",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170502",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170521",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170511",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170516",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170505",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170513",
+                           "https://dataverse.harvard.edu/api/access/datafile/6165867",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170507",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170517",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170520",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170503",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170509",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170515",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170518",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170510",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170508",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170514",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170512",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170519",
+                           "https://dataverse.harvard.edu/api/access/datafile/6170504"))
 
 URL <- URLs[chr, "URL"]
 system(paste0("wget --progress=bar:force:noscroll ", URLs[chr, "URL"]))
@@ -64,7 +64,7 @@ library(SeqVarTools)
 
 ### chromosome number
 ## read info
-DB_info <- read.csv(url("https://raw.githubusercontent.com/zhouhufeng/FAVORannotator/main/Scripts/SQL/FAVORdatabase_chrsplit.csv"),header=TRUE)
+DB_info <- read.csv(url("https://raw.githubusercontent.com/xihaoli/STAARpipeline-Tutorial/main/FAVORannotator_csv/FAVORdatabase_chrsplit.csv"),header=TRUE)
 DB_info <- DB_info[DB_info$Chr==chr,]
 
 ## open GDS
@@ -101,10 +101,10 @@ for(kk in 1:dim(DB_info)[1])
 xsv <- "/root/.cargo/bin/xsv"
 
 ### DB file
-DB_path <- "/cromwell_root/./"
+DB_path <- "n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/"
 
 ### anno channel (subset)
-#anno_colnum <- c(1,8:12,15,16,19,23,25:36)
+anno_colnum <- c(1,8:12,15,16,19,23,25:36)
 
 chr_splitnum <- sum(DB_info$Chr==chr)
 
@@ -165,9 +165,9 @@ FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/",anno_file_name_1,
 dim(FunctionalAnnotation)
 
 ## rename colnames
-#colnames(FunctionalAnnotation)[2] <- "apc_conservation"
-#colnames(FunctionalAnnotation)[7] <- "apc_local_nucleotide_diversity"
-#colnames(FunctionalAnnotation)[9] <- "apc_protein_function"
+colnames(FunctionalAnnotation)[2] <- "apc_conservation"
+colnames(FunctionalAnnotation)[7] <- "apc_local_nucleotide_diversity"
+colnames(FunctionalAnnotation)[9] <- "apc_protein_function"
 
 ## open GDS
 genofile <- seqOpen(gds.file, readonly = FALSE)
@@ -176,10 +176,10 @@ genofile <- seqOpen(gds.file, readonly = FALSE)
 Anno.folder <- index.gdsn(genofile, "annotation/info")
 if(use_compression == "YES")
 {
-  add.gdsn(Anno.folder, "FAVORFullDBAug1st2022", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
+  add.gdsn(Anno.folder, "FunctionalAnnotationJun1st2022", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
 }else
 {
-  add.gdsn(Anno.folder, "FAVORFullDBAug1st2022", val=FunctionalAnnotation)
+  add.gdsn(Anno.folder, "FunctionalAnnotationJun1st2022", val=FunctionalAnnotation)
 }
 genofile
 

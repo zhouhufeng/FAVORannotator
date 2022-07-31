@@ -63,7 +63,7 @@ library(SeqVarTools)
 
 ### chromosome number
 ## read info
-DB_info <- read.csv(url("https://raw.githubusercontent.com/xihaoli/STAARpipeline-Tutorial/main/FAVORannotator_csv/FAVORdatabase_chrsplit.csv"),header=TRUE)
+DB_info <- read.csv(url("https://raw.githubusercontent.com/zhouhufeng/FAVORannotator/main/Scripts/SQL/FAVORdatabase_chrsplit.csv"),header=TRUE)
 DB_info <- DB_info[DB_info$Chr==chr,]
 
 ## open GDS
