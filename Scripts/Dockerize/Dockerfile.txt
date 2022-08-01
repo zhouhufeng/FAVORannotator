@@ -1,0 +1,16 @@
+# Base image https://hub.docker.com/u/rocker/
+FROM rocker/r-base:latest
+
+## create directories
+RUN mkdir -p /FAVORannotatorDocker
+
+## copy files
+COPY ../CSV/FAVORannotatorv2aGDS.r .
+COPY ../CSV/convertVCFtoGDS.r
+COPY ../CSV/config.R
+
+## Install R-packages
+RUN Rscript install_packages.R
+
+## Run R-scripts
+RUN Rscript FAVORannotatorv2aGDS.r

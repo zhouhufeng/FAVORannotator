@@ -105,6 +105,7 @@ DB_path <- "/cromwell_root/./"
 
 ### anno channel (subset)
 #anno_colnum <- c(1,8:12,15,16,19,23,25:36)
+anno_colnum <- c(2:160)
 
 chr_splitnum <- sum(DB_info$Chr==chr)
 
@@ -112,6 +113,7 @@ for(kk in 1:chr_splitnum)
 {
   print(kk)
 
+	#system(paste0(xsv," index ",DB_path,"/chr",chr,"_",kk,".csv))
   system(paste0(xsv," join --left VarInfo ",output_path,"chr",chr,"/VarInfo_chr",chr,"_",kk,".csv variant_vcf ",DB_path,"/chr",chr,"_",kk,".csv > ",output_path,"chr",chr,"/Anno_chr",chr,"_",kk,".csv"))
 }
 
@@ -155,12 +157,14 @@ library(SeqVarTools)
 library(readr)
 
 ### read annotation data
-FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/",anno_file_name_1,chr,anno_file_name_2),
-                                 col_types=list(col_character(),col_double(),col_double(),col_double(),col_double(),
-                                                col_double(),col_double(),col_double(),col_double(),col_double(),
-                                                col_character(),col_character(),col_character(),col_double(),col_character(),
-                                                col_character(),col_character(),col_character(),col_character(),col_double(),
-                                                col_double(),col_character()))
+FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/",anno_file_name_1,chr,anno_file_name_2))
+
+#FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/",anno_file_name_1,chr,anno_file_name_2),
+#                                 col_types=list(col_character(),col_double(),col_double(),col_double(),col_double(),
+#                                                col_double(),col_double(),col_double(),col_double(),col_double(),
+#                                                col_character(),col_character(),col_character(),col_double(),col_character(),
+#                                                col_character(),col_character(),col_character(),col_character(),col_double(),
+#                                                col_double(),col_character()))
 
 dim(FunctionalAnnotation)
 

@@ -1,0 +1,96 @@
+
+
+# Base image https://hub.docker.com/u/rocker/
+FROM rocker/shiny:latest
+
+# system libraries of general use
+## install debian packages
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+    libxml2-dev \
+    libcairo2-dev \
+    libsqlite3-dev \
+    libmariadbd-dev \
+    libpq-dev \
+    libssh2-1-dev \
+    unixodbc-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    coinor-libcbc-dev coinor-libclp-dev libglpk-dev
+
+
+## update system libraries
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get clean
+
+# copy necessary files
+## app folder
+COPY ./bms_msisuite ./app
+
+# Docker inheritance
+FROM bioconductor/bioconductor_docker:devel
+
+RUN apt-get update
+    RUN R -e 'BiocManager::install(ask = F)' && R -e 'BiocManager::install(c("rtracklayer", \
+    "GenomicAlignments", "Biostrings", "SummarizedExperiment", "Rsamtools", ask = F))'
+# install renv & restore packages
+RUN Rscript -e 'install.packages("renv")'
+RUN Rscript -e 'install.packages("devtools")'
+RUN Rscript -e 'install.packages("shiny")'
+RUN Rscript -e 'install.packages("shinyBS")'
+RUN Rscript -e 'install.packages("ggvis")'
+RUN Rscript -e 'install.packages("shinydashboardPlus")'
+RUN Rscript -e 'install.packages("shinycssloaders")'
+RUN Rscript -e 'install.packages("shinyWidgets")'
+RUN Rscript -e 'install.packages("plotly")'
+RUN Rscript -e 'install.packages("RSQLite")'
+RUN Rscript -e 'install.packages("forecast", dependencies = TRUE)'
+RUN Rscript -e 'install.packages("tsutils")'
+RUN Rscript -e 'install.packages("readxl")'
+RUN Rscript -e 'install.packages("tidyverse")'
+RUN Rscript -e 'install.packages("knitr")'
+RUN Rscript -e 'install.packages("knitcitations")'
+RUN Rscript -e 'install.packages("nycflights13")'
+RUN Rscript -e 'install.packages("Matrix")'
+RUN Rscript -e 'install.packages("plotly")'
+RUN Rscript -e 'install.packages("igraph")'
+RUN Rscript -e 'install.packages("ggthemes")'
+RUN Rscript -e 'install.packages("evaluate")'
+RUN Rscript -e 'install.packages("psych")'
+RUN Rscript -e 'install.packages("kableExtra")'
+RUN Rscript -e 'install.packages("ggjoy")'
+RUN Rscript -e 'install.packages("gtools")'
+RUN Rscript -e 'install.packages("gridExtra")'
+RUN Rscript -e 'install.packages("cowplot")'
+RUN Rscript -e 'install.packages("ggrepel")'
+RUN Rscript -e 'install.packages("data.table")'
+RUN Rscript -e 'install.packages("stringr")'
+RUN Rscript -e 'install.packages("rmarkdown")'
+RUN Rscript -e 'install.packages("shinyjqui")'
+RUN Rscript -e 'install.packages("V8")'
+RUN Rscript -e 'devtools::install_github("ThomasSiegmund/D3TableFilter")'
+RUN Rscript -e 'devtools::install_github("leonawicz/apputils")'
+RUN Rscript -e 'devtools::install_github("Marlin-Na/trewjb")'
+
+RUN Rscript -e 'devtools::install_github("dirkschumacher/ompr")'
+RUN Rscript -e 'devtools::install_github("dirkschumacher/ompr.roi")'
+
+RUN Rscript -e 'install.packages("ROI.plugin.glpk")'
+
+RUN Rscript -e 'install.packages("shinydashboard")'
+RUN Rscript -e 'install.packages("dplyr")'
+RUN Rscript -e 'install.packages("dashboardthemes")'
+RUN Rscript -e 'install.packages("shinyjs")'
+RUN Rscript -e 'install.packages("magrittr")'
+RUN Rscript -e 'install.packages("DT")'
+RUN Rscript -e 'install.packages("rhandsontable")'
+RUN Rscript -e 'renv::consent(provided = TRUE)'
+RUN Rscript -e 'renv::restore()'
+
+
+
+# expose port
+EXPOSE 3838
+
+# run app on container start
+CMD ["R", "-e", "shiny::runApp('/app', host = '0.0.0.0', port = 3838)"]
