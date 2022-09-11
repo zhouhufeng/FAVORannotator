@@ -127,8 +127,6 @@ The following steps have been written for major computing environments in order 
 3. Install xsv using Cargo:
  - ```$ cargo install xsv```
 
-### For more detailed instructions on how to use FAVORannotator (CSV version), please refer to the detailed tutorial [here](https://github.com/xihaoli/STAARpipeline-Tutorial/blob/main/README.md).
-
 ## Dependencies
 FAVORannotator imports R packages: <a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SeqArray.html">SeqArray</a>, <a href="https://bioconductor.org/packages/release/bioc/html/gdsfmt.html">gdsfmt</a>, <a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a>, <a href="https://stringr.tidyverse.org">stringr</a>, <a href="https://readr.tidyverse.org">readr</a>, <a href="https://cran.r-project.org/web/packages/stringi/index.html">stringi</a>. These dependencies should be installed before running FAVORannotator.
 
