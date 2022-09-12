@@ -62,23 +62,27 @@ For the both the SQL and CSV versions of FAVORannotator, 60,000 samples of WGS v
 
 The first step depends on whether FAVORannotator is the SQL or CSV version, and depends on different computing platforms. The following sections detail the process for major platforms. The second step (running FAVORannotator) will be detailed first, as it is consistent across platforms.
 
-## Run FAVORannotator
+## Run FAVORannotator SQL version
 
-Once PostgreSQL is running, the database can be imported and FAVORannotator can be executed as follows.
+Once PostgreSQL is running, the database can be imported and FAVORannotator can be executed as follows. Please find the R scripts in the ```Scripts/SQL/``` folder.
+
+**Important: Before run FAVORannotator SQL version, please update the file locations and database info on the ```config.R``` file. FAVORannotator relies on the file locations and database info for the annotation.**
 
 1.	Create GDS file from the input VCF file:
 
--	``` $ Rscript   convertVCFtoGDS.r  22 ```
+-	``` $ Rscript   convertVCFtoGDS.r  chrnumber ```
 
 2.	Run FAVORannotator:
 
--	``` $ Rscript   FAVORannotatorGDS.r  22 ```  
+-	``` $ Rscript   FAVORannotatorv2aGDS.r  chrnumber ```  
+
+chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
 
 Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
 
 A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
 
-## Install and prepare the database (FAVORannotator SQL version)
+## Install and prepare the database for SQL version
 
 The FAVORannotator SQL version relies upon the PostgreSQL Database Management System (DBMS). PostgreSQL is a free and open-source application which emphasizes extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation.
 
@@ -111,7 +115,28 @@ The following steps have been written for major computing environments in order 
 
 ### For more detailed instructions on how to use FAVORannotator (SQL version) on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md).
 
-## Install and prepare the database (FAVORannotator CSV version)
+
+## Run FAVORannotator CSV version
+
+Once CSV database is downloaded and decompressed, the database is readable by FAVORannotator can be executed as follows. Please find the R scripts in the ```Scripts/CSV/``` folder.
+
+**Important: Before run FAVORannotator CSV version, please update the file locations and database info on the ```config.R``` file. FAVORannotator relies on the file locations and database info for the annotation.**
+
+1.	Create GDS file from the input VCF file:
+
+-	``` $ Rscript   convertVCFtoGDS.r  chrnumber ```
+
+2.	Run FAVORannotator:
+
+-	``` $ Rscript   FAVORannotatorv2aGDS.r chrnumber ```  
+
+Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
+
+A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
+
+chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
+
+## Install and prepare the database for CSV version
 
 **FAVORannotator** (CSV version) depends on the **xsv software** and the **FAVOR database** in CSV format. Please install the <a href="https://github.com/BurntSushi/xsv">**xsv software**</a> and 
 download the <a href="http://favor.genohub.org">**FAVOR database** CSV files</a> (under the "FAVORannotator" tab) before using **FAVORannotator** (CSV version). 
@@ -126,6 +151,63 @@ The following steps have been written for major computing environments in order 
  - ```$ source $HOME/.cargo/env``` 
 3. Install xsv using Cargo:
  - ```$ cargo install xsv```
+
+
+
+## Run FAVORannotator without pre-install databases
+
+FAVOR database can be downloaded on the fly and decompressed automatically in the scripts, this version of FAVORannotator will remove the burden of download the backend database and update the ```config.R```. The database is downloaded and decompressed automatically and is readable by FAVORannotator can be executed as follows.
+
+Please find the R scripts in the ```Scripts/SQL/``` folder.
+
+**Important: This version of FAVORannotator no pre-install version does not need to update ```config.R``` file. This version of FAVORannotator directly download FAVORdatabase (Full or Essential versions) from the Harvard Dataverse to the default file locations and database info for the annotation. Just put the FAVORannotator script in the directory with ample storage all the database and index and intermediate files will be generated in the directory.**
+
+1.	Create GDS file from the input VCF file:
+
+-	``` $ Rscript   convertVCFtoGDS.r  input.vcf output.gds ```
+
+2.	Run FAVORannotator for the FAVOR Essential Database:
+
+-	``` $ Rscript   FAVORannotatorCSVEssentialDB.R  output.gds chrnumber ```  
+
+3.	Run FAVORannotator for the FAVOR Full Database:
+
+-	``` $ Rscript   FAVORannotatorCSVFullDB.R  output.gds chrnumber ```  
+
+chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
+
+Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
+
+A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
+
+
+## Run FAVORannotator Cloud Version
+
+For Cloud environment, we simplified the process of database set up and remove the configration files. FAVOR database can be downloaded on the fly and decompressed automatically in the scripts, this version of FAVORannotator will remove the burden of download the backend database and update the ```config.R```. The database is downloaded and decompressed automatically and is capable of seamless integration to the workflow languages of the cloud platform. It currently works for cloud platforms like Terra, DNAnexus, etc. This tutorial uses Terra as an example to illustrate the functional annotation process. 
+
+Please find the R scripts in the ```Scripts/Cloud/``` folder.
+
+**Important: This version of FAVORannotator no pre-install version does not need to update ```config.R``` file. This version of FAVORannotator directly download FAVORdatabase (Full or Essential versions) from the Harvard Dataverse to the default file locations and database info for the annotation. Just put the FAVORannotator script in the directory with ample storage all the database and index and intermediate files will be generated in the directory. These database files and intermediate files in the working directories will be removed in most cloud platforms.**
+
+1.	Create GDS file from the input VCF file:
+
+-	``` $ Rscript   convertVCFtoGDS.r  input.vcf output.gds ```
+
+2.	Run FAVORannotator for the FAVOR Essential Database:
+
+-	``` $ Rscript FAVORannotatorTerraEssentialDB.R  output.gds chrnumber ```  
+
+3.	Run FAVORannotator for the FAVOR Full Database:
+
+-	``` $ Rscript FAVORannotatorTerraEssentialDB.R  output.gds chrnumber ```  
+
+chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
+
+Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
+
+
+
+
 
 ## Dependencies
 FAVORannotator imports R packages: <a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a>, <a href="https://bioconductor.org/packages/release/bioc/html/SeqArray.html">SeqArray</a>, <a href="https://bioconductor.org/packages/release/bioc/html/gdsfmt.html">gdsfmt</a>, <a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL</a>, <a href="https://stringr.tidyverse.org">stringr</a>, <a href="https://readr.tidyverse.org">readr</a>, <a href="https://cran.r-project.org/web/packages/stringi/index.html">stringi</a>. These dependencies should be installed before running FAVORannotator.
