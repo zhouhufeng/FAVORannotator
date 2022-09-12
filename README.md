@@ -60,8 +60,8 @@ _Figure 4. FAVORannotator Cloud version workflow and differences highlights._
 1. Download the FAVORannotator data file from here ([download URL](http://favor.genohub.org), under the "FAVORannotator" tab).
 2. Decompress the downloaded data. 
 
-###FAVOR databases host on Harvard Dataverse
-FAVOR databases (Essential Database and Full Database) are hosting on ([Harvard Database](https://dataverse.harvard.edu/dataverse/favor).
+### FAVOR databases host on Harvard Dataverse
+FAVOR databases (Essential Database and Full Database) are hosting on ([Harvard Database](https://dataverse.harvard.edu/dataverse/favor)).
 
 
 ![FAVORannotator Cloud version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/HarvardDataVerse.png)
@@ -69,10 +69,10 @@ FAVOR databases (Essential Database and Full Database) are hosting on ([Harvard 
 _Figure 5. FAVOR Databases on Harvard Dataverse (both Essential Database and Full Database)._
 
 
-###FAVOR Essential Database
+### FAVOR Essential Database
 ([FAVOR Essential Database](https://doi.org/10.7910/DVN/1VGTJI)) containing 20 essential annotation scores. This FAVOR Essential Database is comprised of a collection of essential annotation scores for all possible SNVs (8,812,917,339) and observed indels (79,997,898) in Build GRCh38/hg38.
 
-###FAVOR Full Database
+### FAVOR Full Database
 ([FAVOR Full Database](https://doi.org/10.7910/DVN/KFUBKG)) containing 160 essential annotation scores. This FAVOR Full Database is comprised of a collection of full annotation scores for all possible SNVs (8,812,917,339) and observed indels (79,997,898) in Build GRCh38/hg38.
 
 
@@ -114,7 +114,8 @@ There are a few user cases where download the database and configuration can be 
 Based on the FAOVRannotator (no pre-install database version), we develop the FAOVRannotator cloud-native app, in the cloud platform like Terra and DNAnexus, or on the virtual machines of Google Cloud Platform (GCP), Amazon Web Services (AWS), Microsoft Azure. With the dockerized images and workflow languages, FAVORannotator can be executed through the user-friendly and drag-and-drop graphical interface, with no scripting nor programming skills required from the users. 
 
 
-## Run FAVORannotator SQL version
+## SQL version
+### Run FAVORannotator SQL version
 
 Once PostgreSQL is running, the database can be imported and FAVORannotator can be executed as follows. Please find the R scripts in the ```Scripts/SQL/``` folder.
 
@@ -134,7 +135,7 @@ Scripts for submitting jobs for all chromosomes simultaneously have been provide
 
 A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
 
-## Install and prepare the database for SQL version
+### Install and prepare the database for SQL version
 
 The FAVORannotator SQL version relies upon the PostgreSQL Database Management System (DBMS). PostgreSQL is a free and open-source application which emphasizes extensibility and SQL compliance. It is a highly stable DBMS, backed by more than 20 years of community development. PostgreSQL is used to manage data for many web, mobile, geospatial, and analytics applications. Its advanced features, including diverse index types and configuration options, have been carefully selected for FAVORannotator so that end users do not need to worry about the implementation.
 
@@ -150,7 +151,7 @@ Once PostgreSQL is running, the database can be imported and FAVORannotator can 
 
 3. Update the config.R file with the PostgreSQL instance information (database name, port, host, user, password):
 
-## Install PostgreSQL (FAVORannotator SQL version)
+### Install PostgreSQL (FAVORannotator SQL version)
 
 The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
 
@@ -165,10 +166,12 @@ The following steps have been written for major computing environments in order 
 -	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
 -	Reboot the data directory, ```$ sudo systemctl start postgresql```
 
-### For more detailed instructions on how to use FAVORannotator (SQL version) on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md).
+** For more detailed instructions on how to use FAVORannotator (SQL version) on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md).**
 
 
-## Run FAVORannotator CSV version
+## CSV version
+
+### Run FAVORannotator CSV version
 
 Once CSV database is downloaded and decompressed, the database is readable by FAVORannotator can be executed as follows. Please find the R scripts in the ```Scripts/CSV/``` folder.
 
@@ -188,12 +191,12 @@ A SLURM script to simplify the process can be found here: ([submission.sh](https
 
 chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
 
-## Install and prepare the database for CSV version
+### Install and prepare the database for CSV version
 
 **FAVORannotator** (CSV version) depends on the **xsv software** and the **FAVOR database** in CSV format. Please install the <a href="https://github.com/BurntSushi/xsv">**xsv software**</a> and 
 download the <a href="http://favor.genohub.org">**FAVOR database** CSV files</a> (under the "FAVORannotator" tab) before using **FAVORannotator** (CSV version). 
 
-## Install xsv (FAVORannotator CSV version)
+### Install xsv (FAVORannotator CSV version)
 
 The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
 
@@ -206,7 +209,8 @@ The following steps have been written for major computing environments in order 
 
 
 
-## Run FAVORannotator no pre-install databases version
+## No pre-install databases version
+### Run FAVORannotator no pre-install databases version
 
 FAVOR database can be downloaded on the fly and decompressed automatically in the scripts, this version of FAVORannotator will remove the burden of download the backend database and update the ```config.R```. The database is downloaded and decompressed automatically and is readable by FAVORannotator can be executed as follows.
 
@@ -233,8 +237,8 @@ Scripts for submitting jobs for all chromosomes simultaneously have been provide
 A SLURM script to simplify the process can be found here: ([submission.sh](https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/SQL/submitJobs.sh)).
 
 
-## Run FAVORannotator Cloud Version
-
+## Cloud Version
+### Run FAVORannotator Cloud Version
 
 For Cloud environment, we simplified the process of database set up and remove the configration files. FAVOR database can be downloaded on the fly and decompressed automatically in the scripts, this version of FAVORannotator will remove the burden of download the backend database and update the ```config.R```. The database is downloaded and decompressed automatically and is capable of seamless integration to the workflow languages of the cloud platform. It currently works for cloud platforms like Terra, DNAnexus, etc. This tutorial uses Terra as an example to illustrate the functional annotation process. 
 
@@ -260,7 +264,7 @@ chrnumber are the numeric number indicating which chromosome this database is re
 ![FAVORannotator Cloud Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/FAVORannotatorOnTerra.png)
 
 
-## Other FAVORannotator Functions
+## Other Functions and Utilities
 
 ###Convert VCF to aGDS
 The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
@@ -268,7 +272,7 @@ The following steps have been written for major computing environments in order 
 1. Install Rust and Cargo:
  - ```$ curl https://sh.rustup.rs -sSf | sh```
 
-###Add In Functional Annotations
+###Add In Functional Annotations to aGDS
 2. Source the environment: 
  - ```$ source $HOME/.cargo/env``` 
 3. Install xsv using Cargo:
