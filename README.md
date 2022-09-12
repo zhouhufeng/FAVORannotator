@@ -114,6 +114,11 @@ There are a few user cases where download the database and configuration can be 
 Based on the FAOVRannotator (no pre-install database version), we develop the FAOVRannotator cloud-native app, in the cloud platform like Terra and DNAnexus, or on the virtual machines of Google Cloud Platform (GCP), Amazon Web Services (AWS), Microsoft Azure. With the dockerized images and workflow languages, FAVORannotator can be executed through the user-friendly and drag-and-drop graphical interface, with no scripting nor programming skills required from the users. 
 
 
+![FAVORannotator Versions](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/versions.png)
+
+_Figure 6. FAVORannotator Different Versions._
+
+
 ## SQL version
 ### Run FAVORannotator SQL version
 
@@ -250,19 +255,31 @@ Please find the R scripts in the ```Scripts/Cloud/``` folder.
 
 -	``` $ Rscript   convertVCFtoGDS.r  input.vcf output.gds ```
 
-2.	Run FAVORannotator for the FAVOR Essential Database:
+2.1	Run FAVORannotator for the FAVOR Essential Database:
 
 -	``` $ Rscript FAVORannotatorTerraEssentialDB.R  output.gds chrnumber ```  
 
-3.	Run FAVORannotator for the FAVOR Full Database:
+2.2.	Run FAVORannotator for the FAVOR Essential Database workflow:
+
+-	``` $ java -jar cromwell-30.2.jar run FAVORannotatorEssentialDB.wdl --inputs file.json ```  
+
+
+3.1	Run FAVORannotator for the FAVOR Full Database:
 
 -	``` $ Rscript FAVORannotatorTerraEssentialDB.R  output.gds chrnumber ```  
 
 chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
 
+3.2.	Run FAVORannotator for the FAVOR Full Database workflow:
+
+-	``` $ java -jar cromwell-30.2.jar run FAVORannotatorFullDB.wdl --inputs file.json ```  
+
+
+
 
 ![FAVORannotator Cloud Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/FAVORannotatorOnTerra.png)
 
+_Figure 7. FAVORannotator Cloud Native Workflow on Terra._
 
 ## Other Functions and Utilities
 
