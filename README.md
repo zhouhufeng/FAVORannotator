@@ -266,17 +266,31 @@ chrnumber are the numeric number indicating which chromosome this database is re
 
 ## Other Functions and Utilities
 
-###Convert VCF to aGDS
-The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
+### Convert VCF to aGDS
 
-1. Install Rust and Cargo:
- - ```$ curl https://sh.rustup.rs -sSf | sh```
+The following functions have been written for the purpose of converting VCF files to GDS/aGDS files. Please find the R scripts in the ```Scripts/UTL/``` folder. 
 
-###Add In Functional Annotations to aGDS
-2. Source the environment: 
- - ```$ source $HOME/.cargo/env``` 
-3. Install xsv using Cargo:
- - ```$ cargo install xsv```
+1. If users wish to convert VCF files that only contain genotype data into GDS files for the following annoation process:
+ - ```$ Rscript convertVCFtoGDS.r input.vcf output.agds```
+
+
+2. If users wish to convert Variant List that does not contain genotype data into GDS files for the following annoation process, after formatting the varaint list into the same VCF format, following R scripts can generate the empty GDS file that do not have genotype data just the varaint info:
+ - ```$ Rscript convertVCFtoGDS.r inputVariantList.vcf output.agds```
+
+3. If users already annotated VCF files using SpnEff,BCFTools, VarNote, Vcfanno and just wish to use aGDS for the following analysis, running the followign R script to convert annotated VCF files into aGDS file
+ - ```$ Rscript convertVCFtoGDS.r annotated.vcf output.agds```
+
+
+
+### Add In Functional Annotations to aGDS
+1. If users have external annotation sources or annotation in text tables that containing varaint sets, this function will be able to add in the new functional annotations into the new node of aGDS files:
+ - ```$ Rscript FAVORannotatorAddIn.R input.agds AnnotationFile.tsv``` 
+
+
+### Extract Variant Functional Annotation to Text Tables from aGDS
+
+1. If users prefer to have the Variant Functional Annotation results write into Text Tables, this Rscripts will be able to extract the functional annotation from aGDS and write into the text tables:
+ - ```$ Rscript FAVORaGDSToText.R annotated.agds AnnotationTextTable.tsv```
 
 
 
