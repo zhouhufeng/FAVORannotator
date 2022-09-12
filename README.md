@@ -92,7 +92,7 @@ For the both the SQL and CSV versions of FAVORannotator, 60,000 samples of WGS v
 
 ## How to Use FAVORannotator
 
-### FAVORannotator (SQL/CSV versions)
+### SQL/CSV versions
 
 Installing and run FAVORannotator to perform functional annotation requires only 2 major steps:
 
@@ -103,14 +103,14 @@ Installing and run FAVORannotator to perform functional annotation requires only
 The first step depends on whether FAVORannotator is the SQL or CSV version, and depends on different computing platforms. The following sections detail the process for major platforms. The second step (running FAVORannotator) will be detailed first, as it is consistent across platforms.
 
 
-### FAVORannotator (no pre-install database version)
+### No pre-install databases version
 There are a few user cases where download the database and configuration can be difficult, we simply the FAVORannotator by including the downloading, decompression, update config.R, include database location and output location all into the FAOVRannotator (no pre-install database version), users only need to put the R scripts in to the directory with enough storage and run the program. 
 
 **I. Install software dependencies.**
 
 **II. Run FAOVRannotator (no pre-install database version).**
 
-### FAVORannotator (cloud native app)
+### Cloud version
 Based on the FAOVRannotator (no pre-install database version), we develop the FAOVRannotator cloud-native app, in the cloud platform like Terra and DNAnexus, or on the virtual machines of Google Cloud Platform (GCP), Amazon Web Services (AWS), Microsoft Azure. With the dockerized images and workflow languages, FAVORannotator can be executed through the user-friendly and drag-and-drop graphical interface, with no scripting nor programming skills required from the users. 
 
 
