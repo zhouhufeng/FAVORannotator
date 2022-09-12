@@ -13,14 +13,13 @@ FAVORannotator first converts a genotype VCF input file to a GDS file, searches 
 
 _Figure 1. FAVORannotator workflow._
 
-## Obtain the database
-1. Download the FAVORannotator data file from here ([download URL](http://favor.genohub.org), under the "FAVORannotator" tab).
-2. Decompress the downloaded data. 
+## FAVORannotator differnt versions (SQL, CSV and Cloud Versions)
 
-## FAVORannotator two versions (SQL and CSV)
+There are three main versions of FAVORannotator: **SQL**, **CSV** and **Cloud**. 
 
-There are two versions of FAVORannotator: **SQL** and **CSV**. 
-The postgreSQL version requires postgreSQL installation, and xsv version requires the XSV software dependencies. 
+All the versions of FAVORannotator requires the same set of R libraries. The postgreSQL version requires postgreSQL installation, and CSV version requires the XSV software dependencies, Cloud version also requires the XSV software dependencies. 
+
+All the FAVORannotator versions produced identical results and have similar performance, they only differ on the computing environments where FAVORannotator is deployed. Users can choose the different versions of FAVORannotator according to their computing platforms and use cases.   
 
 FAVORannotator accomplishes both high query speed and storage efficiency due to its optimized configurations and indices. Its offline nature avoids the excessive waiting time and file size restrictions of FAVOR online operation.
 
@@ -46,21 +45,74 @@ Differs from SQL version, CSV version database is static, and the query depends 
 
 _Figure 3. FAVORannotator CSV version workflow and differences highlights._
 
+### FAVORannotator Cloud version
+
+FAVORannotator Cloud version develop based on the CSV version (no pre-install database) adopts the similar strategies of slicing both database and query inputs into smaller pieces and create index with each of the smaller chucks of database so as to achieve high performance and fast query speed as the SQL/CSV version. But the FAVORannotator Cloud version download the FAVOR databases (Full Databaseor Essential Database) on the fly, requires no pre-install FAVOR database on the computing platform.   
+
+Cloud version database download from ([FAVOR on Harvard Database](https://dataverse.harvard.edu/dataverse/favor) when FAVORannotator is executed, and after the download finishes, database is decompressed. The downloaded database is CSV version, which is static, and the query depends upon the xsv software therefore requires minimal dependencies and running database management systems.
+
+![FAVORannotator Cloud version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/Figure2C.png)
+
+_Figure 4. FAVORannotator Cloud version workflow and differences highlights._
+
+
+## Obtain the FAVOR Database
+1. Download the FAVORannotator data file from here ([download URL](http://favor.genohub.org), under the "FAVORannotator" tab).
+2. Decompress the downloaded data. 
+
+###FAVOR databases host on Harvard Dataverse
+FAVOR databases (Essential Database and Full Database) are hosting on ([Harvard Database](https://dataverse.harvard.edu/dataverse/favor).
+
+
+![FAVORannotator Cloud version Tech Features](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/HarvardDataVerse.png)
+
+_Figure 5. FAVOR Databases on Harvard Dataverse (both Essential Database and Full Database)._
+
+
+###FAVOR Essential Database
+([FAVOR Essential Database](https://doi.org/10.7910/DVN/1VGTJI)) containing 20 essential annotation scores. This FAVOR Essential Database is comprised of a collection of essential annotation scores for all possible SNVs (8,812,917,339) and observed indels (79,997,898) in Build GRCh38/hg38.
+
+###FAVOR Full Database
+([FAVOR Full Database](https://doi.org/10.7910/DVN/KFUBKG)) containing 160 essential annotation scores. This FAVOR Full Database is comprised of a collection of full annotation scores for all possible SNVs (8,812,917,339) and observed indels (79,997,898) in Build GRCh38/hg38.
+
+
 ## Resource requirements
 
 The resources utilized by the FAVORannotator R program and PostgreSQL instance are largely dependent upon the size of the input variants. 
 
 For the both the SQL and CSV versions of FAVORannotator, 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 1 hour using 24 computing cores (Intel cascade lake with 2.9 GHz frequency). The memory consumed by each instance varies (usually within 18 GB), as there are different amounts of variants associated with each chromosome.
 
+## Resource requirements
+
+The resources utilized by the FAVORannotator R program and PostgreSQL instance are largely dependent upon the size of the input variants. 
+
+For the both the SQL and CSV versions of FAVORannotator, 60,000 samples of WGS variant sets were tested. The whole functional annotation finished in parallel in 1 hour using 24 computing cores (Intel cascade lake with 2.9 GHz frequency). The memory consumed by each instance varies (usually within 18 GB), as there are different amounts of variants associated with each chromosome.
+
+
+
 ## How to Use FAVORannotator
 
-   Installing and run FAVORannotator to perform functional annotation requires only 2 major steps:
+### FAVORannotator (SQL/CSV versions)
 
-**I.	Install and prepare the database (process varies between systems).**
+Installing and run FAVORannotator to perform functional annotation requires only 2 major steps:
 
-**II.	Run FAVORannotator (universal).** 
+**I.	Install software dependencies and prepare the database (process varies between systems).**
+
+**II.	Run FAVORannotator (CSV or SQL versions).** 
 
 The first step depends on whether FAVORannotator is the SQL or CSV version, and depends on different computing platforms. The following sections detail the process for major platforms. The second step (running FAVORannotator) will be detailed first, as it is consistent across platforms.
+
+
+### FAVORannotator (no pre-install database version)
+There are a few user cases where download the database and configuration can be difficult, we simply the FAVORannotator by including the downloading, decompression, update config.R, include database location and output location all into the FAOVRannotator (no pre-install database version), users only need to put the R scripts in to the directory with enough storage and run the program. 
+
+**I. Install software dependencies.**
+
+**II. Run FAOVRannotator (no pre-install database version).**
+
+### FAVORannotator (cloud native app)
+Based on the FAOVRannotator (no pre-install database version), we develop the FAOVRannotator cloud-native app, in the cloud platform like Terra and DNAnexus, or on the virtual machines of Google Cloud Platform (GCP), Amazon Web Services (AWS), Microsoft Azure. With the dockerized images and workflow languages, FAVORannotator can be executed through the user-friendly and drag-and-drop graphical interface, with no scripting nor programming skills required from the users. 
+
 
 ## Run FAVORannotator SQL version
 
@@ -154,7 +206,7 @@ The following steps have been written for major computing environments in order 
 
 
 
-## Run FAVORannotator without pre-install databases
+## Run FAVORannotator no pre-install databases version
 
 FAVOR database can be downloaded on the fly and decompressed automatically in the scripts, this version of FAVORannotator will remove the burden of download the backend database and update the ```config.R```. The database is downloaded and decompressed automatically and is readable by FAVORannotator can be executed as follows.
 
@@ -183,11 +235,12 @@ A SLURM script to simplify the process can be found here: ([submission.sh](https
 
 ## Run FAVORannotator Cloud Version
 
+
 For Cloud environment, we simplified the process of database set up and remove the configration files. FAVOR database can be downloaded on the fly and decompressed automatically in the scripts, this version of FAVORannotator will remove the burden of download the backend database and update the ```config.R```. The database is downloaded and decompressed automatically and is capable of seamless integration to the workflow languages of the cloud platform. It currently works for cloud platforms like Terra, DNAnexus, etc. This tutorial uses Terra as an example to illustrate the functional annotation process. 
 
 Please find the R scripts in the ```Scripts/Cloud/``` folder.
 
-**Important: This version of FAVORannotator no pre-install version does not need to update ```config.R``` file. This version of FAVORannotator directly download FAVORdatabase (Full or Essential versions) from the Harvard Dataverse to the default file locations and database info for the annotation. Just put the FAVORannotator script in the directory with ample storage all the database and index and intermediate files will be generated in the directory. These database files and intermediate files in the working directories will be removed in most cloud platforms.**
+**Important: This version of FAVORannotator based on the no pre-install version does not need ```config.R``` file. This version of FAVORannotator directly download FAVORdatabase (Full or Essential versions) from the Harvard Dataverse to the default file locations and database info for the annotation. Just put the FAVORannotator script in the directory with ample storage all the database and index and intermediate files will be generated in the directory. These database files and intermediate files in the working directories will be removed in most cloud platforms.**
 
 1.	Create GDS file from the input VCF file:
 
@@ -203,9 +256,23 @@ Please find the R scripts in the ```Scripts/Cloud/``` folder.
 
 chrnumber are the numeric number indicating which chromosome this database is reading from, chrnumber can be 1, 2, ..., 22. 
 
-Scripts for submitting jobs for all chromosomes simultaneously have been provided. They use SLURM, which is supported by many high-performance clusters, and utilize parallel jobs to boost performance.
+
+![FAVORannotator Cloud Version](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Figures/FAVORannotatorOnTerra.png)
 
 
+## Other FAVORannotator Functions
+
+###Convert VCF to aGDS
+The following steps have been written for major computing environments in order to best account for all possibilities. The following steps are for the widely used operating system (Ubuntu) on a virtual machine.
+
+1. Install Rust and Cargo:
+ - ```$ curl https://sh.rustup.rs -sSf | sh```
+
+###Add In Functional Annotations
+2. Source the environment: 
+ - ```$ source $HOME/.cargo/env``` 
+3. Install xsv using Cargo:
+ - ```$ cargo install xsv```
 
 
 
@@ -220,7 +287,7 @@ FAVORannotator (CSV version) depends upon <a href="https://github.com/BurntSushi
 The whole-genome individual functional annotation data assembled from a variety of sources and the computed annotation principal components are available at the [Functional Annotation of Variant - Online Resource (FAVOR)](https://favor.genohub.org) site.
 
 ## Version
-The current version is 1.0.0 (March 30th, 2022).
+The current version is 1.1.1 (August 30th, 2022).
 ## License
 This software is licensed under GPLv3.
 
