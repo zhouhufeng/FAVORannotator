@@ -365,15 +365,19 @@ The following steps are the demo of how to FAVORannotato through using real geno
 
 ### 12.3 Annotate GDS using FAVORannotator to create aGDS (no pre-install version)
 
-* Users can use following command to annotate GDS using FAVORannotator to create aGDS .
-* Change the directory:
+Users can use following command to annotate GDS using FAVORannotator to create aGDS .
+
+Change the directory:
 - ```$ cd ../../Data/1000G/ ``` 
-* Copy FAVORannotator program to the current directory:
+
+Copy FAVORannotator program to the current directory:
 - ```$ cp ../../../Scripts/CSV/FAVORannotatorCSVEssentialDB.R .``` 
 - ```$ cp ../../../Scripts/CSV/FAVORannotatorCSVFullDB.R . ``` 
-* Run program to annotate GDS using FAVORannotator reading FAVOR Essential Database to create aGDS(chr22):
- ```$ Rscript FAVORannotatorCSVEssentialDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
-* And you will get the following output on terminal:
+
+Run program to annotate GDS using FAVORannotator reading FAVOR Essential Database to create aGDS(chr22):
+- ```$ Rscript FAVORannotatorCSVEssentialDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
+
+And you will get the following output on terminal:
 ``` 
 [1] gds.file:  All.chr22.27022019.GRCh38.phased.gds
 [1] chr:  22
@@ -383,9 +387,10 @@ The following steps are the demo of how to FAVORannotato through using real geno
 ```
 
 
-* Run program to annotate GDS using FAVORannotator reading FAVOR Full Database to create aGDS(chr22):
- ```$ Rscript FAVORannotatorCSVFullDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
-* And you will get the following output on terminal:
+Run program to annotate GDS using FAVORannotator reading FAVOR Full Database to create aGDS(chr22):
+- ```$ Rscript FAVORannotatorCSVFullDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
+
+And you will get the following output on terminal:
 ```
 [1] gds.file:  All.chr22.27022019.GRCh38.phased.gds
 [1] chr:  22
