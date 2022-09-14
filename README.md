@@ -355,7 +355,7 @@ The following steps are the demo of how to FAVORannotato through using real geno
 Tue Sep 13 09:41:36 2022
 Variant Call Format (VCF) Import:
     file(s):
-        ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz (176.9M)
+    ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz (176.9M)
     file format: VCFv4.3
     the number of sets of chromosomes (ploidy): 2
     the number of samples: 2,548
@@ -364,7 +364,7 @@ Variant Call Format (VCF) Import:
     # of samples: 2548
 Output:
     ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds
-Parsing 'ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz':
+Parsing ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz:
 + genotype/data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M }
 Digests:
     sample.id  [md5: cc8afb576aed4d02012126932df7cad6]
@@ -391,16 +391,16 @@ Digests:
     annotation/info/DP  [md5: 47cd81d4a60b61552a300cb09fa0a2cf]
 Done.
 [1] "GDS built"
-Object of class "SeqVarGDSClass"
+Object of class SeqVarGDSClass
 Tue Sep 13 09:44:39 2022
 Optimize the access efficiency ...
 Clean up the fragments of GDS file:
-    open the file '../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds' (31.9M)
+    open the file ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds (31.9M)
     # of fragments: 795
-    save to '../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp'
-    rename '../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp' (31.9M, reduced: 8.2K)
+    save to ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp
+    rename ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp (31.9M, reduced: 8.2K)
     # of fragments: 92
-Object of class "SeqVarGDSClass"
+Object of class SeqVarGDSClass
 File: ./Data/1000G/All.chr22.27022019.GRCh38.phased.gds (31.9M)
 +    [  ] *
 |--+ description   [  ] *
@@ -436,6 +436,7 @@ File: ./Data/1000G/All.chr22.27022019.GRCh38.phased.gds (31.9M)
 |  |  \--+ DP   { Int32 1059079 LZMA_ra(45.0%), 1.8M } *
 |  \--+ format   [  ]
 \--+ sample.annotation   [  ]
+
 ```
 
 
