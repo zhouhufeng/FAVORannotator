@@ -347,96 +347,20 @@ The following steps are the demo of how to FAVORannotato through using real geno
 
 * Users can use command line below to convert the VCF to GDS.
 * Change the directory:
-- ```$ cd ../../../Scripts/UTL ``` 
+ ```$ cd ../../../Scripts/UTL ``` 
 * Run program to create GDS:
-- ```$ Rscript convertVCFtoGDS.r ../../Data/TestData/Input/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds ```
+ ```$ Rscript convertVCFtoGDS.r ../../Data/TestData/Input/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds ```
 * And you will get the following output on terminal:
-- ```
-Tue Sep 13 09:41:36 2022
-Variant Call Format (VCF) Import:
-    file(s):
+ ```
     ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz (176.9M)
     file format: VCFv4.3
     the number of sets of chromosomes (ploidy): 2
     the number of samples: 2,548
     genotype storage: bit2
     compression method: LZMA_RA
-    # of samples: 2548
-Output:
+    of samples: 2548
     ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds
-Parsing ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz:
-+ genotype/data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M }
-Digests:
-    sample.id  [md5: cc8afb576aed4d02012126932df7cad6]
-    variant.id  [md5: 7c017d53094de68d314b6ad6d5731cee]
-    position  [md5: 661ae4bc37d222bc242b379ac5b4103c]
-    chromosome  [md5: 0f71906ff5f7af239ab447459e0fd340]
-    allele  [md5: e03733491972cf350905736dc3ba7897]
-    genotype  [md5: 310a491df81e5e5d015cfd8b0534c343]
-    phase  [md5: feef32f42a2bebbf7e8aca22a385acef]
-    annotation/id  [md5: af0e6be931baefc61425e7d80e8a7d6c]
-    annotation/qual  [md5: de3d57a832d4552c0b92a592f0c30ab3]
-    annotation/filter  [md5: 12aa343d303c14e0e724b2c3ac634d59]
-    annotation/info/AF  [md5: 08ba51bd9a4fe4c8d65124d906d651be]
-    annotation/info/AC  [md5: f50cf8580f617f21755b775c998a79a7]
-    annotation/info/NS  [md5: 3f8d2c2fe9b610e0407b63069cdcca19]
-    annotation/info/AN  [md5: 66dc16416504683004b60bf1259370d3]
-    annotation/info/EAS_AF  [md5: 6268475df4da4ecfe85ff45a31985bf2]
-    annotation/info/EUR_AF  [md5: 11f69a8880a343f916f428d428ee0e3e]
-    annotation/info/AFR_AF  [md5: cde11169e2c527e079563326ec5eb603]
-    annotation/info/AMR_AF  [md5: d85787dac3642db9f70cb05a9f22248a]
-    annotation/info/SAS_AF  [md5: 70bb72b5bf8b850a68da314769c6b09d]
-    annotation/info/VT  [md5: f7172d73a09bf45b641029eb2bde879e]
-    annotation/info/EX_TARGET  [md5: 401261c4071060a74aa7994bdce29065]
-    annotation/info/DP  [md5: 47cd81d4a60b61552a300cb09fa0a2cf]
-Done.
-[1] "GDS built"
-Object of class SeqVarGDSClass
-Tue Sep 13 09:44:39 2022
-Optimize the access efficiency ...
-Clean up the fragments of GDS file:
-    open the file ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds (31.9M)
-    # of fragments: 795
-    save to ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp
-    rename ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp (31.9M, reduced: 8.2K)
-    # of fragments: 92
-Object of class SeqVarGDSClass
-File: ./Data/1000G/All.chr22.27022019.GRCh38.phased.gds (31.9M)
-+    [  ] *
-|--+ description   [  ] *
-|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
-|--+ variant.id   { Int32 1059079 LZMA_ra(6.20%), 256.6K } *
-|--+ position   { Int32 1059079 LZMA_ra(27.0%), 1.1M } *
-|--+ chromosome   { Str8 1059079 LZMA_ra(0.02%), 617B } *
-|--+ allele   { Str8 1059079 LZMA_ra(15.4%), 665.6K } *
-|--+ genotype   [  ] *
-|  |--+ data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M } *
-|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
-|  \--+ extra   { Int16 0 LZMA_ra, 18B }
-|--+ phase   [  ]
-|  |--+ data   { Bit1 2548x1059079 LZMA_ra(0.01%), 48.1K } *
-|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
-|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
-|--+ annotation   [  ]
-|  |--+ id   { Str8 1059079 LZMA_ra(0.03%), 305B } *
-|  |--+ qual   { Float32 1059079 LZMA_ra(0.02%), 777B } *
-|  |--+ filter   { Int32,factor 1059079 LZMA_ra(0.02%), 777B } *
-|  |--+ info   [  ]
-|  |  |--+ AF   { Float32 1059079 LZMA_ra(7.72%), 319.6K } *
-|  |  |--+ AC   { Int32 1059079 LZMA_ra(19.0%), 788.0K } *
-|  |  |--+ NS   { Int32 1059079 LZMA_ra(0.02%), 777B } *
-|  |  |--+ AN   { Int32 1059079 LZMA_ra(0.02%), 777B } *
-|  |  |--+ EAS_AF   { Float32 1059079 LZMA_ra(5.73%), 237.2K } *
-|  |  |--+ EUR_AF   { Float32 1059079 LZMA_ra(6.18%), 255.7K } *
-|  |  |--+ AFR_AF   { Float32 1059079 LZMA_ra(8.56%), 354.1K } *
-|  |  |--+ AMR_AF   { Float32 1059079 LZMA_ra(6.70%), 277.2K } *
-|  |  |--+ SAS_AF   { Float32 1059079 LZMA_ra(6.45%), 266.8K } *
-|  |  |--+ VT   { Str8 1059079 LZMA_ra(2.06%), 88.0K } *
-|  |  |--+ EX_TARGET   { Bit1 1059079 LZMA_ra(6.62%), 8.6K } *
-|  |  \--+ DP   { Int32 1059079 LZMA_ra(45.0%), 1.8M } *
-|  \--+ format   [  ]
-\--+ sample.annotation   [  ]
-
+		...
 ```
 
 
