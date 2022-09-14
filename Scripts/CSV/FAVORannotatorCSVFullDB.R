@@ -1,3 +1,13 @@
+#############################################################################
+#Title:    FAVORannotatorCSVFullDB      
+#Function: 
+# * Build the aGDS file thorugh performing functional annotation, 
+# * without pre-install the FAVOR Full Database, download database on the fly.
+#Author:   Hufeng Zhou
+#Time:     Sept 27th 2022
+#############################################################################
+
+
 args <- commandArgs(TRUE)
 ### mandatory
 
@@ -13,6 +23,36 @@ print(paste0("chr:  ",chr))
 
 use_compression <- "Yes"
 print(paste0("use_compression: ",use_compression))
+
+### output
+output_path <- "./"
+
+### make directory
+system(paste0("mkdir ",output_path,"chr",chr))
+
+### annotation file
+dir_anno <- "./"
+
+
+### load required package
+library(gdsfmt)
+library(SeqArray)
+library(readr)
+
+
+### chromosome number
+## read info
+DB_info <- read.csv(url("https://raw.githubusercontent.com/zhouhufeng/FAVORannotator/main/Scripts/SQL/FAVORdatabase_chrsplit.csv"),header=TRUE)
+DB_info <- DB_info[DB_info$Chr==chr,]
+
+### DB file
+DB_path <- "./"
+
+### xsv directory
+xsv <- "~/.cargo/bin/xsv"
+
+
+
 
 ##########################################################################
 ### Step 0 (Download FAVOR Database)
@@ -49,24 +89,8 @@ system(paste0("tar -xvf ", gsub(".*?([0-9]+).*", "\\1", URL)))
 ### Step 1 (Varinfo_gds)
 ##########################################################################
 
-### output
-output_path <- "./"
-
-### make directory
-system(paste0("mkdir ",output_path,"chr",chr))
-
-### R package
-library(gdsfmt)
-library(SeqArray)
-library(SeqVarTools)
-
-### chromosome number
-## read info
-DB_info <- read.csv(url("https://raw.githubusercontent.com/zhouhufeng/FAVORannotator/main/Scripts/SQL/FAVORdatabase_chrsplit.csv"),header=TRUE)
-DB_info <- DB_info[DB_info$Chr==chr,]
-
 ## open GDS
-genofile <- seqOpen(gds.file)
+genofile <- seqOpen(gds.file, readonly = FALSE)
 
 genofile
 
@@ -77,16 +101,12 @@ ALT <- as.character(seqGetData(genofile, "$alt"))
 
 VarInfo_genome <- paste0(CHR,"-",position,"-",REF,"-",ALT)
 
-seqClose(genofile)
-
 ## Generate VarInfo
 for(kk in 1:dim(DB_info)[1])
 {
   print(kk)
-
   VarInfo <- VarInfo_genome[(position>=DB_info$Start_Pos[kk])&(position<=DB_info$End_Pos[kk])]
   VarInfo <- data.frame(VarInfo)
-
   write.csv(VarInfo,paste0(output_path,"chr",chr,"/VarInfo_chr",chr,"_",kk,".csv"),quote=FALSE,row.names = FALSE)
 }
 
@@ -94,16 +114,6 @@ for(kk in 1:dim(DB_info)[1])
 ### Step 2 (Annotate)
 ##########################################################################
 start_time <- Sys.time()
-### xsv directory
-xsv <- "~/.cargo/bin/xsv"
-
-### DB file
-DB_path <- "./"
-
-### anno channel (subset)
-#anno_colnum <- c(1,8:12,15,16,19,23,25:36)
-#anno_colnum <- c(1:190)
-
 chr_splitnum <- sum(DB_info$Chr==chr)
 
 for(kk in 1:chr_splitnum)
@@ -116,65 +126,20 @@ for(kk in 1:chr_splitnum)
 ## merge info
 Anno <- paste0(output_path,"chr",chr,"/Anno_chr",chr,"_",seq(1:chr_splitnum),".csv ")
 merge_command <- paste0(xsv," cat rows ",Anno[1])
-
 for(kk in 2:chr_splitnum)
 {
   merge_command <- paste0(merge_command,Anno[kk])
 }
-
 merge_command <- paste0(merge_command,"> ",output_path,"chr",chr,"/Anno_chr",chr,".csv")
-
 system(merge_command)
-
-## subset
-
-#anno_colnum_xsv <- c()
-#for(kk in 1:(length(anno_colnum)-1))
-#{
-#  anno_colnum_xsv <- paste0(anno_colnum_xsv,anno_colnum[kk],",")
-#}
-#anno_colnum_xsv <- paste0(anno_colnum_xsv,anno_colnum[length(anno_colnum)])
-
-#system(paste0(xsv," select ",anno_colnum_xsv," ",output_path,"chr",chr,"/Anno_chr",chr,".csv > ",output_path,"chr",chr,"/Anno_chr",chr,"_STAARpipeline.csv"))
 
 ##########################################################################
 ### Step 3 (gds2agds)
 ##########################################################################
-
-### annotation file
-dir_anno <- "./"
-
-#anno_file_name_1 <- "Anno_chr"
-#anno_file_name_2 <- "_STAARpipeline.csv"
-
-### load required package
-library(gdsfmt)
-library(SeqArray)
-#library(SeqVarTools)
-library(readr)
-
 ### read annotation data
-#FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/",anno_file_name_1,chr,anno_file_name_2))
 FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/Anno_chr",chr,".csv"))
-
-#FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/",anno_file_name_1,chr,anno_file_name_2),
-#                                 col_types=list(col_character(),col_double(),col_double(),col_double(),col_double(),
-#                                                col_double(),col_double(),col_double(),col_double(),col_double(),
-#                                                col_character(),col_character(),col_character(),col_double(),col_character(),
-#                                                col_character(),col_character(),col_character(),col_character(),col_double(),
-#                                                col_double(),col_character()))
-
 dim(FunctionalAnnotation)
 
-## rename colnames
-#colnames(FunctionalAnnotation)[2] <- "apc_conservation"
-#colnames(FunctionalAnnotation)[7] <- "apc_local_nucleotide_diversity"
-#colnames(FunctionalAnnotation)[9] <- "apc_protein_function"
-
-## open GDS
-genofile <- seqOpen(gds.file, readonly = FALSE)
-
-#Anno.folder <- addfolder.gdsn(index.gdsn(genofile, "annotation/info"), "FunctionalAnnotationTest1")
 Anno.folder <- index.gdsn(genofile, "annotation/info")
 add.gdsn(Anno.folder, "FAVORFullDBAug1st2022", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
 genofile
