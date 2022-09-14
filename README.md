@@ -338,9 +338,9 @@ The following steps are the demo of how to FAVORannotato through using real geno
 * Change the directory:
 - ```$ cd ../../Data/TestData/1000G/ ``` 
 * Download VCF to the directory (chr22):
-- ```$ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ```
+```$ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ```
 * Additionally if download chr1:
--``` $ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz```
+``` $ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz```
 
 
 ### 12.2 Convert VCF to GDS (chr22)
@@ -359,9 +359,8 @@ The following steps are the demo of how to FAVORannotato through using real geno
     genotype storage: bit2
     compression method: LZMA_RA
     of samples: 2548
-    ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds
 		...
-```
+ ```
 
 
 ### 12.3 Annotate GDS using FAVORannotator to create aGDS (no pre-install version)
@@ -373,15 +372,28 @@ The following steps are the demo of how to FAVORannotato through using real geno
 - ```$ cp ../../../Scripts/CSV/FAVORannotatorCSVEssentialDB.R .``` 
 - ```$ cp ../../../Scripts/CSV/FAVORannotatorCSVFullDB.R . ``` 
 * Run program to annotate GDS using FAVORannotator reading FAVOR Essential Database to create aGDS(chr22):
-- ```$ Rscript FAVORannotatorCSVEssentialDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
+ ```$ Rscript FAVORannotatorCSVEssentialDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
 * And you will get the following output on terminal:
-- ```$ ```
+``` 
+[1] gds.file:  All.chr22.27022019.GRCh38.phased.gds
+[1] chr:  22
+[1] use_compression Yes
+--2022-09-14 16:42:28--  https://dataverse.harvard.edu/api/access/datafile/6170504
+
+```
 
 
 * Run program to annotate GDS using FAVORannotator reading FAVOR Full Database to create aGDS(chr22):
-- ```$ Rscript FAVORannotatorCSVFullDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
+ ```$ Rscript FAVORannotatorCSVFullDB.R All.chr22.27022019.GRCh38.phased.gds 22 ```
 * And you will get the following output on terminal:
-- ```$ ```
+```
+[1] gds.file:  All.chr22.27022019.GRCh38.phased.gds
+[1] chr:  22
+[1] use_compression: Yes
+--2022-09-14 16:39:31--  https://dataverse.harvard.edu/api/access/datafile/6358299
+
+
+```
 
 
 
