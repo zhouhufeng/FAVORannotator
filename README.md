@@ -334,23 +334,31 @@ The following steps are the demo of how to FAVORannotato through using real geno
 
 ### 12.1 Download the 1000G VCF
 
-* If users can use command line below to obtain the ([1000G](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7059836/)) from the FTP ([1000 Genomes official website](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/)), for the following process.
-* Change the directory:
+If users can use command line below to obtain the ([1000G](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7059836/)) from the FTP ([1000 Genomes official website](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/)), for the following process.
+
+Change the directory:
 - ```$ cd ../../Data/TestData/1000G/ ``` 
-* Download VCF to the directory (chr22):
-```$ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ```
-* Additionally if download chr1:
-``` $ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz```
+
+Download VCF to the directory (chr22):
+
+- ```$ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ```
+
+Additionally if download chr1:
+- ``` $ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz```
 
 
 ### 12.2 Convert VCF to GDS (chr22)
 
-* Users can use command line below to convert the VCF to GDS.
-* Change the directory:
- ```$ cd ../../../Scripts/UTL ``` 
-* Run program to create GDS:
- ```$ Rscript convertVCFtoGDS.r ../../Data/TestData/Input/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds ```
-* And you will get the following output on terminal:
+Users can use command line below to convert the VCF to GDS.
+ 
+Change the directory:
+- ```$ cd ../../../Scripts/UTL ``` 
+
+Run program to create GDS:
+- ```$ Rscript convertVCFtoGDS.r ../../Data/TestData/Input/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds ```
+
+And you will get the following output on terminal:
+
  ```
     ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz (176.9M)
     file format: VCFv4.3
