@@ -168,6 +168,8 @@ colnames(FunctionalAnnotation)[9] <- "apc_protein_function"
 Anno.folder <- index.gdsn(genofile, "annotation/info")
 add.gdsn(Anno.folder, "FunctionalAnnotationSep1st2022", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
 
+genofile
+
 seqClose(genofile)
 
 end_time <- Sys.time()
