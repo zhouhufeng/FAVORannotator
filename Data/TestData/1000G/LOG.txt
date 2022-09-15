@@ -1,0 +1,835 @@
+wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000_genomes_project/release/20190312_biallelic_SNV_and_INDEL/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz
+
+cd ../../../Scripts/UTL
+
+Rscript convertVCFtoGDS.r ../../Data/TestData/1000G/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/TestData/1000G/All.chr22.27022019.GRCh38.phased.gds
+
+
+Rscript convertVCFtoGDS.r ../../Data/TestData/Input/ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds
+Tue Sep 13 09:41:36 2022
+Variant Call Format (VCF) Import:
+    file(s):
+        ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz (176.9M)
+    file format: VCFv4.3
+    the number of sets of chromosomes (ploidy): 2
+    the number of samples: 2,548
+    genotype storage: bit2
+    compression method: LZMA_RA
+    # of samples: 2548
+Output:
+    ../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds
+Parsing 'ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz':
++ genotype/data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M }
+Digests:
+    sample.id  [md5: cc8afb576aed4d02012126932df7cad6]
+    variant.id  [md5: 7c017d53094de68d314b6ad6d5731cee]
+    position  [md5: 661ae4bc37d222bc242b379ac5b4103c]
+    chromosome  [md5: 0f71906ff5f7af239ab447459e0fd340]
+    allele  [md5: e03733491972cf350905736dc3ba7897]
+    genotype  [md5: 310a491df81e5e5d015cfd8b0534c343]
+    phase  [md5: feef32f42a2bebbf7e8aca22a385acef]
+    annotation/id  [md5: af0e6be931baefc61425e7d80e8a7d6c]
+    annotation/qual  [md5: de3d57a832d4552c0b92a592f0c30ab3]
+    annotation/filter  [md5: 12aa343d303c14e0e724b2c3ac634d59]
+    annotation/info/AF  [md5: 08ba51bd9a4fe4c8d65124d906d651be]
+    annotation/info/AC  [md5: f50cf8580f617f21755b775c998a79a7]
+    annotation/info/NS  [md5: 3f8d2c2fe9b610e0407b63069cdcca19]
+    annotation/info/AN  [md5: 66dc16416504683004b60bf1259370d3]
+    annotation/info/EAS_AF  [md5: 6268475df4da4ecfe85ff45a31985bf2]
+    annotation/info/EUR_AF  [md5: 11f69a8880a343f916f428d428ee0e3e]
+    annotation/info/AFR_AF  [md5: cde11169e2c527e079563326ec5eb603]
+    annotation/info/AMR_AF  [md5: d85787dac3642db9f70cb05a9f22248a]
+    annotation/info/SAS_AF  [md5: 70bb72b5bf8b850a68da314769c6b09d]
+    annotation/info/VT  [md5: f7172d73a09bf45b641029eb2bde879e]
+    annotation/info/EX_TARGET  [md5: 401261c4071060a74aa7994bdce29065]
+    annotation/info/DP  [md5: 47cd81d4a60b61552a300cb09fa0a2cf]
+Done.
+Tue Sep 13 09:44:39 2022
+Optimize the access efficiency ...
+Clean up the fragments of GDS file:
+    open the file '../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds' (31.9M)
+    # of fragments: 795
+    save to '../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp'
+    rename '../../Data/1000G/All.chr22.27022019.GRCh38.phased.gds.tmp' (31.9M, reduced: 8.2K)
+    # of fragments: 92
+Object of class "SeqVarGDSClass"
+File: ./Data/1000G/All.chr22.27022019.GRCh38.phased.gds (31.9M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 1059079 LZMA_ra(6.20%), 256.6K } *
+|--+ position   { Int32 1059079 LZMA_ra(27.0%), 1.1M } *
+|--+ chromosome   { Str8 1059079 LZMA_ra(0.02%), 617B } *
+|--+ allele   { Str8 1059079 LZMA_ra(15.4%), 665.6K } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x1059079 LZMA_ra(0.01%), 48.1K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 1059079 LZMA_ra(0.03%), 305B } *
+|  |--+ qual   { Float32 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ filter   { Int32,factor 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 1059079 LZMA_ra(7.72%), 319.6K } *
+|  |  |--+ AC   { Int32 1059079 LZMA_ra(19.0%), 788.0K } *
+|  |  |--+ NS   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ AN   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ EAS_AF   { Float32 1059079 LZMA_ra(5.73%), 237.2K } *
+|  |  |--+ EUR_AF   { Float32 1059079 LZMA_ra(6.18%), 255.7K } *
+|  |  |--+ AFR_AF   { Float32 1059079 LZMA_ra(8.56%), 354.1K } *
+|  |  |--+ AMR_AF   { Float32 1059079 LZMA_ra(6.70%), 277.2K } *
+|  |  |--+ SAS_AF   { Float32 1059079 LZMA_ra(6.45%), 266.8K } *
+|  |  |--+ VT   { Str8 1059079 LZMA_ra(2.06%), 88.0K } *
+|  |  |--+ EX_TARGET   { Bit1 1059079 LZMA_ra(6.62%), 8.6K } *
+|  |  \--+ DP   { Int32 1059079 LZMA_ra(45.0%), 1.8M } *
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+
+
+
+
+
+
+Rscript convertVCFtoGDS.r ../../Data/TestData/1000G/ALL.chr1.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz ../../Data/TestData/1000G/All.chr1.27022019.GRCh38.phased.gds
+Wed Sep 14 15:34:06 2022
+Variant Call Format (VCF) Import:
+    file(s):
+        ALL.chr1.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz (992.0M)
+    file format: VCFv4.3
+    the number of sets of chromosomes (ploidy): 2
+    the number of samples: 2,548
+    genotype storage: bit2
+    compression method: LZMA_RA
+    # of samples: 2548
+Output:
+    ../../Data/TestData/1000G/All.chr1.27022019.GRCh38.phased.gds
+Parsing 'ALL.chr1.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz':
++ genotype/data   { Bit2 2x2548x6191833 LZMA_ra(1.66%), 124.8M }
+Digests:
+    sample.id  [md5: cc8afb576aed4d02012126932df7cad6]
+    variant.id  [md5: 279f387b3778a8c9d445cfb30d10a171]
+    position  [md5: a6c28615b3f1ee1c947a1b05edee371c]
+    chromosome  [md5: 54f1983c4511a2c4390a5d5df7caa405]
+    allele  [md5: 05ba696424c744191d4fa03bbbb513da]
+    genotype  [md5: 1cc8fb9f7c258ad52077d9fba0cd0b28]
+    phase  [md5: 65e7447bf92f4d3f01ed41bef75a7909]
+    annotation/id  [md5: dbfffce3ef30f3f18399e274c1310a1b]
+    annotation/qual  [md5: fce0966ea8b5452c728dedad5bc274e9]
+    annotation/filter  [md5: 2816dfe618d22aecb05a7c7ee4dd0b15]
+    annotation/info/AF  [md5: 11a4bf622d63d108bb353ea9fc1401df]
+    annotation/info/AC  [md5: dee598f41dd55a2e53df96d7ac639e23]
+    annotation/info/NS  [md5: 03af0bc2c44c6ca6bef0e93a68260dce]
+    annotation/info/AN  [md5: 5cf4736661784e0f51f33d5c7514a963]
+    annotation/info/EAS_AF  [md5: 297f3fa3a884a7f4e8cf1a977fce980c]
+    annotation/info/EUR_AF  [md5: 7ad89550530d1118871c8a4013b6a04f]
+    annotation/info/AFR_AF  [md5: 24f627bbc19e5e300ed57ee265e67904]
+    annotation/info/AMR_AF  [md5: 5a84744b92f10161982d1143896a19ec]
+    annotation/info/SAS_AF  [md5: dfaa87f4f0e77c5375c657652f9c0fd8]
+    annotation/info/VT  [md5: afbc4e4d62b4497a42d627dd938ae5ac]
+    annotation/info/EX_TARGET  [md5: dbf69680949973e984135aac3ab2d290]
+    annotation/info/DP  [md5: a64abd5bc289ef2b94d8807371ef601c]
+Done.
+Wed Sep 14 15:54:28 2022
+Optimize the access efficiency ...
+Clean up the fragments of GDS file:
+    open the file '../../Data/TestData/1000G/All.chr1.27022019.GRCh38.phased.gds' (161.1M)
+    # of fragments: 3534
+    save to '../../Data/TestData/1000G/All.chr1.27022019.GRCh38.phased.gds.tmp'
+    rename '../../Data/TestData/1000G/All.chr1.27022019.GRCh38.phased.gds.tmp' (161.0M, reduced: 40.3K)
+    # of fragments: 92
+Wed Sep 14 15:54:29 2022
+[1] "GDS built"
+Object of class "SeqVarGDSClass"
+File: ./Data/TestData/1000G/All.chr1.27022019.GRCh38.phased.gds (161.0M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 6191833 LZMA_ra(2.92%), 706.4K } *
+|--+ position   { Int32 6191833 LZMA_ra(27.9%), 6.6M } *
+|--+ chromosome   { Str8 6191833 LZMA_ra(0.02%), 1.9K } *
+|--+ allele   { Str8 6191833 LZMA_ra(15.7%), 3.9M } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x6191833 LZMA_ra(1.66%), 124.8M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x6191833 LZMA_ra(0.01%), 280.4K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 6191833 LZMA_ra(0.02%), 1.0K } *
+|  |--+ qual   { Float32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |--+ filter   { Int32,factor 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 6191833 LZMA_ra(7.39%), 1.7M } *
+|  |  |--+ AC   { Int32 6191833 LZMA_ra(18.5%), 4.4M } *
+|  |  |--+ NS   { Int32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |  |--+ AN   { Int32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |  |--+ EAS_AF   { Float32 6191833 LZMA_ra(5.54%), 1.3M } *
+|  |  |--+ EUR_AF   { Float32 6191833 LZMA_ra(5.90%), 1.4M } *
+|  |  |--+ AFR_AF   { Float32 6191833 LZMA_ra(8.20%), 1.9M } *
+|  |  |--+ AMR_AF   { Float32 6191833 LZMA_ra(6.52%), 1.5M } *
+|  |  |--+ SAS_AF   { Float32 6191833 LZMA_ra(6.17%), 1.5M } *
+|  |  |--+ VT   { Str8 6191833 LZMA_ra(2.09%), 522.7K } *
+|  |  |--+ EX_TARGET   { Bit1 6191833 LZMA_ra(4.82%), 36.4K } *
+|  |  \--+ DP   { Int32 6191833 LZMA_ra(44.0%), 10.4M } *
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+
+
+zhou@M1 Full % cp ../../FAVORannotator/Scripts/CSV/FAVORannotatorCSVFullDB.R .
+zhou@M1 Full % Rscript FAVORannotatorCSVFullDB.R All.chr22.27022019.GRCh38.phased.gds 22
+[1] "gds.file:  All.chr22.27022019.GRCh38.phased.gds"
+[1] "chr:  22"
+[1] "use_compression: Yes"
+--2022-09-14 16:39:31--  https://dataverse.harvard.edu/api/access/datafile/6358299
+Resolving dataverse.harvard.edu (dataverse.harvard.edu)... 3.219.100.164, 54.211.138.37, 3.226.192.24
+Connecting to dataverse.harvard.edu (dataverse.harvard.edu)|3.219.100.164|:443... connected.
+HTTP request sent, awaiting response... 303 See Other
+Location: https://dvn-cloud.s3.amazonaws.com/10.7910/DVN/KFUBKG/181abe84e49-d907a5916c0e?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27FAVOR.FullDB.Chr22.tar.gz&response-content-type=application%2Fgzip&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220914T203932Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIEJ3NV7UYCSRJC7A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=705ebe6c586f25f965028b6008bcafc810a4afeec25a6aaca5eca23c11ff87a2 [following]
+--2022-09-14 16:39:32--  https://dvn-cloud.s3.amazonaws.com/10.7910/DVN/KFUBKG/181abe84e49-d907a5916c0e?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27FAVOR.FullDB.Chr22.tar.gz&response-content-type=application%2Fgzip&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220914T203932Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIEJ3NV7UYCSRJC7A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=705ebe6c586f25f965028b6008bcafc810a4afeec25a6aaca5eca23c11ff87a2
+Resolving dvn-cloud.s3.amazonaws.com (dvn-cloud.s3.amazonaws.com)... 3.5.8.193
+Connecting to dvn-cloud.s3.amazonaws.com (dvn-cloud.s3.amazonaws.com)|3.5.8.193|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9565974525 (8.9G) [application/gzip]
+Saving to: ‘6358299’
+
+6358299                                             88%[===================================================================================================>    6358299                                     6358299                                            100%[================================================================================================================>]   8.91G  3.71MB/s    in 44m 54s 
+
+2022-09-14 17:24:26 (3.39 MB/s) - ‘6358299’ saved [9565974525/9565974525]
+
+x chr22_1.csv
+x chr22_2.csv
+x chr22_3.csv
+Object of class "SeqVarGDSClass"
+File: /Users/zhou/Storage/Research/Projects/Test/Full/All.chr22.27022019.GRCh38.phased.gds (31.9M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 1059079 LZMA_ra(6.20%), 256.6K } *
+|--+ position   { Int32 1059079 LZMA_ra(27.0%), 1.1M } *
+|--+ chromosome   { Str8 1059079 LZMA_ra(0.02%), 617B } *
+|--+ allele   { Str8 1059079 LZMA_ra(15.4%), 665.6K } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x1059079 LZMA_ra(0.01%), 48.1K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 1059079 LZMA_ra(0.03%), 305B } *
+|  |--+ qual   { Float32 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ filter   { Int32,factor 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 1059079 LZMA_ra(7.72%), 319.6K } *
+|  |  |--+ AC   { Int32 1059079 LZMA_ra(19.0%), 788.0K } *
+|  |  |--+ NS   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ AN   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ EAS_AF   { Float32 1059079 LZMA_ra(5.73%), 237.2K } *
+|  |  |--+ EUR_AF   { Float32 1059079 LZMA_ra(6.18%), 255.7K } *
+|  |  |--+ AFR_AF   { Float32 1059079 LZMA_ra(8.56%), 354.1K } *
+|  |  |--+ AMR_AF   { Float32 1059079 LZMA_ra(6.70%), 277.2K } *
+|  |  |--+ SAS_AF   { Float32 1059079 LZMA_ra(6.45%), 266.8K } *
+|  |  |--+ VT   { Str8 1059079 LZMA_ra(2.06%), 88.0K } *
+|  |  |--+ EX_TARGET   { Bit1 1059079 LZMA_ra(6.62%), 8.6K } *
+|  |  \--+ DP   { Int32 1059079 LZMA_ra(45.0%), 1.8M } *
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+[1] 1
+[1] 2
+[1] 3
+[1] 1
+[1] 2
+[1] 3
+── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+cols(
+  .default = col_double(),
+  VarInfo = col_character(),
+  variant_vcf = col_character(),
+  variant_annovar = col_character(),
+  ref_annovar = col_character(),
+  alt_annovar = col_character(),
+  ref_vcf = col_character(),
+  alt_vcf = col_character(),
+  aloft_value = col_logical(),
+  aloft_description = col_logical(),
+  filter_status = col_character(),
+  cage_enhancer = col_logical(),
+  cage_promoter = col_logical(),
+  cage_tc = col_character(),
+  clnsig = col_logical(),
+  clnsigincl = col_logical(),
+  clndn = col_logical(),
+  clndnincl = col_logical(),
+  clnrevstat = col_logical(),
+  origin = col_logical(),
+  clndisdb = col_logical()
+  # ... with 38 more columns
+)
+ℹ Use `spec()` for the full column specifications.
+
+Warning: 7150897 parsing failures.
+ row           col           expected                     actual                     file
+1421 cage_promoter 1/0/T/F/TRUE/FALSE chr22:10729410..10729413,- './chr22/Anno_chr22.csv'
+1466 cage_promoter 1/0/T/F/TRUE/FALSE chr22:10730403..10730417,- './chr22/Anno_chr22.csv'
+1467 cage_promoter 1/0/T/F/TRUE/FALSE chr22:10730403..10730417,- './chr22/Anno_chr22.csv'
+1468 cage_promoter 1/0/T/F/TRUE/FALSE chr22:10730403..10730417,- './chr22/Anno_chr22.csv'
+1469 cage_promoter 1/0/T/F/TRUE/FALSE chr22:10730403..10730417,- './chr22/Anno_chr22.csv'
+.... ............. .................. .......................... ........................
+See problems(...) for more details.
+
+[1] 1059079     190
+There were 14 warnings (use warnings() to see them)
+Object of class "SeqVarGDSClass"
+File: /Users/zhou/Storage/Research/Projects/Test/Full/All.chr22.27022019.GRCh38.phased.gds (226.1M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 1059079 LZMA_ra(6.20%), 256.6K } *
+|--+ position   { Int32 1059079 LZMA_ra(27.0%), 1.1M } *
+|--+ chromosome   { Str8 1059079 LZMA_ra(0.02%), 617B } *
+|--+ allele   { Str8 1059079 LZMA_ra(15.4%), 665.6K } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x1059079 LZMA_ra(0.01%), 48.1K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 1059079 LZMA_ra(0.03%), 305B } *
+|  |--+ qual   { Float32 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ filter   { Int32,factor 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 1059079 LZMA_ra(7.72%), 319.6K } *
+|  |  |--+ AC   { Int32 1059079 LZMA_ra(19.0%), 788.0K } *
+|  |  |--+ NS   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ AN   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ EAS_AF   { Float32 1059079 LZMA_ra(5.73%), 237.2K } *
+|  |  |--+ EUR_AF   { Float32 1059079 LZMA_ra(6.18%), 255.7K } *
+|  |  |--+ AFR_AF   { Float32 1059079 LZMA_ra(8.56%), 354.1K } *
+|  |  |--+ AMR_AF   { Float32 1059079 LZMA_ra(6.70%), 277.2K } *
+|  |  |--+ SAS_AF   { Float32 1059079 LZMA_ra(6.45%), 266.8K } *
+|  |  |--+ VT   { Str8 1059079 LZMA_ra(2.06%), 88.0K } *
+|  |  |--+ EX_TARGET   { Bit1 1059079 LZMA_ra(6.62%), 8.6K } *
+|  |  |--+ DP   { Int32 1059079 LZMA_ra(45.0%), 1.8M } *
+|  |  \--+ FAVORFullDBAug1st2022   [ spec_tbl_df,tbl_df,tbl,data.frame,list ] *
+|  |     |--+ VarInfo   { Str8 1059079 LZMA_ra(15.6%), 2.5M }
+|  |     |--+ vid   { Float64 1059079 LZMA_ra(21.8%), 1.8M }
+|  |     |--+ variant_vcf   { Str8 1059079 LZMA_ra(15.5%), 2.5M }
+|  |     |--+ variant_annovar   { Str8 1059079 LZMA_ra(11.7%), 2.9M }
+|  |     |--+ chromosome   { Float64 1059079 LZMA_ra(0.35%), 29.4K }
+|  |     |--+ start_position   { Float64 1059079 LZMA_ra(18.4%), 1.5M }
+|  |     |--+ end_position   { Float64 1059079 LZMA_ra(18.4%), 1.5M }
+|  |     |--+ ref_annovar   { Str8 1059079 LZMA_ra(17.9%), 383.0K }
+|  |     |--+ alt_annovar   { Str8 1059079 LZMA_ra(16.9%), 351.1K }
+|  |     |--+ position   { Float64 1059079 LZMA_ra(18.4%), 1.5M }
+|  |     |--+ ref_vcf   { Str8 1059079 LZMA_ra(18.4%), 399.5K }
+|  |     |--+ alt_vcf   { Str8 1059079 LZMA_ra(16.6%), 347.3K }
+|  |     |--+ aloft_value   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ aloft_description   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ apc_conservation   { Float64 1059079 LZMA_ra(87.0%), 7.0M }
+|  |     |--+ apc_conservation_v2   { Float64 1059079 LZMA_ra(86.9%), 7.0M }
+|  |     |--+ apc_epigenetics_active   { Float64 1059079 LZMA_ra(79.4%), 6.4M }
+|  |     |--+ apc_epigenetics   { Float64 1059079 LZMA_ra(86.2%), 7.0M }
+|  |     |--+ apc_epigenetics_repressed   { Float64 1059079 LZMA_ra(48.9%), 3.9M }
+|  |     |--+ apc_epigenetics_transcription   { Float64 1059079 LZMA_ra(48.5%), 3.9M }
+|  |     |--+ apc_local_nucleotide_diversity   { Float64 1059079 LZMA_ra(1.92%), 158.5K }
+|  |     |--+ apc_local_nucleotide_diversity_v2   { Float64 1059079 LZMA_ra(83.5%), 6.8M }
+|  |     |--+ apc_local_nucleotide_diversity_v3   { Float64 1059079 LZMA_ra(84.1%), 6.8M }
+|  |     |--+ apc_mappability   { Float64 1059079 LZMA_ra(31.4%), 2.5M }
+|  |     |--+ apc_micro_rna   { Float64 1059079 LZMA_ra(2.91%), 241.2K }
+|  |     |--+ apc_mutation_density   { Float64 1059079 LZMA_ra(83.5%), 6.7M }
+|  |     |--+ apc_protein_function   { Float64 1059079 LZMA_ra(2.57%), 212.7K }
+|  |     |--+ apc_protein_function_v2   { Float64 1059079 LZMA_ra(2.59%), 214.4K }
+|  |     |--+ apc_protein_function_v3   { Float64 1059079 LZMA_ra(2.58%), 213.5K }
+|  |     |--+ apc_proximity_to_coding   { Float64 1059079 LZMA_ra(14.1%), 1.1M }
+|  |     |--+ apc_proximity_to_coding_v2   { Float64 1059079 LZMA_ra(6.53%), 540.0K }
+|  |     |--+ apc_proximity_to_tsstes   { Float64 1059079 LZMA_ra(74.6%), 6.0M }
+|  |     |--+ apc_transcription_factor   { Float64 1059079 LZMA_ra(8.40%), 694.7K }
+|  |     |--+ bravo_an   { Float64 1059079 LZMA_ra(1.68%), 138.6K }
+|  |     |--+ bravo_af   { Float64 1059079 LZMA_ra(26.3%), 2.1M }
+|  |     |--+ filter_status   { Str8 1059079 LZMA_ra(4.39%), 205.2K }
+|  |     |--+ cage_enhancer   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ cage_promoter   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ cage_tc   { Str8 1059079 LZMA_ra(5.61%), 98.1K }
+|  |     |--+ clnsig   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ clnsigincl   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ clndn   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ clndnincl   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ clnrevstat   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ origin   { Int32,logical 1059079 LZMA_ra(0.22%), 9.3K } *
+|  |     |--+ clndisdb   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ clndisdbincl   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ geneinfo   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ polyphen2_hdiv_score   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ polyphen2_hvar_score   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ mutation_taster_score   { Int32,logical 1059079 LZMA_ra(0.27%), 11.0K } *
+|  |     |--+ mutation_assessor_score   { Int32,logical 1059079 LZMA_ra(0.05%), 2.2K } *
+|  |     |--+ metasvm_pred   { Int32,logical 1059079 LZMA_ra(0.33%), 13.7K } *
+|  |     |--+ fathmm_xf   { Float64 1059079 LZMA_ra(54.4%), 4.4M }
+|  |     |--+ funseq_value   { Int32,logical 1059079 LZMA_ra(0.38%), 15.7K } *
+|  |     |--+ funseq_description   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ genecode_comprehensive_category   { Str8 1059079 LZMA_ra(0.64%), 66.9K }
+|  |     |--+ genecode_comprehensive_info   { Str8 1059079 LZMA_ra(5.62%), 1.1M }
+|  |     |--+ genecode_comprehensive_exonic_category   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ genecode_comprehensive_exonic_info   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ genehancer   { Str8 1059079 LZMA_ra(0.24%), 171.9K }
+|  |     |--+ af_total   { Float64 1059079 LZMA_ra(56.3%), 4.6M }
+|  |     |--+ af_asj_female   { Float64 1059079 LZMA_ra(9.65%), 798.1K }
+|  |     |--+ af_eas_female   { Float64 1059079 LZMA_ra(9.85%), 815.3K }
+|  |     |--+ af_afr_male   { Float64 1059079 LZMA_ra(34.1%), 2.8M }
+|  |     |--+ af_female   { Float64 1059079 LZMA_ra(47.3%), 3.8M }
+|  |     |--+ af_fin_male   { Float64 1059079 LZMA_ra(16.1%), 1.3M }
+|  |     |--+ af_oth_female   { Float64 1059079 LZMA_ra(12.6%), 1.0M }
+|  |     |--+ af_ami   { Float64 1059079 LZMA_ra(7.24%), 599.2K }
+|  |     |--+ af_oth   { Float64 1059079 LZMA_ra(16.2%), 1.3M }
+|  |     |--+ af_male   { Float64 1059079 LZMA_ra(48.7%), 3.9M }
+|  |     |--+ af_ami_female   { Float64 1059079 LZMA_ra(6.35%), 525.5K }
+|  |     |--+ af_afr   { Float64 1059079 LZMA_ra(42.0%), 3.4M }
+|  |     |--+ af_eas_male   { Float64 1059079 LZMA_ra(10.3%), 855.4K }
+|  |     |--+ af_sas   { Float64 1059079 LZMA_ra(16.0%), 1.3M }
+|  |     |--+ af_nfe_female   { Float64 1059079 LZMA_ra(26.0%), 2.1M }
+|  |     |--+ af_asj_male   { Float64 1059079 LZMA_ra(9.37%), 775.5K }
+|  |     |--+ af_raw   { Float64 1059079 LZMA_ra(49.4%), 4.0M }
+|  |     |--+ af_oth_male   { Float64 1059079 LZMA_ra(12.6%), 1.0M }
+|  |     |--+ af_nfe_male   { Float64 1059079 LZMA_ra(24.4%), 2.0M }
+|  |     |--+ af_asj   { Float64 1059079 LZMA_ra(11.5%), 947.8K }
+|  |     |--+ af_amr_male   { Float64 1059079 LZMA_ra(22.3%), 1.8M }
+|  |     |--+ af_amr_female   { Float64 1059079 LZMA_ra(21.0%), 1.7M }
+|  |     |--+ af_sas_female   { Float64 1059079 LZMA_ra(8.97%), 742.4K }
+|  |     |--+ af_fin   { Float64 1059079 LZMA_ra(16.9%), 1.4M }
+|  |     |--+ af_afr_female   { Float64 1059079 LZMA_ra(35.8%), 2.9M }
+|  |     |--+ af_sas_male   { Float64 1059079 LZMA_ra(14.8%), 1.2M }
+|  |     |--+ af_amr   { Float64 1059079 LZMA_ra(26.8%), 2.2M }
+|  |     |--+ af_nfe   { Float64 1059079 LZMA_ra(30.3%), 2.4M }
+|  |     |--+ af_eas   { Float64 1059079 LZMA_ra(12.6%), 1.0M }
+|  |     |--+ af_ami_male   { Float64 1059079 LZMA_ra(6.20%), 512.7K }
+|  |     |--+ af_fin_female   { Float64 1059079 LZMA_ra(11.3%), 934.2K }
+|  |     |--+ linsight   { Float64 1059079 LZMA_ra(25.8%), 2.1M }
+|  |     |--+ gc   { Float64 1059079 LZMA_ra(9.14%), 756.2K }
+|  |     |--+ cpg   { Float64 1059079 LZMA_ra(4.39%), 363.1K }
+|  |     |--+ min_dist_tss   { Float64 1059079 LZMA_ra(18.5%), 1.5M }
+|  |     |--+ min_dist_tse   { Float64 1059079 LZMA_ra(18.5%), 1.5M }
+|  |     |--+ sift_cat   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ sift_val   { Int32,logical 1059079 LZMA_ra(0.21%), 8.9K } *
+|  |     |--+ polyphen_cat   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ polyphen_val   { Int32,logical 1059079 LZMA_ra(0.15%), 6.1K } *
+|  |     |--+ priphcons   { Float64 1059079 LZMA_ra(14.0%), 1.1M }
+|  |     |--+ mamphcons   { Float64 1059079 LZMA_ra(9.34%), 773.0K }
+|  |     |--+ verphcons   { Float64 1059079 LZMA_ra(9.14%), 755.9K }
+|  |     |--+ priphylop   { Float64 1059079 LZMA_ra(14.7%), 1.2M }
+|  |     |--+ mamphylop   { Float64 1059079 LZMA_ra(20.7%), 1.7M }
+|  |     |--+ verphylop   { Float64 1059079 LZMA_ra(21.0%), 1.7M }
+|  |     |--+ bstatistic   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ chmm_e1   { Float64 1059079 LZMA_ra(0.70%), 58.1K }
+|  |     |--+ chmm_e2   { Float64 1059079 LZMA_ra(0.63%), 52.2K }
+|  |     |--+ chmm_e3   { Float64 1059079 LZMA_ra(0.84%), 69.2K }
+|  |     |--+ chmm_e4   { Float64 1059079 LZMA_ra(0.98%), 81.3K }
+|  |     |--+ chmm_e5   { Float64 1059079 LZMA_ra(0.78%), 64.3K }
+|  |     |--+ chmm_e6   { Float64 1059079 LZMA_ra(0.65%), 53.7K }
+|  |     |--+ chmm_e7   { Float64 1059079 LZMA_ra(1.33%), 110.3K }
+|  |     |--+ chmm_e8   { Float64 1059079 LZMA_ra(0.97%), 80.0K }
+|  |     |--+ chmm_e9   { Float64 1059079 LZMA_ra(0.57%), 47.5K }
+|  |     |--+ chmm_e10   { Float64 1059079 LZMA_ra(0.69%), 57.4K }
+|  |     |--+ chmm_e11   { Float64 1059079 LZMA_ra(0.87%), 71.8K }
+|  |     |--+ chmm_e12   { Float64 1059079 LZMA_ra(1.37%), 113.7K }
+|  |     |--+ chmm_e13   { Float64 1059079 LZMA_ra(1.00%), 82.9K }
+|  |     |--+ chmm_e14   { Float64 1059079 LZMA_ra(0.99%), 81.6K }
+|  |     |--+ chmm_e15   { Float64 1059079 LZMA_ra(2.18%), 180.8K }
+|  |     |--+ chmm_e16   { Float64 1059079 LZMA_ra(0.55%), 45.6K }
+|  |     |--+ chmm_e17   { Float64 1059079 LZMA_ra(0.70%), 58.3K }
+|  |     |--+ chmm_e18   { Float64 1059079 LZMA_ra(0.69%), 57.5K }
+|  |     |--+ chmm_e19   { Float64 1059079 LZMA_ra(0.65%), 53.4K }
+|  |     |--+ chmm_e20   { Float64 1059079 LZMA_ra(0.63%), 52.4K }
+|  |     |--+ chmm_e21   { Float64 1059079 LZMA_ra(1.33%), 109.8K }
+|  |     |--+ chmm_e22   { Float64 1059079 LZMA_ra(1.03%), 85.6K }
+|  |     |--+ chmm_e23   { Float64 1059079 LZMA_ra(0.79%), 65.6K }
+|  |     |--+ chmm_e24   { Float64 1059079 LZMA_ra(1.31%), 108.6K }
+|  |     |--+ chmm_e25   { Float64 1059079 LZMA_ra(0.83%), 68.7K }
+|  |     |--+ gerp_rs   { Float64 1059079 LZMA_ra(1.00%), 82.8K }
+|  |     |--+ gerp_rs_pval   { Float64 1059079 LZMA_ra(1.41%), 117.1K }
+|  |     |--+ gerp_n   { Float64 1059079 LZMA_ra(14.0%), 1.1M }
+|  |     |--+ gerp_s   { Float64 1059079 LZMA_ra(18.9%), 1.5M }
+|  |     |--+ encodeh3k4me1_sum   { Float64 1059079 LZMA_ra(18.2%), 1.5M }
+|  |     |--+ encodeh3k4me2_sum   { Float64 1059079 LZMA_ra(17.4%), 1.4M }
+|  |     |--+ encodeh3k4me3_sum   { Float64 1059079 LZMA_ra(17.4%), 1.4M }
+|  |     |--+ encodeh3k9ac_sum   { Float64 1059079 LZMA_ra(17.5%), 1.4M }
+|  |     |--+ encodeh3k9me3_sum   { Float64 1059079 LZMA_ra(17.7%), 1.4M }
+|  |     |--+ encodeh3k27ac_sum   { Float64 1059079 LZMA_ra(17.9%), 1.4M }
+|  |     |--+ encodeh3k27me3_sum   { Float64 1059079 LZMA_ra(18.5%), 1.5M }
+|  |     |--+ encodeh3k36me3_sum   { Float64 1059079 LZMA_ra(17.4%), 1.4M }
+|  |     |--+ encodeh3k79me2_sum   { Float64 1059079 LZMA_ra(17.6%), 1.4M }
+|  |     |--+ encodeh4k20me1_sum   { Float64 1059079 LZMA_ra(18.0%), 1.5M }
+|  |     |--+ encodeh2afz_sum   { Float64 1059079 LZMA_ra(17.9%), 1.4M }
+|  |     |--+ encode_dnase_sum   { Float64 1059079 LZMA_ra(9.53%), 788.3K }
+|  |     |--+ encodetotal_rna_sum   { Float64 1059079 LZMA_ra(5.74%), 474.7K }
+|  |     |--+ grantham   { Int32,logical 1059079 LZMA_ra(0.04%), 1.8K } *
+|  |     |--+ freq100bp   { Float64 1059079 LZMA_ra(1.96%), 162.4K }
+|  |     |--+ rare100bp   { Float64 1059079 LZMA_ra(3.02%), 249.5K }
+|  |     |--+ sngl100bp   { Float64 1059079 LZMA_ra(6.39%), 528.8K }
+|  |     |--+ freq1000bp   { Float64 1059079 LZMA_ra(2.28%), 188.6K }
+|  |     |--+ rare1000bp   { Float64 1059079 LZMA_ra(3.46%), 286.1K }
+|  |     |--+ sngl1000bp   { Float64 1059079 LZMA_ra(7.47%), 617.8K }
+|  |     |--+ freq10000bp   { Float64 1059079 LZMA_ra(2.64%), 218.1K }
+|  |     |--+ rare10000bp   { Float64 1059079 LZMA_ra(4.01%), 332.0K }
+|  |     |--+ sngl10000bp   { Float64 1059079 LZMA_ra(7.93%), 655.9K }
+|  |     |--+ remap_overlap_tf   { Float64 1059079 LZMA_ra(4.28%), 354.0K }
+|  |     |--+ remap_overlap_cl   { Float64 1059079 LZMA_ra(4.72%), 390.2K }
+|  |     |--+ cadd_rawscore   { Float64 1059079 LZMA_ra(46.0%), 3.7M }
+|  |     |--+ cadd_phred   { Float64 1059079 LZMA_ra(23.8%), 1.9M }
+|  |     |--+ k24_bismap   { Float64 1059079 LZMA_ra(7.19%), 594.8K }
+|  |     |--+ k24_umap   { Float64 1059079 LZMA_ra(3.94%), 325.6K }
+|  |     |--+ k36_bismap   { Float64 1059079 LZMA_ra(4.25%), 351.3K }
+|  |     |--+ k36_umap   { Float64 1059079 LZMA_ra(3.44%), 284.5K }
+|  |     |--+ k50_bismap   { Float64 1059079 LZMA_ra(3.75%), 310.0K }
+|  |     |--+ k50_umap   { Float64 1059079 LZMA_ra(2.69%), 222.6K }
+|  |     |--+ k100_bismap   { Float64 1059079 LZMA_ra(1.97%), 162.7K }
+|  |     |--+ k100_umap   { Float64 1059079 LZMA_ra(0.68%), 56.6K }
+|  |     |--+ nucdiv   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ rdhs   { Str8 1059079 LZMA_ra(2.52%), 112.2K }
+|  |     |--+ recombination_rate   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ refseq_category   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ refseq_info   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ refseq_exonic_category   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ refseq_exonic_info   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ super_enhancer   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     |--+ tg_afr   { Int32,logical 1059079 LZMA_ra(0.08%), 3.2K } *
+|  |     |--+ tg_all   { Int32,logical 1059079 LZMA_ra(0.05%), 2.3K } *
+|  |     |--+ tg_amr   { Int32,logical 1059079 LZMA_ra(0.07%), 3.0K } *
+|  |     |--+ tg_eas   { Int32,logical 1059079 LZMA_ra(0.13%), 5.5K } *
+|  |     |--+ tg_eur   { Int32,logical 1059079 LZMA_ra(0.07%), 3.0K } *
+|  |     |--+ tg_sas   { Int32,logical 1059079 LZMA_ra(0.08%), 3.4K } *
+|  |     |--+ ucsc_category   { Str8 1059079 LZMA_ra(0.62%), 74.5K }
+|  |     |--+ ucsc_info   { Str8 1059079 LZMA_ra(2.24%), 1.1M }
+|  |     |--+ ucsc_exonic_category   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  |     \--+ ucsc_exonic_info   { Int32,logical 1059079 LZMA_ra(0.02%), 777B } *
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+[1] "time"
+Time difference of 1.045753 hours
+
+
+
+
+
+
+zhou@M1 Test % Rscript FAVORannotatorCSVEssentialDB.R All.chr22.27022019.GRCh38.phased.gds 22
+[1] "gds.file:  All.chr22.27022019.GRCh38.phased.gds"
+[1] "chr:  22"
+[1] "use_compression: Yes"
+--2022-09-14 16:42:28--  https://dataverse.harvard.edu/api/access/datafile/6170504
+Resolving dataverse.harvard.edu (dataverse.harvard.edu)... 3.219.100.164, 3.226.192.24, 54.211.138.37
+Connecting to dataverse.harvard.edu (dataverse.harvard.edu)|3.219.100.164|:443... connected.
+HTTP request sent, awaiting response... 303 See Other
+Location: https://dvn-cloud.s3.amazonaws.com/10.7910/DVN/1VGTJI/17fe155b1d0-76967428f313?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27chr22.tar.gz&response-content-type=application%2Fx-gzip&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220914T204228Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIEJ3NV7UYCSRJC7A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6be2b2b646fbb584c3a51af135b1558a0cb7d63bbffa6457da4ecde93573b489 [following]
+--2022-09-14 16:42:28--  https://dvn-cloud.s3.amazonaws.com/10.7910/DVN/1VGTJI/17fe155b1d0-76967428f313?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27chr22.tar.gz&response-content-type=application%2Fx-gzip&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220914T204228Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIEJ3NV7UYCSRJC7A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6be2b2b646fbb584c3a51af135b1558a0cb7d63bbffa6457da4ecde93573b489
+Resolving dvn-cloud.s3.amazonaws.com (dvn-cloud.s3.amazonaws.com)... 52.217.171.57
+Connecting to dvn-cloud.s3.amazonaws.com (dvn-cloud.s3.amazonaws.com)|52.217.171.57|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5574054308 (5.2G) [application/x-gzip]
+Saving to: ‘6170504’
+
+6170504                                            100%[================================================================================================================>]   5.19G  2.59MB/s    in 32m 38s
+
+2022-09-14 17:15:07 (2.72 MB/s) - ‘6170504’ saved [5574054308/5574054308]
+
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr22_1.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr22_1.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr22_2.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr22_2.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr22_3.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr22_3.csv.idx
+Object of class "SeqVarGDSClass"
+File: /Users/zhou/Storage/Research/Projects/Test/All.chr22.27022019.GRCh38.phased.gds (87.4M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 1059079 LZMA_ra(6.20%), 256.6K } *
+|--+ position   { Int32 1059079 LZMA_ra(27.0%), 1.1M } *
+|--+ chromosome   { Str8 1059079 LZMA_ra(0.02%), 617B } *
+|--+ allele   { Str8 1059079 LZMA_ra(15.4%), 665.6K } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x1059079 LZMA_ra(1.98%), 25.5M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x1059079 LZMA_ra(0.01%), 48.1K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 1059079 LZMA_ra(0.03%), 305B } *
+|  |--+ qual   { Float32 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ filter   { Int32,factor 1059079 LZMA_ra(0.02%), 777B } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 1059079 LZMA_ra(7.72%), 319.6K } *
+|  |  |--+ AC   { Int32 1059079 LZMA_ra(19.0%), 788.0K } *
+|  |  |--+ NS   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ AN   { Int32 1059079 LZMA_ra(0.02%), 777B } *
+|  |  |--+ EAS_AF   { Float32 1059079 LZMA_ra(5.73%), 237.2K } *
+|  |  |--+ EUR_AF   { Float32 1059079 LZMA_ra(6.18%), 255.7K } *
+|  |  |--+ AFR_AF   { Float32 1059079 LZMA_ra(8.56%), 354.1K } *
+|  |  |--+ AMR_AF   { Float32 1059079 LZMA_ra(6.70%), 277.2K } *
+|  |  |--+ SAS_AF   { Float32 1059079 LZMA_ra(6.45%), 266.8K } *
+|  |  |--+ VT   { Str8 1059079 LZMA_ra(2.06%), 88.0K } *
+|  |  |--+ EX_TARGET   { Bit1 1059079 LZMA_ra(6.62%), 8.6K } *
+|  |  |--+ DP   { Int32 1059079 LZMA_ra(45.0%), 1.8M } *
+|  |  |--+ FunctionalAnnotationJun1st2022   [ tbl_df,tbl,data.frame,list ] *
+|  |  \--+ FunctionalAnnotationAug1st2022   [ spec_tbl_df,tbl_df,tbl,data.frame,list ] *
+|  |     |--+ VarInfo   { Str8 1059079 LZMA_ra(15.6%), 2.5M }
+|  |     |--+ apc_conservation   { Float64 1059079 LZMA_ra(86.9%), 7.0M }
+|  |     |--+ apc_epigenetics   { Float64 1059079 LZMA_ra(86.2%), 7.0M }
+|  |     |--+ apc_epigenetics_active   { Float64 1059079 LZMA_ra(79.4%), 6.4M }
+|  |     |--+ apc_epigenetics_repressed   { Float64 1059079 LZMA_ra(48.9%), 3.9M }
+|  |     |--+ apc_epigenetics_transcription   { Float64 1059079 LZMA_ra(48.5%), 3.9M }
+|  |     |--+ apc_local_nucleotide_diversity   { Float64 1059079 LZMA_ra(84.1%), 6.8M }
+|  |     |--+ apc_mappability   { Float64 1059079 LZMA_ra(31.4%), 2.5M }
+|  |     |--+ apc_protein_function   { Float64 1059079 LZMA_ra(2.58%), 213.5K }
+|  |     |--+ apc_transcription_factor   { Float64 1059079 LZMA_ra(8.40%), 694.7K }
+|  |     |--+ cage_tc   { Str8 1059079 LZMA_ra(5.61%), 98.1K }
+|  |     |--+ metasvm_pred   { Str8 1059079 LZMA_ra(1.25%), 13.1K }
+|  |     |--+ rsid   { Str8 1059079 LZMA_ra(35.6%), 4.1M }
+|  |     |--+ fathmm_xf   { Float64 1059079 LZMA_ra(54.4%), 4.4M }
+|  |     |--+ genecode_comprehensive_category   { Str8 1059079 LZMA_ra(0.64%), 66.9K }
+|  |     |--+ genecode_comprehensive_info   { Str8 1059079 LZMA_ra(5.62%), 1.1M }
+|  |     |--+ genecode_comprehensive_exonic_category   { Str8 1059079 LZMA_ra(1.51%), 21.7K }
+|  |     |--+ genecode_comprehensive_exonic_info   { Str8 1059079 LZMA_ra(7.62%), 330.8K }
+|  |     |--+ genehancer   { Str8 1059079 LZMA_ra(0.24%), 171.9K }
+|  |     |--+ linsight   { Float64 1059079 LZMA_ra(25.8%), 2.1M }
+|  |     |--+ cadd_phred   { Float64 1059079 LZMA_ra(23.8%), 1.9M }
+|  |     \--+ rdhs   { Str8 1059079 LZMA_ra(2.52%), 112.2K }
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+[1] 1
+[1] 2
+[1] 3
+[1] 1
+[1] 2
+[1] 3
+[1] 1059079      22
+Warning messages:
+1: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+2: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+3: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+4: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+5: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+6: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+7: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+8: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+9: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+[1] "time"
+Time difference of 14.08326 mins
+
+
+
+
+
+zhou@M1 Essential % Rscript FAVORannotatorCSVEssentialDB.R All.chr1.27022019.GRCh38.phased.gds 1
+[1] "gds.file:  All.chr1.27022019.GRCh38.phased.gds"
+[1] "chr:  1"
+[1] "use_compression: Yes"
+--2022-09-14 16:24:39--  https://dataverse.harvard.edu/api/access/datafile/6170506
+Resolving dataverse.harvard.edu (dataverse.harvard.edu)... 54.211.138.37, 3.219.100.164, 3.226.192.24
+Connecting to dataverse.harvard.edu (dataverse.harvard.edu)|54.211.138.37|:443... connected.
+HTTP request sent, awaiting response... 303 See Other
+Location: https://dvn-cloud.s3.amazonaws.com/10.7910/DVN/1VGTJI/17fe5944e75-2c901ebf815d?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27chr1.tar.gz&response-content-type=application%2Fx-gzip&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220914T202439Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIEJ3NV7UYCSRJC7A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=52a60668962768b84f03bc5e6f2084ddddb776848455215b7d7cfd9074e02fb8 [following]
+--2022-09-14 16:24:39--  https://dvn-cloud.s3.amazonaws.com/10.7910/DVN/1VGTJI/17fe5944e75-2c901ebf815d?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27chr1.tar.gz&response-content-type=application%2Fx-gzip&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220914T202439Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIAIEJ3NV7UYCSRJC7A%2F20220914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=52a60668962768b84f03bc5e6f2084ddddb776848455215b7d7cfd9074e02fb8
+Resolving dvn-cloud.s3.amazonaws.com (dvn-cloud.s3.amazonaws.com)... 52.217.133.185
+Connecting to dvn-cloud.s3.amazonaws.com (dvn-cloud.s3.amazonaws.com)|52.217.133.185|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 33455185130 (31G) [application/x-gzip]
+Saving to: ‘6170506’
+
+6170506                                            100%[================================================================================================================>]  31.16G  5.23MB/s    in 2h 2m   
+
+2022-09-14 18:27:07 (4.34 MB/s) - ‘6170506’ saved [33455185130/33455185130]
+
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_10.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_10.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_11.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_11.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_12.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_12.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_13.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_13.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_14.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_14.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_1.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_1.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_2.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_2.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_3.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_3.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_4.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_4.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_5.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_5.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_6.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_6.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_7.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_7.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_8.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_8.csv.idx
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_9.csv
+x n/holystore01/LABS/xlin/Lab/xihao_zilin/FAVORDB/chr1_9.csv.idx
+Object of class "SeqVarGDSClass"
+File: /Users/zhou/Storage/Research/Projects/Test/Essential/All.chr1.27022019.GRCh38.phased.gds (161.0M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 6191833 LZMA_ra(2.92%), 706.4K } *
+|--+ position   { Int32 6191833 LZMA_ra(27.9%), 6.6M } *
+|--+ chromosome   { Str8 6191833 LZMA_ra(0.02%), 1.9K } *
+|--+ allele   { Str8 6191833 LZMA_ra(15.7%), 3.9M } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x6191833 LZMA_ra(1.66%), 124.8M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x6191833 LZMA_ra(0.01%), 280.4K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 6191833 LZMA_ra(0.02%), 1.0K } *
+|  |--+ qual   { Float32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |--+ filter   { Int32,factor 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 6191833 LZMA_ra(7.39%), 1.7M } *
+|  |  |--+ AC   { Int32 6191833 LZMA_ra(18.5%), 4.4M } *
+|  |  |--+ NS   { Int32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |  |--+ AN   { Int32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |  |--+ EAS_AF   { Float32 6191833 LZMA_ra(5.54%), 1.3M } *
+|  |  |--+ EUR_AF   { Float32 6191833 LZMA_ra(5.90%), 1.4M } *
+|  |  |--+ AFR_AF   { Float32 6191833 LZMA_ra(8.20%), 1.9M } *
+|  |  |--+ AMR_AF   { Float32 6191833 LZMA_ra(6.52%), 1.5M } *
+|  |  |--+ SAS_AF   { Float32 6191833 LZMA_ra(6.17%), 1.5M } *
+|  |  |--+ VT   { Str8 6191833 LZMA_ra(2.09%), 522.7K } *
+|  |  |--+ EX_TARGET   { Bit1 6191833 LZMA_ra(4.82%), 36.4K } *
+|  |  \--+ DP   { Int32 6191833 LZMA_ra(44.0%), 10.4M } *
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 1
+
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 6191833      22
+Warning messages:
+1: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+2: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+3: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+4: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+5: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+6: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+7: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+8: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+9: In add.gdsn(ans, nm[i], val[[i]], compress = compress, closezip = closezip,  :
+  Missing characters are converted to "".
+Object of class "SeqVarGDSClass"
+File: /Users/zhou/Storage/Research/Projects/Test/Essential/All.chr1.27022019.GRCh38.phased.gds (485.6M)
++    [  ] *
+|--+ description   [  ] *
+|--+ sample.id   { Str8 2548 LZMA_ra(7.84%), 1.6K } *
+|--+ variant.id   { Int32 6191833 LZMA_ra(2.92%), 706.4K } *
+|--+ position   { Int32 6191833 LZMA_ra(27.9%), 6.6M } *
+|--+ chromosome   { Str8 6191833 LZMA_ra(0.02%), 1.9K } *
+|--+ allele   { Str8 6191833 LZMA_ra(15.7%), 3.9M } *
+|--+ genotype   [  ] *
+|  |--+ data   { Bit2 2x2548x6191833 LZMA_ra(1.66%), 124.8M } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Int16 0 LZMA_ra, 18B }
+|--+ phase   [  ]
+|  |--+ data   { Bit1 2548x6191833 LZMA_ra(0.01%), 280.4K } *
+|  |--+ extra.index   { Int32 3x0 LZMA_ra, 18B } *
+|  \--+ extra   { Bit1 0 LZMA_ra, 18B }
+|--+ annotation   [  ]
+|  |--+ id   { Str8 6191833 LZMA_ra(0.02%), 1.0K } *
+|  |--+ qual   { Float32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |--+ filter   { Int32,factor 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |--+ info   [  ]
+|  |  |--+ AF   { Float32 6191833 LZMA_ra(7.39%), 1.7M } *
+|  |  |--+ AC   { Int32 6191833 LZMA_ra(18.5%), 4.4M } *
+|  |  |--+ NS   { Int32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |  |--+ AN   { Int32 6191833 LZMA_ra(0.02%), 3.7K } *
+|  |  |--+ EAS_AF   { Float32 6191833 LZMA_ra(5.54%), 1.3M } *
+|  |  |--+ EUR_AF   { Float32 6191833 LZMA_ra(5.90%), 1.4M } *
+|  |  |--+ AFR_AF   { Float32 6191833 LZMA_ra(8.20%), 1.9M } *
+|  |  |--+ AMR_AF   { Float32 6191833 LZMA_ra(6.52%), 1.5M } *
+|  |  |--+ SAS_AF   { Float32 6191833 LZMA_ra(6.17%), 1.5M } *
+|  |  |--+ VT   { Str8 6191833 LZMA_ra(2.09%), 522.7K } *
+|  |  |--+ EX_TARGET   { Bit1 6191833 LZMA_ra(4.82%), 36.4K } *
+|  |  |--+ DP   { Int32 6191833 LZMA_ra(44.0%), 10.4M } *
+|  |  \--+ FunctionalAnnotationJun1st2022   [ spec_tbl_df,tbl_df,tbl,data.frame,list ] *
+|  |     |--+ VarInfo   { Str8 6191833 LZMA_ra(16.4%), 15.2M }
+|  |     |--+ apc_conservation   { Float64 6191833 LZMA_ra(86.9%), 41.1M }
+|  |     |--+ apc_epigenetics   { Float64 6191833 LZMA_ra(86.4%), 40.8M }
+|  |     |--+ apc_epigenetics_active   { Float64 6191833 LZMA_ra(80.7%), 38.1M }
+|  |     |--+ apc_epigenetics_repressed   { Float64 6191833 LZMA_ra(52.7%), 24.9M }
+|  |     |--+ apc_epigenetics_transcription   { Float64 6191833 LZMA_ra(48.1%), 22.7M }
+|  |     |--+ apc_local_nucleotide_diversity   { Float64 6191833 LZMA_ra(83.6%), 39.5M }
+|  |     |--+ apc_mappability   { Float64 6191833 LZMA_ra(29.0%), 13.7M }
+|  |     |--+ apc_protein_function   { Float64 6191833 LZMA_ra(2.17%), 1.0M }
+|  |     |--+ apc_transcription_factor   { Float64 6191833 LZMA_ra(7.31%), 3.5M }
+|  |     |--+ cage_tc   { Str8 6191833 LZMA_ra(4.99%), 451.4K }
+|  |     |--+ metasvm_pred   { Str8 6191833 LZMA_ra(0.94%), 57.5K }
+|  |     |--+ rsid   { Str8 6191833 LZMA_ra(35.7%), 24.2M }
+|  |     |--+ fathmm_xf   { Float64 6191833 LZMA_ra(57.2%), 27.0M }
+|  |     |--+ genecode_comprehensive_category   { Str8 6191833 LZMA_ra(0.57%), 360.1K }
+|  |     |--+ genecode_comprehensive_info   { Str8 6191833 LZMA_ra(5.77%), 7.2M }
+|  |     |--+ genecode_comprehensive_exonic_category   { Str8 6191833 LZMA_ra(1.17%), 89.4K }
+|  |     |--+ genecode_comprehensive_exonic_info   { Str8 6191833 LZMA_ra(7.27%), 1.3M }
+|  |     |--+ genehancer   { Str8 6191833 LZMA_ra(0.27%), 707.1K }
+|  |     |--+ linsight   { Float64 6191833 LZMA_ra(22.9%), 10.8M }
+|  |     |--+ cadd_phred   { Float64 6191833 LZMA_ra(23.8%), 11.2M }
+|  |     \--+ rdhs   { Str8 6191833 LZMA_ra(2.76%), 622.1K }
+|  \--+ format   [  ]
+\--+ sample.annotation   [  ]
+
