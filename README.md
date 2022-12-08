@@ -3,6 +3,8 @@
 # **FAVORannotator**
 FAVORannotator is an R program for performing functional annotation of any genetic study (e.g. Whole-Genome/Whole-Exome Sequencing/Genome-Wide Association Studies) using the [FAVOR backend database](https://favor.genohub.org) to create an annotated Genomic Data Structure (aGDS) file by storing the genotype data (in VCF or GDS format) and their functional annotation data in an all-in-one file.
 
+**For generating GDS/aGDS from raw VCF files, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/preprocessVCF.md).**
+
 ## 1.Introduction
 
 FAVORannotator is an open-source pipeline for functionally annotating and efficiently storing the genotype and variant functional annotation data of any genetic study (e.g. GWAS/WES/WGS). Functional annotation data is stored alongside with genotype data in an all-in-one aGDS file, through using the FAVORannotator. It then facilitates a wide range of functionally-informed downstream analyses (Figure 1).
@@ -173,7 +175,8 @@ The following steps have been written for major computing environments in order 
 -	Change the line in file “postgresql.conf”, data_directory = 'new directory of external storage'
 -	Reboot the data directory, ```$ sudo systemctl start postgresql```
 
-** For more detailed instructions on how to use FAVORannotator (SQL version) on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md).**
+
+**For more detailed instructions on how to use FAVORannotator (SQL version) on the Harvard FASRC Slurm Cluster, please refer to the detailed tutorial [here](https://github.com/zhouhufeng/FAVORannotator/blob/main/Docs/Tutorial/Demos/FASRC.md).**
 
 
 ## 8. CSV version
