@@ -73,7 +73,7 @@ Note:This is computationally intensive multi-core option enabled. merge function
 #### Step 8: Convert the merged VCFs per chromosomes into GDSs (per chromosome) [Benchmarked using UKBB 200k WES chr19 VCF takes 72 mins].
 ##### Script: 
 - ```$ Rscripts ./convertVCFtoGDS.r ./MergedVCF/ukbb.merged.bk.nm.vcf.gz ./MergedGDS/ukbb.merged.bk.nm.gds```
-<a href="FAVORannotator/Scripts/UTL/convertVCFtoGDS.r">**convertVCFtoGDS.r**</a>
+Script: <a href="https://github.com/zhouhufeng/FAVORannotator/blob/main/Scripts/UTL/convertVCFtoGDS.r">**convertVCFtoGDS.r**</a>
 ##### Input: The preprocessed VCF file,**ukbb.merged.bk.nm.vcf.gz**.
 ##### Output: The generated GDS file **ukbb.merged.bk.nm.gds**. 
 
