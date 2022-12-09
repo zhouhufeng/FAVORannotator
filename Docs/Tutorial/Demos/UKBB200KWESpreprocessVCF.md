@@ -21,9 +21,9 @@ Note: Most of the raw VCFs has issues with the header files that needs to be fix
 
 Note: This is computationally intensive, each smaller file is one multi-core instance, and multiple instances can be run in parallel to speed up the process. 
 
-Finish 64 VCF processing in 12 core parallel, 
+Finish 65 VCF processing in 12 core parallel, 130 mins
 
-Finish 64 VCF processing in 32 core parallel,
+Finish 65 VCF processing in 32 core parallel,49 mins
 
 #### Step 2: Break the multi-allelic sites into multiple rows of all the VCFs of each study.
 ##### Script: 
@@ -33,9 +33,9 @@ Finish 64 VCF processing in 32 core parallel,
 
 Note: multi-allelic sites cause issues for the following analysis, we usually break them into multiple rows in the preprocessing steps. 
 
-Finish 64 VCF processing in 12 core parallel, 
+Finish 65 VCF processing in 12 core parallel, 33 mins
 
-Finish 64 VCF processing in 32 core parallel,
+Finish 65 VCF processing in 32 core parallel, 12 mins
 
 #### Step 3: Concat the smaller VCFs (sliced by variants) within each study into one VCF file. [Benchmark in UKBB 200k WES 24 mins] 
 ##### Script: 
@@ -45,9 +45,9 @@ Finish 64 VCF processing in 32 core parallel,
 
 Note: This is computationally intensive, multi-core function enabled to speed up the process. Concat is only for VCFs has same samples [columns] just need to concat the variants [rows], if VCF is sliced by samples, you should refer to the following steps using the merge function. 
 
-Finish concat 64 VCF processing in 12 core parallel,24 mins 
+Finish concat 65 VCF processing in 12 core parallel,36 mins 
 
-Finish concat 64 VCF processing in 32 core parallel,20 mins
+Finish concat 65 VCF processing in 32 core parallel,24 mins
 
 
 
