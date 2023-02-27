@@ -141,7 +141,7 @@ FunctionalAnnotation <- read_csv(paste0(dir_anno,"chr",chr,"/Anno_chr",chr,".csv
 dim(FunctionalAnnotation)
 
 Anno.folder <- index.gdsn(genofile, "annotation/info")
-add.gdsn(Anno.folder, "FAVORFullDBAug1st2022", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
+add.gdsn(Anno.folder, "FAVORFullDB", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
 genofile
 
 seqClose(genofile)

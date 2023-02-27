@@ -166,7 +166,7 @@ colnames(FunctionalAnnotation)[7] <- "apc_local_nucleotide_diversity"
 colnames(FunctionalAnnotation)[9] <- "apc_protein_function"
 
 Anno.folder <- index.gdsn(genofile, "annotation/info")
-add.gdsn(Anno.folder, "FunctionalAnnotationSep1st2022", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
+add.gdsn(Anno.folder, "FunctionalAnnotation", val=FunctionalAnnotation, compress="LZMA_ra", closezip=TRUE)
 
 genofile
 

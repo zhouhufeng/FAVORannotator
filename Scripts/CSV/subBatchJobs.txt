@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH -c 1 
+#SBATCH -N 1
+#SBATCH -t 10000 
+#SBATCH -p shared,xlin,xlin-lab
+#SBATCH --mem=128000 
+#SBATCH -o array_%A_%a.out 
+#SBATCH -e array_%A_%a.err 
+#SBATCH --mail-type=ALL
+
+## expand back variable into array
+IFS=',' read -r -a MYFILES  <<< "$STRINGFILES"
+cur=${MYFILES[$SLURM_ARRAY_TASK_ID]}
+
+. ~/.bash_profile
+module load R/4.0.2-fasrc01
+
+cd /directory/aGDSFolder # put all the aGDS files to be annotated in the aGDSFolder
+
+Rscript FAVORannotatorCSVFullDB.R InputData.chr$cur.agds $cur
+
+Rscript FAVORannotatorCSVEssentialDB.R InputData.chr$cur.agds $cur
+
