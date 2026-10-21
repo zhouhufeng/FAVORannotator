@@ -12,7 +12,7 @@ args <- commandArgs(TRUE)
 ### mandatory
 
 vcf.file <- args[1]
-print(paste0("gds.file:  ",gds.file))
+print(paste0("vcf.file:  ",vcf.file))
 
 gds.file <- args[2]
 print(paste0("gds.file:  ",gds.file))
